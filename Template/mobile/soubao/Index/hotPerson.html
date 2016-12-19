@@ -28,14 +28,14 @@
 <article>
   <!--红人banner start-->
   <div class="index-personbanner">
-    <img src="__STATIC__/images/img/index/indexperson.png" />
+    <img src="{$m_arr.p_url}" />
   </div>
   <!--红人 banner end-->
   <div class="row index-hotmodel-selected">
     <div class="col-xs-6">
       <div>
         <span>本期：</span>
-        <span>第四期</span>
+        <span>第{$m_arr.s_name}期</span>
       </div>
     </div>
     <div class="col-xs-6">
@@ -43,55 +43,24 @@
         <span>往期红人：</span>
         <div class="dropdown ">
           <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            第一期
+            第{$m_arr.s_name}期
             <i class="icon iconfont">&#xe60a;</i>
             <!-- <span class="caret"></span>  -->
           </button>
           <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-            <li>第二期</li>
-            <li>第三期</li>
+            <foreach name="s_arr" item="v">
+            <li><a href="{:U('Index/hotPerson',array('id'=>$v['id']))}">第{$v.s_name}期</a></li>
+            </foreach>
           </ul>
         </div>
       </div>
     </div>
   </div>
-  <div class="index-personc-top">
-    <img src="__STATIC__/images/img/index/indexpersontip.png" />
-  </div>
-  <div class="row index-personcontent">
-    <div class="indexpersoninfo">
-      <div class="row indexpersoninfotop">
-        <div class="col-xs-5">
-          <img src="__STATIC__/images/img/index/personmodel1.png" />
-        </div>
-        <div class="col-xs-7">
-          <p>姓名：<span>Mary</span></p>
-          <p>简介：
-								<span>
-									2014年美国时尚杂
-									志《Time》封面人物，2015
-									年全球美丽小姐亚军，当选.
-									2014年美国时尚杂
-									志《Time》封面人物，2015
-									年全球美丽小姐亚军，当选.
-								</span>
-          </p>
-        </div>
-        <div class="col-xs-12">
-							<span class="indexshoucang">
-								<i class="icon iconfont">&#xe7a4;</i>
-								收藏
-							</span>
-							<span>
-								立即约她
-							</span>
-        </div>
-      </div>
-    </div>
-    <div class="indexpersoninfobottom"></div>
+  <div class="index-modelcontent">
+
   </div>
   <div class="indexmore">
-    <input onclick="showList();" type="button" value="点击加载更多"/>
+    <input onclick="getModelList();" type="button" value="点击加载更多"/>
   </div>
 </article>
 <footer class="indexfooter">
@@ -152,31 +121,30 @@
     var datacount = $('.index-persontopmodel div a').length;
     var datawidth = datacount*50+40;
     $('.index-persontopmodel div').css({'width':datawidth});
-    var currentpage = 1;
-    showList();
   })
-  var page = 6;
-  function showList(){
-    page --;
-    if(page<0){
-      $('.indexmore input').attr('value','没有更多数据了');
-      $('.indexmore input').attr('disabled',true);
-      return false;
-    }
-    for(var i = 0;i<1;i++){
-      var userid = 1;
-      var userimg = '__STATIC__/images/img/index/personmodel1.png';
-      var username = 'Mary';
-      var shengao = '1.82m';
-      var kg = '55kg';
-      var sanwei1 = '85';
-      var sanwei2 = '89';
-      var sanwei3 = '85';
-      var jianjie = '2014年美国时尚杂 志《Time》封面人物，2015 年全球美丽小姐亚军，当选.2014年美国时尚杂 志《Time》封面人物，2015 年全球美丽小姐亚军，当选.';
-      modelcontent ='<div class="row indexpersoninfotop"> <div class="col-xs-5"> <img src="'+userimg+'" /> </div> <div class="col-xs-7"> <p>姓名：<span>'+username+'</span></p>  <p>简介： <span> '+jianjie+' </span> </p> </div> <div class="col-xs-12"> <span class="indexshoucang"> <i class="icon iconfont">&#xe7a4;</i> 收藏 </span> <span> 立即约她 </span> </div> </div>';
-      $('.indexpersoninfo').append(modelcontent);
-    }
+</script>
+<script type="text/javascript">
+  $(function(){
+    getModelList();
+  });
+  var page = 1;
+  function getModelList(){
+    $.ajax({
+      type : "get",
+      url:"/index.php?m=Mobile&c=Index&a=ajaxMore&p="+page,
+      dataType:'html',
+      success: function(data)
+      {
+        if($.trim(data)== '') {
+          $('.indexmore input').attr('value','没有更多数据了');
+          $('.indexmore input').attr('disabled',true);
+        }else{
+          //alert(data);
+          $(".index-modelcontent").append(data);
+          page++;
+        }
+      }
+    });
   }
-
 </script>
 </html>
