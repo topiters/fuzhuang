@@ -1,0 +1,213 @@
+*{
+	padding: 0;
+	margin: 0;
+	font-family: "microsoft yahei" !important;
+}
+html,body{
+	width: 100%;
+	height: 100%;
+	overflow-x: hidden !important;
+}
+/*body背景色为f4f4f4*/
+.bodybgf4{	
+	background: #F4F4F4 !important;
+}
+/*右边小字体提示*/
+.textfctip{
+	font-size: 12px !important;
+	color: #999 !important;
+	margin-right: 10px;
+	margin-top: 15px;
+}
+ul{
+	list-style: none;
+}
+a,a:hover{text-decoration: none !important;color: #000;}
+
+.floatright{
+	float: right;
+}
+.floatleft{
+	float: right;
+}
+/*底部 start*/
+.indexfooter{
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	height: 55px;
+	background: #fff;
+	border-top: 1px solid #f4f4f4;
+}
+.indexfooter ul{
+	width: 100%;
+}
+.indexfooter ul li{
+	text-align: center;
+	float: left;
+	width: 20%;
+	display: inline-block;
+}
+.indexfooter ul li>a div:first-child{
+	height: 35px;
+}
+.indexfooter ul li>a div:first-child i{
+	font-size: 25px;
+}
+.indexfooter ul li>a div:nth-child(2){
+	font-size: 12px !important;
+}
+.indexfooterliactive i,.indexfooterliactive div{
+	color: #5555B1 !important;
+}
+.footer_clock div{
+	margin: 0 auto 0;
+	background: #fff;
+	width:60px !important;
+	height: 50px !important;
+	position: relative;
+}
+.footer_clock div i{
+	position: absolute;
+	top: -15px;
+	left: 9px;
+	display: block;
+	width: 42px !important;
+	height: 42px !important;
+	border-radius: 21px;
+	line-height: 42px;
+	text-align: center;
+	margin: 4px auto;
+	background: #5555B1;
+	color: #fff;
+}
+.footer_clock>div{
+	width:60px !important;
+	height: 60px !important;
+	border: 1px solid #f4f4f4;
+	z-index: -2;
+	border-radius: 30px;
+	position: absolute;
+	top: -21px;
+	left: 50%;
+	margin-left: -30px;
+}
+/*底部 end*/
+
+/*所有同用户个人中心下的列表样式 start*/
+.m-cclisttop{
+	width: 100%;
+	height: 45px;
+	line-height: 45px;
+	padding:0 10px;
+	background: #fff;
+	border-bottom: 1px solid #F4F4F4;
+	overflow: hidden;
+}
+.m-cclisttop>a{
+	display: block;
+}
+.m-cclisttop span:nth-child(2){
+	padding: 0 !important;
+}
+.m-cclisttop span:nth-child(2) span{
+	float: left;
+}
+.m-cclisttop span:first-child i{
+	padding-right: 5px;
+}
+.m-cclisttop span i{
+	font-size: 20px !important;
+}
+.m-ccltopmtop{
+	margin-top: 10px;
+}
+/*所有同用户个人中心下耳朵列表样式 end*/
+
+.selectsex>div{
+	float: left;
+	width: 50%;
+	text-align: center;
+}
+.quanbig{
+	width: 15px;
+	height: 15px;
+	border-radius: 50%;
+	padding:3px;
+	display: inline-block;
+	border: 1px solid #999;
+}
+.quanactive{
+	border: 1px solid #5555B1;
+}
+.quanactive>div{
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	background-color: #5555B1;
+}
+
+/*身份确认 start*/
+.model-identify{
+	width: 100%;
+	float: left;
+	margin-bottom: 20px;
+}
+.model-identify .m-cclisttop span{
+	display: inline-block;
+	width: 30%;
+	float: left;
+	min-width:80px;
+}
+.model-identify .m-cclisttop>div{
+	width: 70%;
+	display: inline-block;
+	float: left;
+}
+.model-identify .m-cclisttop>div input{
+	padding: 3px 10px;
+	height: 38px !important;
+	border-radius: 5px;
+	border: 1px solid #F4F4F4;
+	margin-top: 2px;
+}
+.mindetify-upimg{
+	padding: 5px 10px;
+	float: left;
+	width: 100%;
+	margin-top: 5px;
+}
+.mindetify-upimg .upimg{
+	width: 80px;
+	height: 80px;
+	overflow: hidden;
+	float: left;
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+.mindetify-upimg .upimg img{
+	width: 100%;
+}
+.mindetify-upimg .upicon{
+	width: 80px;
+	height: 80px;
+	border: 1px solid #999;
+	float: left;
+	margin-right: 15px;
+}
+.mindetify-upimg .upicon i{
+	font-size: 30px;
+	color: #999;
+	display: block;
+	margin: 15px 23px;
+}
+.subtnrenzheng{
+	border-style: none;
+	background: #5555B1;
+	color: #fff;
+	padding: 6px 0;
+	width: 80%;
+	display: block;
+	margin: 20px auto;
+}
+/*身份确认 end*/

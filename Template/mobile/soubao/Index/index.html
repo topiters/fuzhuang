@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=0.5,minimum-scale=1,maximum-scale=1,user-scalable=no">
+  <title>模特</title>
+  <link rel="stylesheet" href="__STATIC__/css/css/iconfont/iconfont.css" />
+  <link rel="stylesheet" href="__STATIC__/css/css/bootstrap/bootstrap.min.css" />
+  <link rel="stylesheet" href="__STATIC__/css/css/common.css" />
+  <link rel="stylesheet" href="__STATIC__/css/css/index.css" />
+  <script src="__STATIC__/js/js/jquery-1.11.3.min.js"></script>
+  <script src="__STATIC__/css/css/bootstrap/bootstrap.min.js"></script>
+</head>
+<body>
+<header class="index-modelheader">
+  <ul>
+    <li class="liactive">
+      <a href="{:U('Index/index')}">模特</a>
+    </li>
+    <li>
+      <a href="{:U('Index/hotPerson')}">红人</a>
+    </li>
+  </ul>
+			<span class="floatright">
+				<i class="icon iconfont">&#xe605;</i>
+			</span>
+</header>
+<article>
+  <div class="index-modelbanner">
+    <!--轮播图 start-->
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <foreach name="list" item="v" key="k">
+          <li data-target="#carousel-example-generic" data-slide-to="{$k}" <if condition="$k eq 0">class="active"></if></li>
+        </foreach>
+      </ol>
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner" role="listbox">
+        <foreach name="list" item="v" key="k">
+          <div <if condition="$k eq 0"> class="item active" <else/>class="item"</if>>
+          <a  href=""><img src="{$v.p_url}" alt=""></a>
+      </div>
+      </foreach>
+      </div>
+    </div>
+    <!--轮播图 end-->
+    <div class="indexbannerfoot">
+      <a href="#rr">
+        <i class="icon iconfont">&#xe672;</i>
+        女神到站
+						<span class="floatright">
+							<i class="icon iconfont">&#xe600;</i>
+						</span>
+      </a>
+    </div>
+  </div>
+  <div class="row index-modelcontent">
+
+  </div>
+  <div class="indexmore">
+    <input onclick="getModelList();" type="button" value="点击加载更多"/>
+  </div>
+</article>
+<footer class="indexfooter">
+  <ul>
+    <li class="indexfooterliactive">
+      <a href="{:U('Index/index')}">
+        <div><i class="icon iconfont">&#xe620;</i></div>
+        <div>首页</div>
+      </a>
+    </li>
+    <li>
+      <a href="index-model.html">
+        <div><i class="icon iconfont">&#xe604;</i></div>
+        <div>发现</div>
+      </a>
+    </li>
+    <li class="footer_clock">
+      <a href="index-model.html">
+        <div>
+          <i class="icon iconfont">&#xe661;</i>
+        </div>
+      </a>
+      <div></div>
+    </li>
+    <li>
+      <a href="weikefu.html">
+        <div><i class="icon iconfont">&#xe63e;</i></div>
+        <div>微客服</div>
+      </a>
+    </li>
+    <li>
+      <a href="{:U('My/index')}">
+        <div><i class="icon iconfont">&#xe670;</i></div>
+        <div>我的</div>
+      </a>
+    </li>
+  </ul>
+</footer>
+</body>
+<script type="text/javascript">
+  //var url = "index.php?m=Mobile&c=Index&a=ajaxGetMore";
+  $(function(){
+    getModelList();
+  });
+  var page = 1;
+  function getModelList(){
+    //$('.indexmore').show();
+    $.ajax({
+      type : "get",
+      url:"/index.php?m=Mobile&c=Index&a=ajaxGetMore&p="+page,
+      dataType:'html',
+      success: function(data)
+      {
+        if($.trim(data)== '') {
+          $('.indexmore input').attr('value','没有更多数据了');
+          $('.indexmore input').attr('disabled',true);
+        }else{
+          //alert(data);
+          $(".index-modelcontent").append(data);
+          page++;
+          }
+        }
+    });
+  }
+</script>
+</html>

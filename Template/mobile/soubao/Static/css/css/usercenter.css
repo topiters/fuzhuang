@@ -1,0 +1,139 @@
+.model-centercontent{
+	padding-bottom: 100px;
+}
+.model-centertop{
+	border: 1px solid #000;
+	height: 220px;
+	background: url(../img/kefu/usercenter.png) no-repeat center;
+	/*background-size: auto 100%;*/
+	background-size: auto 100%;
+	position: relative;
+	background-color: #000;
+}
+.model-centertophead{
+	width: 100%;
+}
+.model-centertophead .m-top-img{
+	width: 70px;
+	height: 70px;
+	display: block;
+	border-radius: 35px;
+	margin: 45px auto 0;
+	background: #fff;
+	padding: 2px;
+	position: relative;
+}
+.model-centertophead .m-top-img img{
+	width: 100%;
+	border-radius: 50%;
+}
+.model-centertophead .m-top-img span{
+	position: absolute;
+	bottom: -8px;
+	right: -46px;
+	display: block;
+	width: 70px;
+	color: #fff;
+}
+.model-centertophead .m-top-img i{
+	color: #F0AD4E;
+	font-size: 20px;
+}
+.model-centertophead p{
+	text-align: center;
+	color: #fff;
+	padding: 10px 0 0;
+	font-size: 16px;
+}
+.model-centertopbottom{
+	position: absolute;
+	z-index: 20px;
+	bottom: 0;
+	height: 52px;
+	/*background: rgba(151,151,191,0.7);*/
+	width: 100%;
+	margin: 0 auto 1px;
+}
+.model-centertopbottom .col-xs-6,.model-centertopbottom .col-xs-4{
+	padding: 5px 0 0;
+	text-align: center;
+}
+.model-centertopbottom .col-xs-6 a div{
+	padding: 2px 0;
+}
+.model-centertopbottom .col-xs-6 a i,.model-centertopbottom .col-xs-4 a i{
+	font-size: 20px;
+	padding-bottom: 5px;
+	display: block;
+}
+.model-centertopbottom .col-xs-6 a i,.model-centertopbottom .col-xs-6 a div{
+	color: #fff !important;
+}
+.model-centertopbottom .col-xs-4 a i,.model-centertopbottom .col-xs-4 a div{
+	color: #fff !important;
+}
+.model-cbright{
+	/*border-right: 1px solid rgba(180,162,136,0.8);*/
+}
+.model-centerbody{
+	background: #F4F4F4;
+}
+/*用户个人中心-我的钱包-模特方 start*/
+.my-walletbody-model{
+	padding-top: 10px;
+	background: #F4F4F4;
+}
+/*我的钱包-余额 start*/
+.m-wwallet-yuebody a{
+	display: inline-block;
+}
+.m-wwallet-yuebody .m-wallet-yue,.m-wwallet-yuebody .m-wallet-yue-tx{
+	font-size: 16px;
+	overflow: hidden;
+}
+.m-wwallet-yuebody .m-wallet-yue{
+	width: 200px;
+	height: 200px;
+	border-radius: 100px;
+	margin: 50px auto;
+	background: #5655b2;
+	
+}
+.m-wwallet-yuebody .m-wallet-yue>a>div{
+	display: table-cell;
+	vertical-align: middle;
+	width: 200px;
+	height: 200px;
+}
+.m-wwallet-yuebody .m-wallet-yue>a>div>span:nth-child(2){
+	font-size: 25px;
+	line-height: 2.5em;
+}
+.m-wwallet-yuebody .m-wallet-yue>a>div>span{
+	color: #fff;
+	display: block;
+	text-align: center;
+}
+.m-wwallet-yuebody .m-wallet-yue-tx{
+	width: 100px;
+	height: 100px;
+	border-radius: 50px;
+	background: #a84200;
+	margin: 0 auto;
+}
+.m-wwallet-yuebody .m-wallet-yue-tx>a>div{
+	display: table-cell;
+	vertical-align: middle;
+	width: 100px;
+	height: 100px;
+	text-align: center;
+	color: #fff;
+}
+/*我的钱包-余额 end*/
+/*用户个人中心-我的钱包-模特方 end*/
+
+/*用人方个人中心 start*/
+.user_centerimg_{
+	padding-top: 40px;
+}
+/*用人方个人中心 end*/
