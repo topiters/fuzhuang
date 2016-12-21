@@ -14,23 +14,29 @@ class UserController extends BaseController {
     public function index(){
         $this->display();
     }
+    
+    public function indexyonghu(){
+    	$this->display();
+    }
 
     /**
-     * 会员列表
+     * 模特列表
      */
     public function ajaxindex(){
         // 搜索条件
         $condition = array();
         I('mobile') ? $condition['mobile'] = I('mobile') : false;
-        I('email') ? $condition['email'] = I('email') : false;
+//         I('email') ? $condition['email'] = I('email') : false;
+		//模特判断
+// 		$condition['level'] = 1; 
         $sort_order = I('order_by').' '.I('sort');
 
-        $model = M('users');
+        $model = M('modelusers');
         $count = $model->where($condition)->count();
         $Page  = new AjaxPage($count,5);
         //  搜索条件下 分页赋值
         foreach($condition as $key=>$val) {
-            $Page->parameter[$key]   =   urlencode($val);
+            $Page->parameter[$key] = urlencode($val);
         }
         $show = $Page->show();
         $orderList = $model->where($condition)->order($sort_order)->limit($Page->firstRow.','.$Page->listRows)->select();
@@ -38,13 +44,39 @@ class UserController extends BaseController {
         $this->assign('page',$show);// 赋值分页输出
         $this->display();
     }
+    
+    /**
+     * 用户列表
+     */
+    public function ajaxyonghu(){
+    	// 搜索条件
+    	$condition = array();
+    	I('mobile') ? $condition['mobile'] = I('mobile') : false;
+    	//         I('email') ? $condition['email'] = I('email') : false;
+    	//用户判断
+    	// 		$condition['level'] = 2;
+    	$sort_order = I('order_by').' '.I('sort');
+    
+    	$model = M('modelusers');
+    	$count = $model->where($condition)->count();
+    	$Page  = new AjaxPage($count,5);
+    	//  搜索条件下 分页赋值
+    	foreach($condition as $key=>$val) {
+    		$Page->parameter[$key] = urlencode($val);
+    	}
+    	$show = $Page->show();
+    	$orderList = $model->where($condition)->order($sort_order)->limit($Page->firstRow.','.$Page->listRows)->select();
+    	$this->assign('userList',$orderList);
+    	$this->assign('page',$show);// 赋值分页输出
+    	$this->display();
+    }
 
     /**
-     * 会员详细信息查看
+     * 模特详细信息查看
      */
     public function detail(){
         $uid = I('get.id');
-        $user = D('users')->where(array('user_id'=>$uid))->find();
+        $user = D('modelusers')->where(array('user_id'=>$uid))->find();
         if(!$user)
             exit($this->error('会员不存在'));
         if(IS_POST){
@@ -57,16 +89,30 @@ class UserController extends BaseController {
             if($password == '' && $password2 == ''){
                 unset($_POST['password']);
             }else{
+            	//密码加密
                 $_POST['password'] = encrypt($_POST['password']);
             }
 
-            $row = M('users')->where(array('user_id'=>$uid))->save($_POST);
+            $row = M('modelusers')->where(array('user_id'=>$uid))->save($_POST);
             if($row)
                 exit($this->success('修改成功'));
             exit($this->error('未作内容修改或修改失败'));
         }
         $this->assign('user',$user);
         $this->display();
+    }
+    
+    /**
+     * 用户详细信息查看
+     */
+    public function detailyonghu(){
+    	$uid = I('get.id');
+    	$user = D('modelusers')->where(array('user_id'=>$uid))->find();
+    	if(!$user){
+    		exit($this->error('会员不存在'));
+    	}
+    	$this->assign('user',$user);
+    	$this->display();
     }
 
     /**
