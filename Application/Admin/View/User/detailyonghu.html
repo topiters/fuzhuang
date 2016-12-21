@@ -1,0 +1,77 @@
+<include file="Public/min-header"/>
+<div class="wrapper">
+    <!-- Content Header (Page header) -->
+   <include file="Public/breadcrumb"/>
+    <section class="content">
+    <!-- Main content -->
+    <!--<div class="container-fluid">-->
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-list"></i> 用户信息</h3>
+            </div>
+            <div class="panel-body">
+                <form action="" method="post" onsubmit="return checkUserUpdate(this);">
+                    <table class="table table-bordered">
+                    <tbody>
+                    <tr>
+                        <td>真实姓名:</td>
+                        <td>{$user.name}</td>
+                    </tr>
+                    <tr>
+                        <td>工作地址:</td>
+                        <td>{$user.address}</td>
+                    </tr>
+                    <tr>
+                        <td>工作单位:</td>
+                        <td></td>
+                    </tr>
+
+                    
+                    <tr>
+                        <td>状态:</td>
+                        <td id="order-status">
+                            <input name="static" type="radio" value="1" <if condition="$user['static'] eq 1">checked</if> >启用
+                            <input name="static" type="radio" value="2" <if condition="$user['static'] eq 2">checked</if> >停用
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>手机:</td>
+                        <td>{$user.mobile}</td>
+                    </tr>
+                    <tr>
+                        <td>注册时间:</td>
+                        <td>
+                            {$user.reg_time|date='Y-m-d H:i',###}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <button type="submit" class="btn btn-info">
+                                <i class="ace-icon fa fa-check bigger-110"></i> 保存
+                            </button>
+                            <a href="javascript:history.go(-1)" data-toggle="tooltip" title="" class="btn btn-default pull-right" data-original-title="返回"><i class="fa fa-reply"></i></a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                </form>
+
+            </div>
+        </div>
+ 	  </div> 
+    </div>    <!-- /.content -->
+   </section>
+</div>
+<script>
+    function checkUserUpdate(){
+		var static = $("input[name=static]:checked").val();
+        return true;
+
+    }
+</script>
+
+</body>
+</html>
