@@ -1,15 +1,6 @@
 <?php
-/**
- * tpshop
- * ============================================================================
- * 版权所有 2015-2027 深圳搜豹网络科技有限公司，并保留所有权利。
- * 网站地址: http://www.tp-shop.cn
- * ----------------------------------------------------------------------------
- * 这不是一个自由软件！您只能在不用于商业目的的前提下对程序代码进行修改和使用 .
- * 不允许对程序代码以任何形式任何目的的再发布。
- * ============================================================================
- * Author: 当燃      
- * Date: 2015-09-09
+/*
+ * 信息管理
  */
 namespace Admin\Controller;
 use Admin\Logic\ArticleCatLogic;
@@ -37,7 +28,7 @@ class ArticleController extends BaseController {
         $this->assign('cat_select',$cats);
         $this->display();
     }
-    
+    //文章 列表 2016-12-20
     public function articleList(){
         $Article =  M('Article'); 
         $res = $list = array();
@@ -65,7 +56,7 @@ class ArticleController extends BaseController {
         $this->assign('page',$page);// 赋值分页输出
         $this->display('articleList');
     }
-    
+    //添加文章
     public function article(){
         $ArticleCat = new ArticleCatLogic();
  		$act = I('GET.act','add');
@@ -78,10 +69,17 @@ class ArticleController extends BaseController {
         $this->assign('cat_select',$cats);
         $this->assign('act',$act);
         $this->assign('info',$info);
+        //初始化编辑器链接
         $this->initEditor();
         $this->display();
     }
     
+    /*
+     * 文章详情
+    */
+    public function detail(){
+    	
+    }
     
     /**
      * 初始化编辑器链接
@@ -142,6 +140,9 @@ class ArticleController extends BaseController {
         }
     }
     
+    /*
+     * 执行添加文章 
+     */
     public function aticleHandle(){
         $data = I('post.');
         $data['publish_time'] = strtotime($data['publish_time']);
