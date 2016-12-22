@@ -46,9 +46,9 @@
 		                     </if>
 		                     <td>{$vo.add_time}</td>
 		                     <td>
-		                      <a target="_blank" href="{:U('Home/Article/detail',array('article_id'=>$vo['article_id']))}" data-toggle="tooltip" title="" class="btn btn-info" data-original-title="查看详情"><i class="fa fa-eye"></i></a>
-		                      <a class="btn btn-primary" href="{:U('Article/article',array('act'=>'edit','article_id'=>$vo['article_id']))}"><i class="fa fa-pencil"></i></a>
-		                      <a class="btn btn-danger" href="javascript:void(0)" data-url="{:U('Article/aticleHandle')}" data-id="{$vo.article_id}" onclick="delfun(this)"><i class="fa fa-trash-o"></i></a>
+		                      <a href="{:U('Admin/Article/detail',array('article_id'=>$vo['article_id']))}" data-toggle="tooltip" title="查看详情" class="btn btn-info" data-original-title="查看详情"><i class="fa fa-eye"></i></a>
+		                      <!-- <a class="btn btn-primary" href="{:U('Article/article',array('act'=>'edit','article_id'=>$vo['article_id']))}"><i class="fa fa-pencil"></i></a> -->
+		                      <a class="btn btn-danger" href="javascript:void(0)" data-url="{:U('Article/aticleHandle')}" title="删除" data-id="{$vo.article_id}" onclick="delfun(this)"><i class="fa fa-trash-o"></i></a>
 							</td>
 		                   </tr>
 		                  </foreach>
