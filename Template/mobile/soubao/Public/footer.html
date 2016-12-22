@@ -1,16 +1,36 @@
-<div class="m_footer clear"> <a class="m_icon m_icon_gotop hidden" href="javascript:void(0);"></a>
-    <!--<div class="userinfo"> <a class="gray6" href="login.html">登录</a>-->
-    <!--<span></span>-->
-    <!--<a class="gray6" href="reg_mobile.html">注册</a>-->
-    <!--<span></span>-->
-    <!--<a class="gray6" href="feed.html">用户反馈</a>-->
-    <!--<span></span>-->
-    <!--<a class="gray6" href="/help/app.html#button">客户端</a> -->
-    <!--</div>-->
-
-
-    <div class="copyright gray9">
-        Copyright © 2016-2025  {$tpshop_config['shop_info_store_name']}<br>
-        备案号:{$tpshop_config['shop_info_record_no']}
-    </div>
-</div>
+<footer class="indexfooter">
+    <ul>
+        <li class="indexfooterliactive">
+            <a href="{:U('Mobile/Index/index')}">
+                <div><i class="icon iconfont">&#xe620;</i></div>
+                <div>首页</div>
+            </a>
+        </li>
+        <li>
+            <a href="{:U('Mobile/Index/find')}">
+                <div><i class="icon iconfont">&#xe604;</i></div>
+                <div>发现</div>
+            </a>
+        </li>
+        <li class="footer_clock">
+            <a href="{:U('Mobile/Index/order')}">
+                <div>
+                    <i class="icon iconfont">&#xe661;</i>
+                </div>
+            </a>
+            <div></div>
+        </li>
+        <li>
+            <a href="{:U('Mobile/Index/kefu')}">
+                <div><i class="icon iconfont">&#xe63e;</i></div>
+                <div>微客服</div>
+            </a>
+        </li>
+        <li>
+            <a href="{:U('Mobile/User/myCenter')}">
+                <div><i class="icon iconfont">&#xe670;</i></div>
+                <div>我的</div>
+            </a>
+        </li>
+    </ul>
+</footer>
