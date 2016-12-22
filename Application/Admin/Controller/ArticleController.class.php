@@ -28,6 +28,84 @@ class ArticleController extends BaseController {
         $this->assign('cat_select',$cats);
         $this->display();
     }
+    
+    /**
+     * 首页大图   2016-12-21
+    */
+    public function bigimg(){
+    	$lunbo =  M('lunbo');
+    	$res = $list = array();
+    	$p = empty($_REQUEST['p']) ? 1 : $_REQUEST['p'];
+    	
+    	$res = $lunbo->where($where)->order('id desc')->page("$p,5")->select();
+    	$count = $lunbo->where($where)->count();// 查询满足要求的总记录数
+    	$pager = new \Think\Page($count,5);// 实例化分页类 传入总记录数和每页显示的记录数
+    	$page = $pager->show();//分页显示输出
+    	if($res){
+    		foreach ($res as $val){
+    			$val['addtime'] = date('Y-m-d H:i:s',$val['addtime']);
+    			$list[] = $val;
+    		}
+    	}
+    	$this->assign('list',$list);// 赋值数据集
+    	$this->assign('page',$page);// 赋值分页输出
+    	$this->display();
+    }
+    
+    /**
+     * 添加首页大图 2016-12-21
+    */
+    public function addimg(){
+    	$this->display();
+    }
+    
+    /**
+     * 执行添加首页大图 2016-12-21 
+    */
+    public function insertimg(){
+    	$data = I('post.');
+    	$data['addtime'] = time();
+    	
+    	$r = D('lunbo')->add($data);
+    	 
+    	if($r){
+    		$this->success("操作成功",U('Admin/Article/bigimg'));
+    	}else{
+    		$this->error("操作失败",U('Admin/Article/bigimg'));
+    	}
+    }
+    
+    /**
+     * 轮播图详情
+     */
+    public function imgdetail(){
+    	$id = I('id',1);
+    	$info = D('lunbo')->where("id=$id")->find();
+    	//修改文章
+    	if(IS_POST){
+    		//  会员信息编辑
+    		$data['p_url'] = I('post.p_url');
+    		$data['url'] = I('post.url');
+    		 
+    		$row = M('lunbo')->where(array('id'=>$id))->save($data);
+    		if($row)
+    			exit($this->success('修改成功'));
+    		exit($this->error('未作内容修改或修改失败'));
+    	}
+    	 
+    	$this->assign('info',$info);
+    	$this->display();
+    }
+    
+    /**
+     * 删除首页大图
+     */
+    public function delimg(){
+    	$id = I('post.id');
+    	$r = D('lunbo')->where('id='.$id)->delete();
+    	if($r) exit(json_encode(1));
+    }
+    
     //文章 列表 2016-12-20
     public function articleList(){
         $Article =  M('Article'); 
@@ -47,7 +125,6 @@ class ArticleController extends BaseController {
         $cats = $ArticleCat->article_cat_list(0,0,false);
         if($res){
         	foreach ($res as $val){
-        		$val['category'] = $cats[$val['cat_id']]['cat_name'];
         		$val['add_time'] = date('Y-m-d H:i:s',$val['add_time']);        		
         		$list[] = $val;
         	}
@@ -74,10 +151,43 @@ class ArticleController extends BaseController {
         $this->display();
     }
     
-    /*
+    /**
      * 文章详情
     */
     public function detail(){
+    	$article_id = I('article_id',1);
+    	$article = D('article')->where("article_id=$article_id")->find();
+    	//修改文章
+    	if(IS_POST){
+    		//  会员信息编辑
+    		$data['title'] = I('post.title');
+    		$data['thumb'] = I('post.thumb');
+    		$data['description'] = I('post.description');
+    		$data['content'] = I('post.content');
+    	
+    		$row = M('article')->where(array('article_id'=>$article_id))->save($data);
+    		if($row)
+    			exit($this->success('修改成功'));
+    		exit($this->error('未作内容修改或修改失败'));
+    	}
+    	
+    	$this->assign('article',$article);
+    	//初始化编辑器链接
+    	$this->initEditor();
+    	$this->display();
+    }
+    
+    /**
+     * 关于我们
+    */
+    public function about(){
+    	
+    }
+    
+    /**
+     * 用户协议
+    */
+    public function agreement(){
     	
     }
     

@@ -1,15 +1,6 @@
 <?php
 /**
- * tpshop
- * ============================================================================
- * 版权所有 2015-2027 深圳搜豹网络科技有限公司，并保留所有权利。
- * 网站地址: http://www.tp-shop.cn
- * ----------------------------------------------------------------------------
- * 这不是一个自由软件！您只能在不用于商业目的的前提下对程序代码进行修改和使用 .
- * 不允许对程序代码以任何形式任何目的的再发布。
- * ============================================================================
- * Author: 当燃
- * Date: 2015-09-09
+ * 订单管理
  */
 namespace Admin\Controller;
 use Admin\Logic\OrderLogic;
@@ -53,14 +44,10 @@ class OrderController extends BaseController {
         }
         // 搜索条件
         $condition = array();
-        I('consignee') ? $condition['consignee'] = trim(I('consignee')) : false;
         if($begin && $end){
         	$condition['add_time'] = array('between',"$begin,$end");
         }
         I('order_sn') ? $condition['order_sn'] = trim(I('order_sn')) : false;
-        I('order_status') != '' ? $condition['order_status'] = I('order_status') : false;
-        I('pay_status') != '' ? $condition['pay_status'] = I('pay_status') : false;
-        I('shipping_status') != '' ? $condition['shipping_status'] = I('shipping_status') : false;
         
         $sort_order = I('order_by','DESC').' '.I('sort');
         $count = M('order')->where($condition)->count();
@@ -72,6 +59,7 @@ class OrderController extends BaseController {
         $show = $Page->show();
         //获取订单列表
         $orderList = $orderLogic->getOrderList($condition,$sort_order,$Page->firstRow,$Page->listRows);
+        var_dump($orderList);exit;
         $this->assign('orderList',$orderList);
         $this->assign('page',$show);// 赋值分页输出
         $this->display();
