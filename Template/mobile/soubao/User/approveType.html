@@ -1,0 +1,34 @@
+<include file="Public/min-header"/>
+<body class="my-walletbody-model">
+<div class="backtip">
+    <a href="javascript:history.go(-1);">
+        <i class="icon iconfont">&#xe60d;</i>
+    </a>
+    <div class="addwudang">
+        我的认证
+    </div>
+</div>
+<div class="my-wallet-modelcontent">
+    <div class="m-cclisttop">
+        <a href="{:U('Mobile/User/approvePer',array('id'=>$arr['user_id']))}">
+					<span>
+						个人认证
+					</span>
+            <span class="floatright">
+						<i class="icon iconfont">&#xe600;</i>
+					</span>
+        </a>
+    </div>
+    <div class="m-cclisttop">
+        <a href="{:U('Mobile/User/approveCom',array('id'=>$arr['user_id']))}">
+					<span>
+						企业认证
+					</span>
+            <span class="floatright">
+						<i class="icon iconfont">&#xe600;</i>
+					</span>
+        </a>
+    </div>
+</div>
+</body>
+</html>

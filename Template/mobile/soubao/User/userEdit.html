@@ -1,0 +1,83 @@
+<include file="Public/min-header"/>
+<body>
+<div class="backtip">
+    <a href="user_center.html">
+        <i class="icon iconfont">&#xe60d;</i>
+    </a>
+    <div class="addwudang">
+        信息编辑
+    </div>
+</div>
+<form action="" method="post" id="form">
+    <div class="model-identify">
+        <div style="line-height: 40px;border-bottom: 1px solid #DDDDDD;padding: 5px 10px;height: 50px;">
+            <span class="color-ed716f">头像</span>
+            <span class="floatright">
+						<span class="floatleft modelinfolr-headimg">
+							<img src="{$arr.head_pic}" />
+						</span>
+						<i class="floatleft icon iconfont">&#xe600;</i>
+					</span>
+        </div>
+        <div class="m-cclisttop">
+            <span>姓名</span>
+            <div>
+                <input type="text" value="{$arr.name}" name="name" class="form-control" placeholder="" />
+            </div>
+        </div>
+        <div class="m-cclisttop">
+            <span>手机号：{$arr.mobile}</span>
+            <div>
+                <a href="{:U('Mobile/User/reg',array('id'=>$arr['user_id']))}">修改</a>
+            </div>
+        </div>
+        <div class="m-cclisttop">
+            <span>地址</span>
+            <div>
+                <input type="text" name="adress" class="form-control" value="{$arr.address}" placeholder="" />
+            </div>
+        </div>
+        <div class="m-cclisttop">
+            <span> 工作单位 </span>
+            <div>
+                <input type="text" name="company" value="{$arr.company}" class="form-control" placeholder="" />
+            </div>
+        </div>
+    </div>
+    <input type="hidden"  value="{$arr.user_id}" name="user_id" />
+    <input type="button" value="保存" class="subtnrenzheng" style="border-radius: 6px;background: #e9814e;" />
+</form>
+<div class="blackchen hide"></div>
+<div class="zhifusuccess hide">
+    <div>
+        <img src="__STATIC__/images/img/tc.png" />
+        保存成功
+    </div>
+</div>
+</body>
+<script>
+    $(function(){
+        $('.subtnrenzheng').click(function(){
+            $.ajax({
+                    type:"post",
+                    url:"/index.php?m=Mobile&c=User&a=ajaxSave",
+                    data:$("#form").serialize(),
+                    dataType:"json",
+                    success:function(re){
+                        if(re){
+                            $('.blackchen').removeClass('hide');
+                            $('.zhifusuccess').removeClass('hide');
+                            setTimeout(function(){
+                                $('.blackchen').addClass('hide');
+                                $('.zhifusuccess').addClass('hide');
+                            },1000);
+                        }else{
+                            alert("信息保存失败");
+                        }
+                }
+
+            })
+        });
+    })
+</script>
+</html>

@@ -1,0 +1,22 @@
+<foreach name="arr" item="v">
+  <tpshop sql="SELECT * FROM `__PREFIX__modelusers` WHERE user_id = $v[model_id] " key="k" item='v'>
+    <div class="row u-scbodylist">
+      <div class="col-xs-3">
+        <img src="{$v.head_pic}" />
+      </div>
+      <div class="row col-xs-9">
+        <div class="col-xs-12">
+          <p>
+            {$v.experience}
+          </p>
+        </div>
+        <div class="col-xs-6">
+          类型：<span>车展</span>
+        </div>
+        <div class="col-xs-6">
+          <span style="color: #d4772a;">￥1200</span>
+        </div>
+      </div>
+    </div>
+  </tpshop>
+</foreach>

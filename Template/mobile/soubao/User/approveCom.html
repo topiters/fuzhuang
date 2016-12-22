@@ -1,0 +1,99 @@
+<include file="Public/min-header"/>
+<body>
+<div class="backtip">
+    <a href="javascript:history.go(-1);">
+        <i class="icon iconfont">&#xe60d;</i>
+    </a>
+    <div class="addwudang">
+        企业认证
+    </div>
+</div>
+<form action="" method="post" id="form">
+    <div class="model-identify">
+        <div class="m-cclisttop">
+            <span>企业名称</span>
+            <div>
+                <input type="text" name="name" class="form-control" value="" />
+            </div>
+        </div>
+        <div class="m-cclisttop">
+            <span>企业单位地址</span>
+            <div>
+                <input type="text" name="address" class="form-control" value=""/>
+            </div>
+        </div>
+        <div class="m-cclisttop">
+            <span> 电话(固话) </span>
+            <div>
+                <input type="text" name="telephone" class="form-control" value="" />
+            </div>
+        </div>
+        <div class=" modellinfolr qrsfbody">
+            <p>营业执照照片上传</p>
+
+            <span class="upicon">
+						<i class="icon iconfont">&#xe62a;</i>
+					</span>
+        </div>
+        <div class=" modellinfolr qrsfbody">
+            <p>法人身份证照片上传</p>
+            <span class="upicon">
+						<i class="icon iconfont">&#xe62a;</i>
+					</span>
+        </div>
+    </div>
+    <input type="hidden"  value="{$arr.user_id}" name="user_id" />
+    <input type="button" value="申请" class="subtnrenzheng" />
+</form>
+<div class="blackchen hide"></div>
+<div class="zhifusuccess hide">
+    <div>
+        <img src="__STATIC__/images/img/tc.png" />
+        申请成功
+    </div>
+</div>
+</body>
+<script>
+    //点击提交认证
+    $('.subtnrenzheng').click(function(){
+        var name = $("input[name='name']").val();
+        var telephone = $("input[name='telephone']").val();
+        var address = $("input[name='address']").val();
+        if(name==''|| telephone==''||address==''){
+            alert("认证资料不能有空，请重新填写");
+            return false;
+        }
+        if(!checkPhone(telephone)){
+            alert('电话格式不正确');
+            return false;
+        }
+        $.ajax({
+            type: "post",
+            url: "/index.php?m=Mobile&c=User&a=ajaxCom",
+            data: $("#form").serialize(),
+            dataType: "json",
+            success: function (re) {
+                if(re){
+                    $('.blackchen').removeClass('hide');
+                    $('.zhifusuccess').removeClass('hide');
+                    setTimeout(function () {
+                        $('.blackchen').addClass('hide');
+                        $('.zhifusuccess').addClass('hide');
+                    }, 1000);
+                }else{
+                    alert("认证失败");
+                }
+            }
+        })
+    });
+    function checkPhone(tel) {
+        var reg = /^((0\d{2,3})-)(\d{7,8})(-(\d{3,}))?$/;
+        if (reg.test(tel)) {
+            return true;
+        }else{
+            return false;
+        };
+    }
+
+</script>
+</html>

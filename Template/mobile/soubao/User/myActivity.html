@@ -1,0 +1,42 @@
+<include file="Public/min-header"/>
+
+<body style="background-color: #f4f4f4;">
+<div class="backtip">
+    <a href="javascript:history.go(-1);">
+        <i class="icon iconfont">&#xe60d;</i>
+    </a>
+    <div class="addwudang">
+        我的活动
+    </div>
+</div>
+
+<div class="ao1-tol">
+    <ul>
+        <li>
+            <div class="ao1-tol1 clearfix">
+                <div class="ao1-tol1-l l">
+                    <span>活动名称：</span>
+                </div>
+            </div>
+            <div class="ao1-tol2 clearfix">
+                <a href="{:U('Mobile/Index/activity')}">
+                <div class="ao1-tol2-l l">
+                    <img src="__STATIC__/images/img/touxiang.jpg" />
+                </div>
+                <div class="ao1-tol2-r l">
+                    <p>2014全球美丽小姐冠军,聘用专业车模,时尚之选日约500元</p>
+                </div>
+                </a>
+            </div>
+        </li>
+    </ul>
+</div>
+</body>
+<script type="text/javascript">
+    $(".ao1-top ul").on("click", "li", function() {
+        $(".ao1-top ul").children("li").removeClass('active3');
+        $(this).addClass("active3");
+    });
+</script>
+
+</html>

@@ -1,0 +1,94 @@
+<include file="Public/min-header"/>
+<body>
+<div class="backtip">
+    <a href="userrenzhengtype.html">
+        <i class="icon iconfont">&#xe60d;</i>
+    </a>
+    <div class="addwudang">
+        我要认证
+    </div>
+</div>
+<form action="" method="post">
+    <div class="model-identify">
+        <div class="m-cclisttop">
+            <span>真实姓名</span>
+            <div>
+                <input type="text" class="form-control" placeholder="" />
+            </div>
+        </div>
+        <div class="m-cclisttop">
+            <span> 性别 </span>
+            <div class="selectsex">
+                <div class="sexman">
+                    <div class="quanbig quanactive">
+                        <div class="small"></div>
+                    </div>
+                    男
+                </div>
+                <div class="sexwoman">
+                    <div class="quanbig">
+                        <div class="small"></div>
+                    </div>
+                    女
+                </div>
+            </div>
+        </div>
+        <div class="m-cclisttop">
+            <span> 手机号</span>
+            <div>
+                <input type="text" class="form-control" placeholder="" />
+            </div>
+        </div>
+        <div class="m-cclisttop">
+            <span> 身份证号 </span>
+            <div>
+                <input type="text" class="form-control" placeholder="" />
+            </div>
+        </div>
+        <div class="m-cclisttop">
+            <span> 地址 </span>
+            <div>
+                <input type="text" class="form-control" placeholder="" />
+            </div>
+        </div>
+        <div class="bodybgf4 modellinfolr">
+            <p>上传身份证照片</p>
+
+					<span class="upicon" >
+						<i class="icon iconfont">&#xe62a;</i>
+					</span>
+        </div>
+    </div>
+    <input type="button" value="申请" class="subtnrenzheng" />
+</form>
+<div class="blackchen hide"></div>
+<div class="zhifusuccess hide">
+    <div>
+        <img src="__STATIC__/images/img/tc.png" />
+        提交成功
+    </div>
+    <div style="font-size: 12px;padding-top: 5px;text-align: right;">等待审核！</div>
+</div>
+</body>
+<script>
+    $(function(){
+        $('.selectsex>div').click(function(){
+            $(this).children('.quanbig').addClass('quanactive');
+            $(this).siblings().children('.quanbig').removeClass('quanactive');
+        });
+        //点击提交认证
+        $('.subtnrenzheng').click(function(){
+            $('.blackchen').removeClass('hide');
+            $('.zhifusuccess').removeClass('hide');
+            setTimeout(function(){
+                $('.blackchen').addClass('hide');
+                $('.zhifusuccess').addClass('hide');
+            },1000);
+        });
+        //点击删除上传图片
+        $('.modellinfolr .upimg i').click(function(){
+            $(this).parent().remove();
+        });
+    })
+</script>
+</html>

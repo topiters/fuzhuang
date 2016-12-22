@@ -1,0 +1,45 @@
+<include file="Public/min-header"/>
+<body class="my-walletbody-model">
+<div class="my-wallet-modelcontent">
+    <div class="backtip">
+        <a href="javascript:history.go(-1);">
+            <i class="icon iconfont">&#xe60d;</i>
+        </a>
+        <div class="addwudang">
+            我的钱包
+        </div>
+    </div>
+    <div class="m-cclisttop">
+        <a href="{:U('Mobile/User/mySpent',array('id'=>$arr['user_id']))}">
+					<span>
+						我的支出
+					</span>
+            <span class="floatright">
+						<i class="icon iconfont">&#xe600;</i>
+					</span>
+        </a>
+    </div>
+    <div class="m-cclisttop">
+        <!--<a href="#rrr">-->
+        <span>
+						余额
+					</span>
+        <span class="floatright">
+						<span>￥{$arr.user_money}</span>
+            <!--<i class="icon iconfont">&#xe600;</i>-->
+					</span>
+        <!--</a>-->
+    </div>
+    <div class="m-cclisttop">
+        <a href="{:U('Mobile/User/recharge',array('id'=>$arr['user_id']))}">
+					<span>
+						充值
+					</span>
+            <span class="floatright">
+						<i class="icon iconfont">&#xe600;</i>
+					</span>
+        </a>
+    </div>
+</div>
+</body>
+</html>

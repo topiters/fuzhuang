@@ -1,0 +1,54 @@
+<include file="Public/min-header"/>
+<body class="bodybgf4">
+<div class="backtip">
+    <a href="javascript:history.go(-1);">
+        <i class="icon iconfont">&#xe60d;</i>
+    </a>
+    <div class="addwudang">
+        充值
+    </div>
+</div>
+<form action="" method="">
+    <div class="model-identify userchongzhi">
+        <div class="m-cclisttop">
+					<span style="display: inline-block;width: 110px;">
+						<img src="__STATIC__/images/img/weixinicon.jpg" />
+						微信充值
+					</span>
+        </div>
+        <p>一次最多可充值10000,最少100元</p>
+        <div class="m-cclisttop">
+            <span>金额</span>
+            <div>
+                <input type="text" name="" class="form-control" id="jine"  value="" placeholder="请输入充值金额" />
+            </div>
+        </div>
+    </div>
+    <input type="button" value="充值" class="subtnrenzheng" style="border-radius: 6px;background: #d4772a;"/>
+</form>
+<div class="blackchen hide"></div>
+<div class="zhifusuccess hide">
+    <div>
+        <img src="__STATIC__/images/img/tc.png" />
+        充值成功
+    </div>
+</div>
+</body>
+<script>
+    $(function(){
+        $('.subtnrenzheng').click(function(){
+            var money = $("#jine").val();
+            if( money==''&& money < 100){
+                alert('充值金额不符合要求');
+                return false;
+            }
+            $('.blackchen').removeClass('hide');
+            $('.zhifusuccess').removeClass('hide');
+            setTimeout(function(){
+                $('.blackchen').addClass('hide');
+                $('.zhifusuccess').addClass('hide');
+            },1000);
+        });
+    })
+</script>
+</html>

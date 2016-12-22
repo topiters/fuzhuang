@@ -1,0 +1,61 @@
+<include file="Public/min-header"/>
+
+<body style="background-color: #f4f4f4;">
+<div class="backtip">
+    <a href="javascript:history.go(-1);">
+        <i class="icon iconfont">&#xe60d;</i>
+    </a>
+    <div class="addwudang">
+        我的订单
+    </div>
+</div>
+<div class="ao1-top">
+    <ul>
+        <li class="active3">全部订单</li>
+        <li>进行中订单</li>
+        <li>已完成订单</li>
+    </ul>
+</div>
+<div class="ao1-tol">
+    <ul>
+        <li>
+            <div class="ao1-tol1 clearfix">
+                <div class="ao1-tol1-l l">
+                    <span>订单编号：</span>
+                </div>
+                <p class="ao1-tol1-r r">订单进行中</p>
+            </div>
+            <div class="ao1-tol2 clearfix">
+                <div class="ao1-tol2-l l">
+                    <img src="__STATIC__/images/img/touxiang.jpg" />
+                </div>
+                <div class="ao1-tol2-r l">
+                    <p>2014全球美丽小姐冠军,聘用专业车模,时尚之选日约500元</p>
+                </div>
+            </div>
+            <div class="ao1-tol3 clearfix">
+                <div class="ao1-tol3-l l">
+                    <p>活动类型: <span>车展</span></p>
+                </div>
+                <div class="ao1-tol3-t r">
+                    <p>共<span>1</span>人</p>
+                    <p>合计: <span>￥1,500</span></p>
+                    <p>(含服务费:<span>￥50</span>)</p>
+                </div>
+            </div>
+            <div class="ao1-tol4 clearfix">
+                <button class="r">完成订单</button>
+                <button class="r">取消订单</button>
+            </div>
+        </li>
+    </ul>
+</div>
+</body>
+<script type="text/javascript">
+    $(".ao1-top ul").on("click", "li", function() {
+        $(".ao1-top ul").children("li").removeClass('active3');
+        $(this).addClass("active3");
+    });
+</script>
+
+</html>

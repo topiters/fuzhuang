@@ -1,0 +1,148 @@
+<include file="Public/min-header"/>
+
+<body>
+<div class="backtip">
+    <a href="javascript:history.go(-1);">
+        <i class="icon iconfont">&#xe60d;</i>
+    </a>
+    <div class="addwudang">
+        我要认证
+    </div>
+</div>
+<form action="" method="post" id="form">
+    <div class="model-identify">
+        <div class="m-cclisttop">
+            <span>真实姓名</span>
+            <div>
+                <input type="text"  name="name" class="form-control" value="" />
+            </div>
+        </div>
+        <div class="m-cclisttop">
+            <span> 性别 </span>
+            <div class="selectsex">
+                <div class="sexman">
+                    <div data-sex="1" class="quanbig quanactive">
+                        <div class="small"></div>
+                    </div>
+                    男
+                </div>
+                <div class="sexwoman" >
+                    <div class="quanbig" data-sex="2">
+                        <div class="small"></div>
+                    </div>
+                    女
+                </div>
+            </div>
+        </div>
+        <div class="m-cclisttop">
+            <span> 手机号</span>
+            <div>
+                <input type="text" name="mobile" class="form-control" value="" />
+            </div>
+        </div>
+        <div class="m-cclisttop">
+            <span> 身份证号 </span>
+            <div>
+                <input type="text"  name="idnumber" class="form-control" value="" />
+            </div>
+        </div>
+        <div class="m-cclisttop">
+            <span> 地址 </span>
+            <div>
+                <input type="text" name="address" class="form-control" value="" />
+            </div>
+        </div>
+        <div class="bodybgf4 modellinfolr">
+            <p>上传身份证照片（正反两面）</p>
+            <span class="upicon" >
+						<i class="icon iconfont">&#xe62a;</i>
+					</span>
+            <span class="upicon" >
+						<i class="icon iconfont">&#xe62a;</i>
+					</span>
+        </div>
+    </div>
+    <input type="hidden"  value="1" name="sex" />
+    <input type="hidden"  value="{$arr.user_id}" name="user_id" />
+    <input type="button" value="申请" class="subtnrenzheng" />
+</form>
+<div class="blackchen hide"></div>
+<div class="zhifusuccess hide">
+    <div>
+        <img src="__STATIC__/images/img/tc.png" />
+        提交成功
+    </div>
+    <div style="font-size: 12px;padding-top: 5px;text-align: right;">等待审核！</div>
+</div>
+</body>
+<script>
+    $(function(){
+        $('.selectsex>div').click(function(){
+            $(this).children('.quanbig').addClass('quanactive');
+            $(this).siblings().children('.quanbig').removeClass('quanactive');
+            var  sex = $(this).children('.quanbig').attr('data-sex');
+            $("input[name='sex']").attr('value',sex);
+        });
+        //点击提交认证
+        $('.subtnrenzheng').click(function(){
+            var name = $("input[name='name']").val();
+            var mobile = $("input[name='mobile']").val();
+            var idnumber = $("input[name='idnumber']").val();
+            var address = $("input[name='address']").val();
+            if(name==''|| mobile==''||idnumber==''||address==''){
+                alert("认证资料不能有空，请重新填写");
+                return false;
+            }
+            if(!checkMobile(mobile)){
+                alert('手机格式不正确');
+                return false;
+            }
+            if(!isCardNo(idnumber)){
+                alert('身份证输入不合法');
+                return false;
+            }
+            $.ajax({
+                type: "post",
+                url: "/index.php?m=Mobile&c=User&a=ajaxPer",
+                data: $("#form").serialize(),
+                dataType: "json",
+                success: function (re) {
+                    if(re){
+                        $('.blackchen').removeClass('hide');
+                        $('.zhifusuccess').removeClass('hide');
+                        setTimeout(function () {
+                            $('.blackchen').addClass('hide');
+                            $('.zhifusuccess').addClass('hide');
+                        }, 1000);
+                    }else{
+                        alert("认证失败");
+                    }
+                }
+            })
+        });
+        //点击删除上传图片
+        $('.modellinfolr .upimg i').click(function(){
+            $(this).parent().remove();
+        });
+    })
+    function checkMobile(tel) {
+        var reg = /(^1[3|4|5|7|8][0-9]{9}$)/;
+        if (reg.test(tel)) {
+            return true;
+        }else{
+            return false;
+        };
+    }
+    function isCardNo(card)
+    {
+        // 身份证号码为15位或者18位，15位时全为数字，18位前17位为数字，最后一位是校验位，可能为数字或字符X
+        var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+        if(reg.test(card))
+        {
+            return true;
+        }else{
+            return false;
+        }
+    }
+</script>
+</html>

@@ -1,0 +1,124 @@
+<include file="Public/min-header"/>
+<body class="model-centerbody">
+<div class="model-centertop">
+    <div class="bgqiang_" >
+        <img class="bgqiang" src="__STATIC__/images/img/kefu/usercenter.png" />
+    </div>
+    <a href="{:U('Mobile/User/background',array('id'=>$arr['user_id']))}">
+        <div class="uploadbg">
+            <i class="icon iconfont">&#xe82a;</i>
+            更换背景墙
+        </div>
+    </a>
+    <div class="model-centertophead user_centerimg_">
+        <div class="m-top-img user_centerimg">
+            <img src="__STATIC__/images/img/usercenter/centerimg.png" onclick="GetUploadify(1,'head_pic','user','');"/>
+            <if condition="$arr[checked] eq 2">
+           <span>
+                <i class="icon iconfont">&#xe609;</i>
+                已认证
+            </span>
+                <else/>
+                <span>
+						&nbsp;&nbsp;未认证
+					</span>
+            </if>
+        </div>
+        <p>{$arr.nickname}</p>
+    </div>
+</div>
+<div class="model-centercontent">
+    <ul>
+        <li class="m-cclisttop">
+            <a href="{:U('Mobile/User/collect',array('id'=>$arr['user_id']))}">
+						<span>
+							<i class="icon iconfont">&#xe612;</i>
+							我的收藏
+						</span>
+						<span class="floatright">
+							<i class="icon iconfont">&#xe600;</i>
+						</span>
+            </a>
+        </li>
+        <li class="m-cclisttop">
+            <a href="{:U('Mobile/User/myWallet',array('id'=>$arr['user_id']))}">
+						<span>
+							<i class="icon iconfont">&#xe602;</i>
+							我的钱包
+						</span>
+						<span class="floatright">
+							<i class="icon iconfont">&#xe600;</i>
+						</span>
+            </a>
+        </li>
+        <li class="m-cclisttop">
+            <a href="{:U('Mobile/User/userEdit',array('id'=>$arr['user_id']))}">
+						<span>
+							<i class="icon iconfont">&#xe6d7;</i>
+							信息编辑
+						</span>
+						<span class="floatright">
+							<i class="icon iconfont">&#xe600;</i>
+						</span>
+            </a>
+        </li>
+        <li class="m-cclisttop">
+            <a href="{:U('Mobile/User/myOrder',array('id'=>$arr['user_id']))}">
+						<span>
+							<i class="icon iconfont">&#xe60f;</i>
+							我的订单
+						</span>
+						<span class="floatright">
+							<i class="icon iconfont">&#xe600;</i>
+						</span>
+            </a>
+        </li>
+        <li class="m-cclisttop">
+            <a href="{:U('Mobile/User/myActivity',array('id'=>$arr['user_id']))}">
+						<span>
+							<i class="icon iconfont">&#xe60f;</i>
+							我的活动
+						</span>
+                <span class="floatright">
+							<i class="icon iconfont">&#xe600;</i>
+						</span>
+            </a>
+        </li>
+        <li class="m-cclisttop">
+            <a href="{:U('Mobile/User/myRecommend',array('id'=>$arr['user_id']))}">
+						<span>
+							<i class="icon iconfont">&#xe628;</i>
+							我的推荐
+						</span>
+						<span class="floatright">
+							<i class="icon iconfont">&#xe600;</i>
+						</span>
+            </a>
+        </li>
+        <li class="m-cclisttop">
+            <a href="{:U('Mobile/User/approveType',array('id'=>$arr['user_id']))}">
+						<span>
+							<i class="icon iconfont">&#xe64f;</i>
+							我要认证
+						</span>
+						<span class="floatright">
+							<i class="icon iconfont">&#xe600;</i>
+						</span>
+            </a>
+        </li>
+        <li class="m-cclisttop">
+            <a href="{:U('Mobile/User/comment',array('id'=>$arr['user_id']))}">
+						<span>
+							<i class="icon iconfont">&#xe655;</i>
+							已评价
+						</span>
+						<span class="floatright">
+							<i class="icon iconfont">&#xe600;</i>
+						</span>
+            </a>
+        </li>
+    </ul>
+</div>
+<include file="Public/footer"/>
+</body>
+</html>
