@@ -1,6 +1,6 @@
  <foreach name="arr" item="v">
   <div class="col-xs-4">
-    <a href="#rrr"><img src="{$v.head_pic}" alt="" /></a>
-    <a href="#ttt"><div class="i-m-c-name">{$v.nickname}</div></a>
+    <a href="{:U('Mobile/Index/modelDetail',array('id'=>$v['user_id']))}"><img src="{$v.head_pic}" alt="" /></a>
+    <a href="{:U('Mobile/Index/modelDetail',array('id'=>$v['user_id']))}"><div class="i-m-c-name">{$v.nickname}</div></a>
   </div>
   </foreach>

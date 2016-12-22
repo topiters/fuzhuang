@@ -1,17 +1,4 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=0.5,minimum-scale=1,maximum-scale=1,user-scalable=no">
-  <title></title>
-  <link rel="stylesheet" href="__STATIC__/css/css/iconfont/iconfont.css" />
-  <link rel="stylesheet" href="__STATIC__/css/css/bootstrap/bootstrap.min.css" />
-  <link rel="stylesheet" href="__STATIC__/css/css/common.css" />
-  <link rel="stylesheet" href="__STATIC__/css/css/index.css" />
-  <script src="__STATIC__/js/js/jquery-1.11.3.min.js"></script>
-  <script src="__STATIC__/css/css/bootstrap/bootstrap.min.js"></script>
-</head>
-<body>
+﻿<include file="Public/header"/>
 <header class="index-modelheader">
   <ul>
     <li>
@@ -21,7 +8,7 @@
       <a href="{:U('Index/hotPerson')}">红人</a>
     </li>
   </ul>
-			<span class="floatright">
+  <span class="floatright">
 				<i class="icon iconfont">&#xe605;</i>
 			</span>
 </header>
@@ -49,56 +36,24 @@
           </button>
           <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
             <foreach name="s_arr" item="v">
-            <li><a href="{:U('Index/hotPerson',array('id'=>$v['id']))}">第{$v.s_name}期</a></li>
+            <li><a href="{:U('Index/hotPerson',array('id'=>$v['s_name']))}">第{$v.s_name}期</a></li>
             </foreach>
           </ul>
         </div>
       </div>
     </div>
   </div>
-  <div class="index-modelcontent">
+    <div class="index-personc-top">
+      <img src="__STATIC__/images/img/index/indexpersontip.png" />
+    </div>
+  <div class="row index-personcontent">
 
   </div>
   <div class="indexmore">
     <input onclick="getModelList();" type="button" value="点击加载更多"/>
   </div>
 </article>
-<footer class="indexfooter">
-  <ul>
-    <li class="indexfooterliactive">
-      <a href="index-model.html">
-        <div><i class="icon iconfont">&#xe620;</i></div>
-        <div>首页</div>
-      </a>
-    </li>
-    <li>
-      <a href="index-model.html">
-        <div><i class="icon iconfont">&#xe604;</i></div>
-        <div>发现</div>
-      </a>
-    </li>
-    <li class="footer_clock">
-      <a href="index-model.html">
-        <div>
-          <i class="icon iconfont">&#xe661;</i>
-        </div>
-      </a>
-      <div></div>
-    </li>
-    <li>
-      <a href="weikefu.html">
-        <div><i class="icon iconfont">&#xe63e;</i></div>
-        <div>微客服</div>
-      </a>
-    </li>
-    <li>
-      <a href="model_center.html">
-        <div><i class="icon iconfont">&#xe670;</i></div>
-        <div>我的</div>
-      </a>
-    </li>
-  </ul>
-</footer>
+<include file="Public/footer"/>
 </body>
 <script>
   $(function(){
@@ -106,6 +61,20 @@
     var shoucangbool = false;
     $(document).on('click','.indexshoucang',function(){
       if(!shoucangbool){
+        if(!{$user_id}) {
+          alert("对不起，你还没有注册！");
+          location.href="/index.php?m=Mobile&c=User&a=regType";
+        }else{
+          $.ajax({
+            type: "post",
+            url: "/index.php?m=Mobile&c=Index&a=ajaxCollect",
+            data: "",
+            dataType: "",
+            success: function (re) {
+
+            }
+          })
+        }
         $(this).addClass('shoucangactive');
         shoucangbool = true;
       }else{
@@ -113,11 +82,6 @@
         shoucangbool = false;
       }
     });
-    /*$('.indexshoucang').click(function(){
-
-     });*/
-    //var datacount = 12;
-
     var datacount = $('.index-persontopmodel div a').length;
     var datawidth = datacount*50+40;
     $('.index-persontopmodel div').css({'width':datawidth});
@@ -128,10 +92,14 @@
     getModelList();
   });
   var page = 1;
+  //alert(id);
   function getModelList(){
+    var id = {$m_arr.s_name};
+    //alert(page);
     $.ajax({
       type : "get",
-      url:"/index.php?m=Mobile&c=Index&a=ajaxMore&p="+page,
+      url:"/index.php?m=Mobile&c=Index&a=ajaxMore",
+      data:{p:page,id:id},
       dataType:'html',
       success: function(data)
       {
@@ -140,7 +108,7 @@
           $('.indexmore input').attr('disabled',true);
         }else{
           //alert(data);
-          $(".index-modelcontent").append(data);
+          $(".index-personcontent").append(data);
           page++;
         }
       }
