@@ -1,0 +1,59 @@
+<include file="Public/min-header" />
+<div class="wrapper">
+  <include file="Public/breadcrumb"/>
+    <section class="content ">
+        <!-- Main content -->
+        <div class="container-fluid">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-list"></i> 添加报价类型</h3>
+                </div>
+                <div class="panel-body ">   
+                    <!--表单数据-->
+                    <form method="post" id="handleposition" action="{:U('Admin/Offerset/insertoffer')}">                    
+                        <!--通用信息-->
+                    <div class="tab-content col-md-10">                 	  
+                        <div class="tab-pane active" id="tab_tongyong">                           
+                            <table class="table table-bordered">
+                                <tbody>
+                                <tr>
+                                    <td class="col-sm-2">类型名称：</td>
+                                    <td class="col-sm-4">
+                                        <input type="text" class="form-control" name="type_name" value="" >
+                                        <span id="err_attr_name" style="color:#F00; display:none;"></span>                                        
+                                    </td>
+                                    <td class="col-sm-4">设置报价类型
+                                    </td>
+                                </tr>  
+                                <tr>
+                                    <td>价格：</td>
+                                    <td >
+                         				<input type="text" class="form-control" name="range" value="">
+                                    </td>
+                                    <td class="col-sm-4">设置该类型价格</td>
+                                </tr>                           
+                                </tbody> 
+                                <tfoot>
+                                	<tr>
+                                	<td><input type="hidden" name="act" value="{$act}">
+                                		<input type="hidden" name="level_id" value="{$info.type_id}">
+                                	</td>
+                                	<td class="col-sm-4"></td>
+                                	<td class="text-right"><input class="btn btn-primary" type="buuton" onclick="adsubmit()" value="保存"></td></tr>
+                                </tfoot>                               
+                                </table>
+                        </div>                           
+                    </div>              
+			    	</form><!--表单数据-->
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script>
+function adsubmit(){
+	$('#handleposition').submit();
+}
+</script>
+</body>
+</html>

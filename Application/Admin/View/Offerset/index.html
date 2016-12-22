@@ -1,0 +1,80 @@
+<include file="Public/min-header"/>
+<div class="wrapper">
+  <include file="Public/breadcrumb"/>
+	<section class="content">
+       <div class="row">
+       		<div class="col-xs-12">
+	       		<div class="box">
+	           	<div class="box-header">
+	               <nav class="navbar navbar-default">	     
+				        <div class="collapse navbar-collapse">
+				            <div class="navbar-form row">
+					            <a href="{:U('Offerset/addoffer')}" class="btn btn-primary pull-right"><i class="fa fa-plus"></i>新增类型</a>
+				            </div>
+				      	</div>
+	    			</nav>              
+	             </div>	    
+	             <!-- /.box-header -->
+	             <div class="box-body">	             
+	           		<div class="row">
+	            	<div class="col-sm-12">
+		              <table id="list-table" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+		                 <thead>
+		                   <tr role="row">
+			                   <th class="sorting" tabindex="0">类型名称</th>
+			                   <th class="sorting" tabindex="0">价格</th>
+			                   <th class="sorting" tabindex="0">添加时间</th>
+			                   <th class="sorting" tabindex="0">操作</th>
+		                   </tr>
+		                 </thead>
+						<tbody>
+						  <foreach name="list" item="vo" key="k" >
+						  	<tr role="row">
+		                     <td>{$vo.type_name}</td>
+		                     <td>{$vo.range}/天</td>
+		                     <td>{$vo.addtime}</td>		                     
+		                     <td>
+		                      <a class="btn btn-primary" href="{:U('Offerset/detail',array('act'=>'edit','type_id'=>$vo['type_id']))}"><i class="fa fa-pencil" title="查看"></i></a>
+		                      <a class="btn btn-danger" href="javascript:void(0)" data-url="{:U('Offerset/delete')}" data-id="{$vo.type_id}" onclick="delfun(this)"><i class="fa fa-trash-o" title="删除"></i></a>
+							</td>
+		                   </tr>
+		                  </foreach>
+		                   </tbody>
+		                 <tfoot>
+		                 
+		                 </tfoot>
+		               </table>
+	               </div>
+	          </div>
+              <div class="row">
+              	    <div class="col-sm-6 text-left"></div>
+                    <div class="col-sm-6 text-right">{$page}</div>		
+              </div>
+	          </div><!-- /.box-body -->
+	        </div><!-- /.box -->
+       	</div>
+       </div>
+   </section>
+</div>
+<script>
+function delfun(obj){
+	if(confirm('确认删除')){		
+		$.ajax({
+			type : 'post',
+			url : "{:U('Offerset/delete')}",
+			data : {act:'del',type_id:$(obj).attr('data-id')},
+			dataType : 'json',
+			success : function(data){
+				if(data){
+					$(obj).parent().parent().remove();
+				}else{
+					layer.alert('删除失败', {icon: 2});  //alert('删除失败');
+				}
+			}
+		})
+	}
+	return false;
+}
+</script>  
+</body>
+</html>
