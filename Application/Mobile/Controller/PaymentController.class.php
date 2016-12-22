@@ -20,7 +20,7 @@ class PaymentController extends MobileBaseController {
     /**
      * 析构流函数
      */
-    public function  __construct() {   
+/*    public function  __construct() {
         parent::__construct();                                                  
         // tpshop 订单支付提交
         $pay_radio = $_REQUEST['pay_radio'];
@@ -42,7 +42,7 @@ class PaymentController extends MobileBaseController {
         include_once  "plugins/payment/{$this->pay_code}/{$this->pay_code}.class.php"; // D:\wamp\www\svn_tpshop\www\plugins\payment\alipay\alipayPayment.class.php                       
         $code = '\\'.$this->pay_code; // \alipay
         $this->payment = new $code();
-    }
+    }*/
    
     /**
      * tpshop 提交支付方式
@@ -88,5 +88,11 @@ class PaymentController extends MobileBaseController {
                 $this->display('success');   
             else
                 $this->display('error');   
-        }                
+        }
+        /**
+         * 支付方式
+         */
+    public function payType(){
+            $this->display();
+    }
 }

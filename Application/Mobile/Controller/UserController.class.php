@@ -1,6 +1,14 @@
 <?php
 /**
- * 用户信息及订单管理
+ * tpshop
+ * ============================================================================
+ * * 版权所有 2015-2027 深圳搜豹网络科技有限公司，并保留所有权利。
+ * 网站地址: http://www.tp-shop.cn
+ * ----------------------------------------------------------------------------
+ * 这不是一个自由软件！您只能在不用于商业目的的前提下对程序代码进行修改和使用 .
+ * 不允许对程序代码以任何形式任何目的的再发布。
+ * ============================================================================
+ * 2015-11-21
  */
 namespace Mobile\Controller;
 use Home\Logic\UsersLogic;
@@ -9,30 +17,6 @@ use Think\Page;
 use Think\Verify;
 
 class UserController extends MobileBaseController {
-        /*
-        * 初始化操作
-        */
-    public function _initialize() {
-        parent::_initialize();
-        if(!$this->user_id && !in_array(ACTION_NAME,array('login','logout','verify','verifyHandle','reg'))){
-            if(I('get.scene')){
-                echo "<script>parent.location.href='".U('Home/User/login',array('url'=>$_REQUEST['url']))."';</script>";
-                exit;
-            }else{
-                //$this->error('请先登陆',U('Mobile/User/login'));
-                header("Location:".U('Mobile/User/login'));
-                exit;
-            }
-        } 
-            $order_status_coment = array(
-                'WAITPAY'=>'待付款 ', //订单查询状态 待支付
-                'WAITSEND'=>'待发货', //订单查询状态 待发货
-                'WAITRECEIVE'=>'待收货', //订单查询状态 待收货
-                'WAITCCOMMENT'=>'待评价', //订单查询状态 待评价        
-            );
-            $this->assign('order_status_coment',$order_status_coment);
-    }
-
     /*
      * 用户中心首页
      */
@@ -43,6 +27,7 @@ class UserController extends MobileBaseController {
         $this->assign('user',$user);
         $this->display();
     }
+
 
     public function logout(){
         session('user',null);
@@ -99,45 +84,246 @@ class UserController extends MobileBaseController {
         $this->assign('referurl',$referurl);
         $this->display();
     }
-
+    /**
+     *  注册类型
+     */
+    public function regType(){
+        $this->display();
+    }
     /**
      *  注册
      */
     public function reg(){
 
-        if(IS_POST){
-            $logic = new UsersLogic();
-            //验证码检验
-            $this->verifyHandle('user_reg');
-            $username = I('post.username','');
-            $password = I('post.password','');
-            $password2 = I('post.password2','');
-            //是否开启注册验证码机制
-            if(check_mobile($username) && tpCache('sms.regis_sms_enable')){
-                $code = I('post.code','');
+            if(IS_POST){
+                $logic = new UsersLogic();
+                $username = I('post.mobile','');
+                //是否开启注册验证码机制
+                /*if(check_mobile($username)){
+                    $code = I('post.mobile_code','');
+                    $check_code = $logic->sms_code_verify($username,$code,$this->session_id);
+                    if($check_code['status'] != 1)
+                        $this->error($check_code['msg']);
+                }*/
+                $reg_time = time();
+                if($_GET['cid']==2){
+                    $data = M('modelusers')->add(array('mobile'=>$username,'reg_time'=>$reg_time,'lever'=>2));
+                }else{
+                    $data = M('modelusers')->add(array('mobile'=>$username,'reg_time'=>$reg_time));
+                }
+                session('user_id',$data);
+                $this->success("绑定成功",U('Mobile/User/myContent'));
+                exit;
+            }
 
-                if(!$code)
-                    $this->error('请输入验证码');
+        if($_GET['id']){
+            $logic = new UsersLogic();
+            $username = I('post.mobile','');
+            //是否开启注册验证码机制
+            /*if(check_mobile($username)){
+                $code = I('post.mobile_code','');
                 $check_code = $logic->sms_code_verify($username,$code,$this->session_id);
                 if($check_code['status'] != 1)
                     $this->error($check_code['msg']);
-
-            }
-            $data = $logic->reg($username,$password,$password2);
-            if($data['status'] != 1)
-                $this->error($data['msg']);
-
-            session('user',$data['result']);
-            session('user_id',$data['result']['user_id']);
-
-            $this->success($data['msg'],U('Mobile/User/index'));
+            }*/
+            $data = M('modelusers')->where(array('user_id'=>$_GET['id']))->save(array('mobile'=>$username));
+            $this->success("修改成功",U('Mobile/User/userEdit'));
             exit;
         }
-        $this->assign('regis_sms_enable',tpCache('sms.regis_sms_enable')); // 注册启用短信：
-        $this->assign('sms_time_out',tpCache('sms.sms_time_out')); // 手机短信超时时间
+        $this->display();
+    }
+    /**
+     *用户协议
+     */
+    public function myContent(){
+        $this->display();
+    }
+    /**
+     *用户协议
+     */
+    public function xieyi(){
+        $this->display();
+    }
+    /**
+     *我的钱包
+     */
+    public function myWallet(){
+        $id = $_GET['id'];
+        $arr = M('modelusers')->where(array('user_id'=>$id))->find();
+        $this->assign('arr',$arr);
+        $this->display();
+    }
+    /**
+     *我的钱包
+     */
+    public function mySpent(){
+        $id = $_GET['id'];
+        $arr = M('modelusers')->where(array('user_id'=>$id))->find();
+        $this->assign('arr',$arr);
+        $this->display();
+    }
+    /**
+     *我的活动
+     */
+    public function myActivity(){
+        $id = $_GET['id'];
+        $arr = M('modelusers')->where(array('user_id'=>$id))->find();
+        $this->assign('arr',$arr);
+        $this->display();
+    }
+    /**
+     *充值
+     */
+    public function recharge(){
+        $id = $_GET['id'];
+        $arr = M('modelusers')->where(array('user_id'=>$id))->find();
+        $this->assign('arr',$arr);
+        $this->display();
+    }
+    /**
+     * 个人中心界面
+     */
+    public function myCenter(){
+        $id = session('user_id');
+        $arr = M('modelusers')->where(array('user_id'=>$id))->find();
+        //var_dump($arr);exit;
+        $this->assign('arr',$arr);
+        $this->display();
+    }
+    /**
+     * 更换背景墙
+     */
+    public function background(){
+        $id = $_GET['id'];
+        $arr = M('modelusers')->where(array('user_id'=>$id))->find();
+        //var_dump($arr);exit;
+        $this->assign('arr',$arr);
+        $this->display();
+    }
+    /**
+     * 我的收藏
+     */
+    public function collect(){
+        $id = $_GET['id'];
+        $count = M('collect')->where(array('user_id'=>$id))->count();
+        $page = new Page($count,'5');
+        $show = $page->show();
+        $arr = M('collect')->where(array('user_id'=>$id))->order("add_time desc")->limit($page->firstRow.','.$page->listRows)->select();
+        if ($_GET['is_ajax']) {
+            $this->display('ajax_collect_list');
+            exit;
+        }
+        $this->assign('page',$show);
+        $this->assign('arr',$arr);
+        $this->display();
+    }
+    /**
+     * 我的订单
+     */
+    public function myOrder(){
+        $id = $_GET['id'];
+        $count = M('collect')->where(array('user_id'=>$id))->count();
+        $page = new Page($count,'5');
+        $show = $page->show();
+        $arr = M('collect')->where(array('user_id'=>$id))->order("add_time desc")->limit($page->firstRow.','.$page->listRows)->select();
+        if ($_GET['is_ajax']) {
+            $this->display('ajax_collect_list');
+            exit;
+        }
+        $this->assign('page',$show);
+        $this->assign('arr',$arr);
+        $this->display();
+    }
+    /**
+     * 信息编辑
+     */
+    public function userEdit(){
+        $id = $_GET['id'];
+        $arr = M('modelusers')->where(array('user_id'=>$id))->find();
+        $this->assign('arr',$arr);
         $this->display();
     }
 
+    /**
+     * 保存信息
+     */
+    public function ajaxSave(){
+        $id = $_POST['user_id'];
+        //var_dump($_POST);exit;
+        $re = M('modelusers')->where(array('user_id'=>$id))->save($_POST);
+        $this->ajaxReturn(json_encode($re));
+    }
+    /**
+     * 我的推荐
+     */
+    public function myRecommend(){
+        $id = $_GET['id'];
+        $arr = M('modelusers')->where(array('user_id'=>$id))->find();
+        $this->assign('arr',$arr);
+        $this->display();
+    }
+    /**
+     * 认证类型
+     */
+    public function approveType(){
+        $id = $_GET['id'];
+        $arr = M('modelusers')->where(array('user_id'=>$id))->find();
+        $this->assign('arr',$arr);
+        $this->display();
+    }
+    /**
+     * 个人认证
+     */
+    public function approvePer(){
+        $id = $_GET['id'];
+        $arr = M('modelusers')->where(array('user_id'=>$id))->find();
+        $this->assign('arr',$arr);
+        $this->display();
+    }
+    /**
+     * 个人申请
+     */
+    public function ajaxPer(){
+        $id = $_GET['id'];
+        //var_dump(session('user_id'));exit;
+        $re = M('modelusers')->where(array('user_id'=>$id))->save($_POST);
+        $this->ajaxReturn(json_encode($re));
+    }
+    /**
+     * 企业认证re
+     */
+    public function approveCom(){
+        $id = $_GET['id'];
+        $arr = M('modelusers')->where(array('user_id'=>$id))->find();
+        $this->assign('arr',$arr);
+        $this->display();
+    }
+    /**
+     * 企业申请
+     */
+    public function ajaxCom(){
+        $id = $_GET['id'];
+        //var_dump($_POST);exit;
+        $arr = M('modelusers')->where(array('user_id'=>$id))->save($_POST);
+        $this->ajaxReturn(json_encode($re));
+    }
+    /**
+     * 个人验证
+     */
+    public function person(){
+
+        $this->display();
+    }
+    public function setMob()
+    {
+        $mobile = I("post.mobile",'');
+        $user_where['mobile'] = $mobile;
+        $users = M('modelusers')->where($user_where)->find();
+        if($users)
+            echo "1";
+        else
+            echo "0";
+    }
     /*
      * 订单列表
      */
@@ -518,38 +704,10 @@ class UserController extends MobileBaseController {
 
     //发送验证码
     public function send_validate_code(){
-        $type = I('get.type');
-        $step = I('get.step',1);
-        $to = I('get.send');
-        $code =  rand(1000,9999);
-        if($type == 'email'){
-            //检查是否邮箱格式
-            if(!check_email($to))
-                exit('fail');
-            //发送电子邮件验证码
-            $send = send_email('398145059@qq.com',$to,'验证码','您好，你的验证码是：'.$code);
-            if($send){
-                $info['code'] = $code;
-                $info['email'] = $to;
-                $info['time'] = time()+300;
-                session('email_code',$info);
-                exit('ok');
-            }
-        }
-        if($type == 'mobile'){
-            //检查是否手机号码格式
-            if(!check_mobile($send))
-                exit('fail');
-            //发送手机验证码
-            $send = sendSMS($to,'您好，你的验证码是：'.$code);
-            if($send){
-                $info['code'] = $code;
-                $info['mobile'] = $to;
-                $info['time'] = time()+300;
-                session('mobile_code',$info);
-                exit('ok');
-            }
-        }
+        $type = I('type');
+        $send = I('send');
+        $logic = new UsersLogic();
+        $logic->send_validate_code($send, $type);
     }
     /*
      *商品收藏

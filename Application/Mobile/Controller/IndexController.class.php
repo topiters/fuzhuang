@@ -12,7 +12,6 @@
  */ 
 namespace Mobile\Controller;
 class IndexController extends MobileBaseController {
-
     public function index(){
         $list = M('lunbo')->where(array('is_show'=>1))->limit(3)->select();
         $this->assign('list',$list);
@@ -24,6 +23,7 @@ class IndexController extends MobileBaseController {
      */
     public function hotPerson(){
         $id = $_GET['id'];
+       // var_dump($id);exit;
         $s_arr = M('schedule')->select();
         $arr = array();
         foreach($s_arr as $k=>$v){
@@ -36,42 +36,14 @@ class IndexController extends MobileBaseController {
         $m_arr = M('schedule')->where(array('id'=>$id))->find();
         $this->assign('m_arr',$m_arr);
         $this->assign('s_arr',$s_arr);
+        $this->assign('user_id',$this->user_id);
         $this->display();
     }
 
-    /**
-     * 分类列表显示
-     */
-    public function categoryList(){
-        $this->display();
-    }
 
-    /**
-     * 模板列表
-     */
-    public function mobanlist(){
-        $arr = glob("D:/wamp/www/svn_tpshop/mobile--html/*.html");
-        foreach($arr as $key => $val)
-        {
-            $html = end(explode('/', $val));
-            echo "<a href='http://www.php.com/svn_tpshop/mobile--html/{$html}' target='_blank'>{$html}</a> <br/>";            
-        }        
-    }
-    
-    /**
-     * 商品列表页
-     */
-    public function goodsList(){
-        $goodsLogic = new \Home\Logic\GoodsLogic(); // 前台商品操作逻辑类
-        $id = I('get.id',0); // 当前分类id
-        $lists = getCatGrandson($id);
-        $this->assign('lists',$lists);
-        $this->display();
-
-    }
     public function ajaxGetMore(){
         $p = I('p',1);
-        $model = M('modelusers')->where(array('mobile_validated'=>1))->page($p,9)->select();
+        $model = M('modelusers')->where(array('lever'=>1))->page($p,9)->select();
         /*$arr = array();
         foreach($model as $k=>$v){
             $user_id = $v['user_id'];
@@ -83,29 +55,117 @@ class IndexController extends MobileBaseController {
         $this->assign('arr',$model);
         $this->display();
     }
-
+    /**
+     *模特详情
+     */
+    public function modelDetail(){
+       /* $user_id = $_GET['id'];
+        $arr = M('modelusers')->where(array('user_id'=>$user_id))->find();
+        $this->assign('arr',$arr);*/
+        $this->display();
+    }
     /**
      * 加载更多红人
      */
     public function ajaxMore(){
-        $p = I('p',1);
-        $id = $_GET['id'];
-        $m_arr = M('schedule')->where(array('id'=>1))->find();
+        $p = intval(I('p',1));
+        //var_dump($p);
+        $id = intval($_GET['id']);
+        //var_dump($id);exit;
+        $m_arr = M('schedule')->where(array('id'=>$id))->find();
         $mod = explode(',',$m_arr['models']);
         //var_dump($mod);exit;
         $arr = array();
         foreach($mod as $k=>$v){
             $arr[$k] = M('modelusers')->where(array('user_id'=>$v))->find();
         }
-        foreach($arr as $k=>$v){
-            $head_pic = $v['head_pic'];
-            $experience = $v['experience'];
-            $nickname = $v['nickname'];
+        //dump($arr);exit;
+        $re = M('linshi')->where(array('s_id'=>$id))->select();
+        //var_dump($arr);exit;
+        if(!$re) {
+            //M("linshi")->where('id' != 0)->delete();
+            foreach ($arr as $k => $v) {
+                $head_pic = $v['head_pic'];
+                $experience = $v['experience'];
+                $nickname = $v['nickname'];
+                $total = $v['total'];
+                $model_id = $v['user_id'];
+                $s_id = $id;
+                M('linshi')->add(array('head_pic' => $head_pic, 'experience' => $experience, 'nickname' => $nickname, 'total' => $total, 's_id' => $s_id,'model_id'=>$model_id));
+            }
         }
-        $this->assign('arr',$arr);
-
-        $model = M('modelusers')->where(array('mobile_validated'=>1))->order('total desc')->page($p,2)->select();
-        $this->assign('model',$model);
+       // var_dump()
+        $model = M('linshi')->where(array('s_id'=>$id))->order('total desc')->page($p,3)->select();
+        //var_dump($model);exit;
+        $this->assign('arr',$model);
+        $this->display();
+    }
+    /**
+     * 收藏
+     */
+    public function ajaxCollect(){
+        if($this->user_id==0){
+            $this->redirect("Mobile/reg",'','3','您还没有注册，请先注册');
+        }
+    }
+    /**
+     * 发现
+     */
+    public function find(){
+        $this->display();
+    }
+    /**
+     *文章详情
+     */
+    public function article(){
+        $this->display();
+    }
+    /**
+     * 活动详情
+     */
+    public function activity(){
+        $this->display();
+    }
+    /**
+     * 预约
+     */
+    public function order(){
+        $this->display();
+    }
+    /**
+     * 自选
+     */
+    public function select(){
+        $this->display();
+    }
+    /**
+     *详情
+     */
+    public function detail(){
+        $this->display();
+    }
+    /**
+     *客服
+     */
+    public function kefu(){
+        $this->display();
+    }
+    /**
+     *扫码
+     */
+    public function saoma(){
+        $this->display();
+    }
+    /**
+     *打给我们
+     */
+    public function callus(){
+        $this->display();
+    }
+    /**
+     *留言
+     */
+    public function message(){
         $this->display();
     }
 }
