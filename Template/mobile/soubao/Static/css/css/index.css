@@ -56,9 +56,14 @@ article{
 .index-modelbanner .carousel{
 	width: 100%;
 }
-.index-modelbanner .carousel .item img{
+.index-modelbanner .carousel .item{
 	width: 100%;
 	max-height:160px;
+	overflow: hidden;
+}
+.index-modelbanner .carousel .item img{
+	width: 100%;
+	/*max-height:160px;*/
 }
 .index-modelbanner .carousel-indicators{
 	bottom: 3px;
@@ -195,29 +200,30 @@ article{
 .index-personcontent{
 	width: 100%;
 	margin: 0 auto;
+	padding: 0 10px;
 }
-.index-personcontent .indexpersoninfo .indexpersoninfotop{
+.indexpersoninfo .indexpersoninfotop{
 	background: #fff;
 	padding: 5px 10px;
 }
-.index-personcontent .indexpersoninfo .indexpersoninfotop .col-xs-5{
+.indexpersoninfo .indexpersoninfotop .col-xs-5{
 	padding: 5px 8px 5px 10px;
 }
-.index-personcontent .indexpersoninfo .indexpersoninfotop .col-xs-5 img{
+.indexpersoninfo .indexpersoninfotop .col-xs-5 img{
 	max-width: 120px;
 	max-height: 140px;
 	width: 100%;
 	display: block;
 	margin: 0 auto;
 }
-.index-personcontent .indexpersoninfo .indexpersoninfotop .col-xs-7{
+ .indexpersoninfo .indexpersoninfotop .col-xs-7{
 	padding: 0 10px 0 0px;
 }
-.index-personcontent .indexpersoninfo .indexpersoninfotop .col-xs-7 p{
+.indexpersoninfo .indexpersoninfotop .col-xs-7 p{
 	margin: 0;
 	font-size: 14px !important;
 }
-.index-personcontent .indexpersoninfo .indexpersoninfotop .col-xs-7 p:last-child{
+ .indexpersoninfo .indexpersoninfotop .col-xs-7 p:last-child{
 	text-overflow: -o-ellipsis-lastline;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -225,19 +231,19 @@ article{
 	-webkit-line-clamp: 6;
 	-webkit-box-orient: vertical;
 }
-.index-personcontent .indexpersoninfo .indexpersoninfotop .col-xs-12{
+ .indexpersoninfo .indexpersoninfotop .col-xs-12{
 	text-align: right;
 	background: #5555B1;
 	padding: 6px 6px;
 }
-.index-personcontent .indexpersoninfo .indexpersoninfotop .col-xs-12 span{
+.indexpersoninfo .indexpersoninfotop .col-xs-12 span{
 	padding: 2px 10px;
 	color: #fff;
 }
-.index-personcontent .indexpersoninfo .indexpersoninfotop .col-xs-12 span:first-child{
+ .indexpersoninfo .indexpersoninfotop .col-xs-12 span:first-child{
 	border-right: 3px solid #fff;
 }
-.index-personcontent .indexpersoninfo .indexpersoninfotop .col-xs-12 span:first-child i{
+ .indexpersoninfo .indexpersoninfotop .col-xs-12 span:first-child i{
 	color: #fff;
 }
 .shoucangactive i{

@@ -124,3 +124,213 @@
 /*客服扫码 end*/
 /*客服界面所有样式end*/
 
+/*模特录入信息 start*/
+.modelinfolr{
+	width: 100%;
+	padding: 15px 10px ;
+	
+}
+.qrsfbody{
+	padding-left: 10px !important;
+}
+.modelinfolr h4{
+	text-align: center;
+	color: #ed716f;
+}
+.modelinfolr>form>div{
+}
+.modelinfolr>form>div>p{
+	padding-top: 15px;
+	margin-bottom: 5px;
+}
+.selectsex-modelinfolr{
+	width: 80px;
+	margin-left: 10px;
+	display: inline-block;
+}
+.modelinfolr .sanweistyle{
+	width: 100%;
+	margin: 0 auto;
+	padding: 0;
+}
+.modelinfolr .sanweistyle>div{
+	padding: 0;
+}
+.modelinfolr .sanweistyle>div>span,.modelinfolr .sanweistyle select{
+	float: left;
+	margin-right: 2px;
+}
+.modelinfolr .sanweistyle select{
+	width: 90%;
+	max-width: 68px;
+}
+.modelinfolr #city_4 select{
+	width: 30%;
+	display: inline-block;
+}
+.modelinfolr .cityiwidth{
+	width: 95% !important;
+	float: left !important;
+	height: 35px;
+}
+.modelinfolr .cityiwidth select{
+	width: 32% !important;
+	float: left;
+}
+.modelinfolr #addwordaddress{
+	display: inline-block;
+	padding-top: 5px;
+	float: right;
+}
+.modelinfolr .mindetify-upimg{
+	width: 100%;
+	padding: 0;
+}
+.modelinfolr .mindetify-upimg .upvideo video{
+	width: 100%;
+}
+.modelinfolr .subbtn{
+	width: 120px;
+	display: block;
+	margin: 25px auto 64px;
+	background: #ed7372;
+	height: 32px;
+	border-radius: 16px;
+	border-style: none;
+	color: #fff;
+}
+.modelinfolr-headimg{
+	display: inline-block;
+	width: 40px;
+	height: 40px;
+	border-radius: 20px;
+	overflow: hidden;
+	margin-right: 10px;
+}
+.modelinfolr-headimg img{
+	width: 100%; 
+}
+.modellinfolr{
+	width: 100%;
+	min-height: 150px;
+	height: auto;
+	float: left;
+	padding:10px;
+	box-sizing: border-box;
+	margin-top: 10px;
+}
+.modellinfolr>span{
+	float: left;
+}
+.modellinfolr .upicon{
+	width: 80px;
+	height: 80px;
+	display: inline-block;
+	text-align: center;
+	line-height: 80px;
+	border: 1px solid #999;
+	margin-right: 10px;
+}
+.modellinfolr .upicon i{
+	font-size: 30px;
+	color: #999;
+}
+.modellinfolr .upimg,.modellinfolr .upvideo{
+	width: 80px;
+	height: 80px;
+	position: relative;
+	border: 1px solid #000;
+	display: inline-block;
+	margin-right: 15px;
+}
+.modellinfolr .upimg img,.modellinfolr .upvideo video,.modellinfolr .upimg video{
+	width: 100%;
+	max-width: 80px;
+}
+
+.modellinfolr .upimg i{
+	position: absolute;
+	right: -10px;
+	top: -10px;
+	display: block;
+	color: #f00;
+}
+/*模特录入信息 end*/
+/*企业认证上传照片样式 start*/
+/*.modelinfoqyrz{
+	padding: 10px;
+	margin-top: 10px;
+}*/
+/*企业认证上传照片样式 end*/
+
+/*用户协议start*/
+.pindenttwo{
+	text-indent: 2em;
+}
+.userxieyi{
+	padding: 10px;
+	font-size: 14px;
+	line-height: 1.5em;
+}
+/*用户协议 end*/
+
+/*设置档期 start*/
+.setdangqiody{
+	padding: 0 10px;
+}
+.setdangqiody .addwudang>div{
+	padding: 3px;
+	border-bottom: 1px solid #f4f4f4;
+}
+.setdq-selectriqi{
+	margin-top: 15px;
+}
+.setdangqibtn{
+	position: absolute;
+	bottom: 30px;
+	width: 100%;
+	left: 0;
+}
+.setdangqibtn input{
+	border-style: none;
+	background: #ff5001;
+	padding: 7px 10px;
+	color: #fff;
+	width: 80%;
+	border-radius: 6px;
+	margin: 10px auto;
+	display: block;
+}
+/*设置档期 end*/
+
+/*设置照片墙 start*/
+.up-bgicon{
+	width: 80px;
+	height: 80px;
+	border-radius: 40px;
+	border: 1px solid #bebaf7;
+	text-align: center;
+	line-height: 80px;
+	margin: 80px auto 0;
+}
+.up-bgicon i{
+	font-size: 30px;
+	color: #bebaf7;
+}
+/*设置照片墙 end*/
+/*用户充值start*/
+.userchongzhi .m-cclisttop{
+	width: 100%;
+	margin: 5px auto;
+}
+.userchongzhi .m-cclisttop span>img{
+	width: 30px;
+}
+.userchongzhi .m-cclisttop .floatright{
+	float: right;
+}
+.userchongzhi p{
+	padding: 2px 10px;
+	margin: 0;
+}
+/*用户充值end*/

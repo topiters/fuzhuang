@@ -12,6 +12,9 @@ html,body{
 .bodybgf4{	
 	background: #F4F4F4 !important;
 }
+.color-ed716f{
+	color: #ed716f;
+}
 /*右边小字体提示*/
 .textfctip{
 	font-size: 12px !important;
@@ -28,7 +31,10 @@ a,a:hover{text-decoration: none !important;color: #000;}
 	float: right;
 }
 .floatleft{
-	float: right;
+	float: left;
+}
+.calendar-icon{
+	border: 0 !important;
 }
 /*底部 start*/
 .indexfooter{
@@ -38,6 +44,7 @@ a,a:hover{text-decoration: none !important;color: #000;}
 	height: 55px;
 	background: #fff;
 	border-top: 1px solid #f4f4f4;
+	z-index: 9998;
 }
 .indexfooter ul{
 	width: 100%;
@@ -211,3 +218,174 @@ a,a:hover{text-decoration: none !important;color: #000;}
 	margin: 20px auto;
 }
 /*身份确认 end*/
+/*返回上级页面样式 start*/
+.backtip{
+	height: 50px;
+	line-height: 50px;
+	padding-left: 10px;
+	width: 100%;
+	/*box-shadow: 0 0 5px rgba(0,0,0,0.3) !important;*/
+	box-shadow: 0 0 5px rgba(85,85,177,0.3) !important;
+	margin-bottom: 5px;
+	background: #fff;
+}
+.backtip .addwudang{
+	display: inline;
+	padding-left: 15px;
+}
+/*返回上级页面样式 end*/
+/*黑色半透明内衬 start*/
+.blackchen{
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background: rgba(0,0,0,0.5);
+}
+/*黑色半透明内衬 end*/
+/*提示样式 start*/
+.zhifusuccess{
+	position: fixed;
+	top: 50%;
+	background: #fff;
+	left: 50%;
+	margin-left: -60px;
+	margin-top: -30px;
+	padding: 10px 15px;
+	border-radius: 10px;
+}
+.zhifusuccess img{
+	width: 30px;
+}
+/*提示样式 end*/
+
+/*下边中间字体样式提示可消失 start*/
+.alltip{
+	position: fixed;
+	bottom: 50px;
+	left: 50%;
+	margin-left: -50px;
+	opacity: 0;
+	transition: all 1s;
+	-moz-transition: all 1s;
+	-webkit-transition: all 1s;
+	-ms-transition: all 1s;
+	padding: 3px 5px;
+	background: #f4f4f4;
+	border-radius: 3px;
+}
+.alltipafter{
+	opacity: 1;
+}
+/*下边中间字体样式提示可消失 end*/
+
+/*照片上传成功之后跳转页面样式 start*/
+.uploadsuccessbody{
+	text-align: center;
+}
+.uploadsuccessbody img{
+	display: block;
+	margin: 20px auto;
+	width: 90%;
+	max-width: 300px;
+}
+.uploadsuccessbody p{
+	font-size: 20px;
+	margin-bottom: 25px;
+}
+.uploadsuccessbody p a,.uploadsuccessbody .secondtz{
+	color: #f00;
+}
+.uploadsuccessbody .fontsizesecond{
+	font-size: 15px;
+}
+.uploadsuccessbody .backhome a{
+	display: block;
+	margin: 10px auto;
+	width: 80%;
+	background: #f69052;
+	color: #fff;
+	font-size: 15px;
+	padding: 6px 0;
+	border-radius: 6px;
+}
+/*照片上传成功跳转页面样式 end*/
+/*支付方式页面样式start*/
+.zhifubody{
+	background: #fff;
+	padding: 20px 10px;
+}
+.zhifubody h3{
+	font-size: 18px;
+	color: #999;
+	text-align: center;
+}
+.zhifubody p{
+	text-align: center;
+}
+.zhifustyle{
+	width: 280px;
+	padding: 36px 0;
+	margin: 0 auto;
+}
+.zhifustyle>div>div{
+	text-align: left !important;
+}
+.zhifustyle>div:nth-child(2){
+	padding-left: 20px;
+}
+.zhifustyle>div,.zhifustyle>div>div,.zhifustyle i{
+	float: left;
+}
+.zhifustyle i{
+	font-size: 25px;
+	color: #0f0;
+	margin-top: -8px;
+	margin-left: 6px;
+	margin-right: 0 !important;
+}
+.zhifubtnstyle{
+	width: 80%;
+	background: #eb9256;
+	padding: 6px 10px;
+	height: 32px;
+	margin: 30px auto;
+}
+.zhifubtnstyle>div{
+	width: 50%;
+	float: left;
+	text-align: center;
+	color: #fff;
+}
+.zhifubtnstyle>div:first-child{
+	border-right: 1px solid #fff;
+}
+.zhifusuccess{
+	position: fixed;
+	top: 50%;
+	background: #fff;
+	left: 50%;
+	margin-left: -60px;
+	margin-top: -30px;
+	padding: 10px 15px;
+	border-radius: 10px;
+}
+.zhifusuccess img{
+	width: 30px;
+}
+/*支付方式页面样式end*/
+
+
+/*用户中心新增start*/
+.bgqiang_{
+	position: absolute;
+	z-index: -1;
+	width: 100%;
+}
+.bgqiang{
+	display: block;
+	margin: 0 auto !important;
+	height: 220px;
+}
+/*用户中心新增样式 end*/

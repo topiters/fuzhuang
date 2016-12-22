@@ -2,13 +2,17 @@
 	padding-bottom: 100px;
 }
 .model-centertop{
-	border: 1px solid #000;
 	height: 220px;
-	background: url(../img/kefu/usercenter.png) no-repeat center;
-	/*background-size: auto 100%;*/
-	background-size: auto 100%;
 	position: relative;
-	background-color: #000;
+}
+.uploadbg{
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	color: #fff;
+}
+.uploadbg i{
+	color: #fff;
 }
 .model-centertophead{
 	width: 100%;
@@ -80,7 +84,6 @@
 }
 /*用户个人中心-我的钱包-模特方 start*/
 .my-walletbody-model{
-	padding-top: 10px;
 	background: #F4F4F4;
 }
 /*我的钱包-余额 start*/
