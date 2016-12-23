@@ -1,5 +1,13 @@
 <include file="Public/min-header"/>
 <body style="background-color: #f4f4f4;">
+<div class="backtip">
+    <a href="javascript:history.go(-1);">
+        <i class="icon iconfont">&#xe60d;</i>
+    </a>
+    <div class="addwudang">
+        绑定手机号
+    </div>
+</div>
 <div class="mr-background">
     <img src="__STATIC__/images/img/eaf81a4c510fd9f9a8ccabb6212dd42a2934a412.jpg" />
 </div>
@@ -28,6 +36,11 @@
         $("#bangding").click(function(){
             var username = $.trim($("#mobileForm").find('#mobile').val());
             var code = $.trim($("#mobileForm").find('#mobile_code').val());
+            if(code == '') {
+                $('#mobile_phone_notice').css('color', 'red');
+                $('#mobile_phone_notice').html('*手机号不能为空');
+                flag = false;
+            }
             if(code == '') {
                 $('#code_phone_notice').css('color', 'red');
                 $('#code_phone_notice').html('*验证码不能为空');
