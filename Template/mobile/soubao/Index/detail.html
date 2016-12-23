@@ -1,0 +1,147 @@
+﻿<include file="Public/header"/>
+  <style type="text/css">
+    /*按钮*/
+
+    .switch-btn {
+      position: relative;
+      display: block;
+      vertical-align: top;
+      width: 60px;
+      height: 30px;
+      border-radius: 18px;
+      cursor: pointer;
+    }
+
+    .checked-switch {
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+    }
+
+    .text-switch {
+      background-color: #00af2c;
+      border: 1px solid #068506;
+      border-radius: inherit;
+      color: #fff;
+      display: block;
+      font-size: 15px;
+      height: inherit;
+      position: relative;
+      text-transform: uppercase;
+    }
+
+    .checked-switch:checked~ .text-switch {
+      background-color: #fff;
+      border: 1px solid #e4e4e4;
+    }
+
+    .checked-switch:checked~ .text-switch:before {
+      opacity: 0;
+    }
+
+    .checked-switch:checked~ .text-switch:after {
+      opacity: 1;
+    }
+
+    .toggle-btn {
+      background: linear-gradient(#ddd, #ddd);
+      border-radius: 100%;
+      height: 28px;
+      left: 1px;
+      position: absolute;
+      top: 2px;
+      width: 28px;
+    }
+
+    .checked-switch:checked~ .toggle-btn {
+      left: 31px;
+    }
+
+    .text-switch,
+    .toggle-btn {
+      transition: All 0.3s ease;
+      -webkit-transition: All 0.3s ease;
+      -moz-transition: All 0.3s ease;
+      -o-transition: All 0.3s ease;
+    }
+  </style>
+</head>
+
+<body>
+<div class="backtip">
+  <a href="javascript:history.go(-1);">
+    <i class="icon iconfont">&#xe60d;</i>
+  </a>
+  <div class="addwudang">
+    完善信息
+  </div>
+</div>
+<form action="{:U('Mobile/Payment/payType')}" method="post" id="form">
+<div class="yn-main">
+  <dl>
+    <dt>
+      <span>活动名称</span><br />
+    <div class="yn-t">
+      <input type="text" name="" id="" value="" />
+    </div>
+    </dt>
+    <dt>
+      <span>详细地点</span><br />
+    <div class="yn-t">
+      <input type="text" name="" id="" value="" />
+    </div>
+    </dt>
+    <dt>
+      <span>联系人</span><br />
+    <div class="yn-t">
+      <input type="text" name="" id="" value="" />
+    </div>
+    </dt>
+    <dt>
+      <span>联系人手机号</span><br />
+    <div class="yn-t">
+      <input type="text" name="" id="" value="" />
+    </div>
+    </dt>
+    <dt>
+      <span>备选手机号</span><br />
+    <div class="yn-t">
+      <input type="text" name="" id="" value="" />
+    </div>
+    </dt>
+    <dt>
+      <span class="yn-text">备注</span><br />
+      <textarea name="" rows="" cols="" class="yn-text1 r"></textarea>
+    </dt>
+    <dt>
+    <div class="yn-btn">
+      <label class="switch-btn r">
+        <input class="checked-switch" type="checkbox" />
+        <span class="text-switch"></span>
+        <span class="toggle-btn"></span>
+      </label>
+      <p class="r">是否需要模特自带礼服<span>(30元)</span></p>
+    </div>
+    </dt>
+  </dl>
+  <div class="yn-foot clearfix">
+    <p>(因工作地域与模特居住地不符,需额外支付交通费100元/人)</p>
+    <div class="yn-footer clearfix">
+      <div class="yn-footer-l l">
+        实际支付: <span>1200元</span>
+      </div>
+      <button class="yn-footer-r r">立即支付</button>
+    </div>
+  </div>
+</div>
+</form>
+</body>
+<script>
+  $(function(){
+      $(".yn-footer-r").click(function(){
+          $("#form").submit();
+      })
+  })
+</script>
+</html>

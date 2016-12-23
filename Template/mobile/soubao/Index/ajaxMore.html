@@ -1,0 +1,27 @@
+<foreach name="arr" item="v">
+  <div class="indexpersoninfo">
+    <div class="row indexpersoninfotop">
+      <div class="col-xs-5">
+        <img src="{$v.head_pic}" />
+      </div>
+      <div class="col-xs-7">
+        <p>艺名：<span>{$v.nickname}</span></p>
+        <p>简介：
+								<span>
+								{$v.experience}
+								</span>
+        </p>
+      </div>
+      <div class="col-xs-12">
+							<span class="indexshoucang" data="{$v.model_id}">
+								<i class="icon iconfont">&#xe7a4;</i>
+								收藏
+							</span>
+							<span>
+								立即约她
+							</span>
+      </div>
+    </div>
+  </div>
+  <div class="indexpersoninfobottom"></div>
+</foreach>

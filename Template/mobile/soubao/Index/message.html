@@ -1,0 +1,36 @@
+﻿<include file="Public/header"/>
+<body>
+<div class="backtip">
+  <a href="javascript:history.go(-1);">
+    <i class="icon iconfont">&#xe60d;</i>
+  </a>
+  <div class="addwudang">
+    留言
+  </div>
+</div>
+<div class="kefu-liuyanbody">
+  <div class="liyanban">
+    <p>在线留言</p>
+    <textarea name="message" placeholder="请输入你的留言，我们将在第一时间回复你"></textarea>
+    <input type="button" class="liuyanbtn" value="提交"/>
+  </div>
+</div>
+<div class="alltip">
+  信息不能为空~
+</div>
+</body>
+<script>
+    $(function(){
+        $('.liuyanbtn').click(function(){
+            var message = $.trim($('textarea[name="message"]').val());
+            if(message==""){
+                $('.alltip').addClass('alltipafter');
+                setTimeout(function(){
+                    $('.alltip').removeClass('alltipafter');
+                },1000);
+                return false;
+            }
+        });
+    });
+</script>
+</html>

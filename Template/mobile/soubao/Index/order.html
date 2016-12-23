@@ -1,0 +1,97 @@
+﻿<include file="Public/header"/>
+<body style="background-color: #f4f4f4;">
+<div class="backtip">
+  <a href="javascript:history.go(-1);">
+    <i class="icon iconfont">&#xe60d;</i>
+  </a>
+  <div class="addwudang">
+    预约
+  </div>
+</div>
+<div class="y1-top">
+  <img src="__STATIC__/images/img/7c1ed21b0ef41bd56090dbf353da81cb38db3df1.jpg" />
+</div>
+<div class="y1-main">
+  <p class="y1-main-word1">选择条件</p>
+  <form action="{:U('Mobile/Index/select')}" method="post" id="form">
+  <div class="y1-main-tol">
+    <p>预约日期</p>
+    <div class="setdq-selectriqi">
+      <input type="text" class="form-control" id="calendar-mobile-multiple" placeholder="填写日期">
+    </div>
+    <div class="y1-main-t2">
+      <p class="y1-main-word2">工作类型</p>
+      <ul>
+        <li class="active">车展</li>
+        <li>礼仪</li>
+        <li>暖场走秀</li>
+        <li>宣传片拍摄</li>
+        <li>产品展示走秀</li>
+        <li>静展</li>
+        <li>内衣</li>
+        <li>服装发布会走秀</li>
+      </ul>
+    </div>
+    <div class="y1-main-t3">
+      <span>工作地区</span>
+      <select name="">
+        <option value="">河南</option>
+      </select>
+      <select id="city1" size=1 onchange="getCity()">
+        <option value=0>请选择</option>
+        <option value=1>郑州市</option>
+        <option value=2>开封市</option>
+        <option value=3>洛阳市</option>
+        <option value=4>平顶山市</option>
+        <option value=5>安阳市</option>
+        <option value=6>鹤壁市</option>
+        <option value=7>新乡市</option>
+        <option value=8>焦作市</option>
+        <option value=9>濮阳市</option>
+        <option value=10>许昌市</option>
+        <option value=11>漯河市</option>
+        <option value=12>三门峡市</option>
+        <option value=13>南阳市</option>
+        <option value=14>商丘市</option>
+        <option value=15>信阳市</option>
+        <option value=16>周口市</option>
+        <option value=17>驻马店市</option>
+      </select>
+
+      <select id="city">
+      </select>
+    </div>
+    <div class="y1-main-t4">
+      <p>预约人数</p>
+      <input type="text" name="" id="" placeholder="预约人数" />
+    </div>
+    <button class="y1-btn">确认</button>
+  </div>
+  </form>
+</div>
+</body>
+<script src="__STATIC__/js/js/jquery-asDatepicker.js" type="text/javascript" charset="utf-8"></script>
+<script src="__STATIC__/js/js/jquery.mobile.custom.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="__STATIC__/js/js/jquery.toc.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+    $(".y1-main-t2 ul").on("click", "li", function() {
+        $(".y1-main-t2 ul").children("li").removeClass('active');
+        $(this).addClass("active");
+    });
+
+    $(document).ready(function() {
+        $('#calendar-mobile-multiple').asDatepicker({
+            mode: 'multiple',
+            mobileMode: true
+        });
+        $('#api-multipleClear-click').click(function() {
+            $("#calendar-api-multipleClear").asDatepicker('multipleClear');
+            return false;
+        });
+        $(".y1-btn").click(function(){
+            $("#form").submit();
+        })
+    });
+</script>
+
+</html>

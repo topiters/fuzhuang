@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=0.5,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="__STATIC__/css/css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="__STATIC__/fonts/iconfont.css" />
+	<link rel="stylesheet" type="text/css" href="__STATIC__/css/css/asDatepicker.css" />
+    <link rel="stylesheet" type="text/css" href="__STATIC__/css/css/ion.calendar.css"/>
+    <link rel="stylesheet" type="text/css" href="__STATIC__/css/css/my.css" />
+    <script src="__STATIC__/js/js/jquery-1.11.3.min.js"></script>
+    <script src="__STATIC__/css/css/bootstrap/bootstrap.min.js"></script>
+    <script src="__STATIC__/js/js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="__STATIC__/js/js/rem-w.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="__STATIC__/js/js/adress.js" type="text/javascript" charset="utf-8"></script>
+    <script src="__STATIC__/js/js/jquery.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+<div class="backtip">
+  <a href="javascript:history.go(-1);">
+    <i class="icon iconfont">&#xe60d;</i>
+  </a>
+  <div class="addwudang">
+    发现
+  </div>
+</div>
+<div class="f-top">
+  <img src="__STATIC__/images/img/eaf81a4c510fd9f9a8ccabb6212dd42a2934a412.jpg" />
+</div>
+<div class="f-main">
+  <div class="f-main-t">
+    <ul>
+      <li class="active2">
+        <i class="icon iconfont icon-news"></i><span>新闻</span>
+      </li>
+      <li>
+        <i class="icon iconfont icon-tonggaolaba"></i><span>通告</span>
+      </li>
+    </ul>
+  </div>
+  <div class="f-main-d">
+    <ul>
+      <li>
+        <a href="{:U('Mobile/Index/article')}">
+        <div class="f-main-dl l">
+          <img src="__STATIC__/images/img/1.jpg" />
+        </div>
+        <div class="f-main-df l">
+          <p>文章标题</p>
+          <p>京东方贵金属的价格合适价格恢复的时间换个神兽金刚波风水门个别地方时间够不v积分</p>
+          <p class="r">2016-12-12</p>
+        </div>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="f-main-d1" style="display:none;">
+    <ul>
+      <li>
+        <a href="{:U('Mobile/Index/activity')}">
+        <div class="f-main-dl l">
+          <img src="__STATIC__/images/img/1.jpg" />
+        </div>
+        <div class="f-main-df l">
+          <p>文章标题11</p>
+          <p>京东方贵金属的价格合适价格恢复的时间换个神兽金刚波风水门个别地方时间够不v积分</p>
+          <p class="r">2016-12-12</p>
+        </div>
+        </a>
+      </li>
+    </ul>
+
+  </div>
+</div>
+</body>
+<script type="text/javascript">
+    $(".f-main-t ul").on("click", "li", function() {
+        $(".f-main-t ul").children("li").removeClass('active2');
+        $(this).addClass("active2");
+        var index = $(this).index();
+        switch(index) {
+            case 0:
+                $(".f-main-d").show();
+                $(".f-main-d1").hide();
+                break;
+            case 1:
+                $(".f-main-d").hide();
+                $(".f-main-d1").show();
+            default:
+                break;
+        }
+    });
+</script>
+
+</html>
