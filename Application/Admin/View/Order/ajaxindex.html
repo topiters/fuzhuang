@@ -9,21 +9,18 @@
                                         <a href="javascript:sort('order_sn');">订单编号</a>
                                     </td>
                                     <td class="text-center">
-                                        <a href="javascript:sort('consignee');">收货人</a>
+                                        <a href="">模特总金额</a>
                                     </td>
                                     <td class="text-center">
-                                        <a href="">总金额</a>
-                                    </td>      
-                                    <td class="text-center">
-                                        <a href="">应付金额</a>
+                                        <a href="">订单总金额</a>
                                     </td>
                                     <td class="text-center">
                                         <a href="javascript:sort('order_status');">订单状态</a>
                                     </td>
-                                    <td class="text-center">支付状态</td>
-                                    <td class="text-center">发货状态</td>
+                                    <td class="text-center">活动地点</td>
+                                    <td class="text-center">地址</td>
+                                    <td class="text-center">手机</td>
                                     <td class="text-center">支付方式</td>
-                                    <td class="text-center">配送方式</td>
                                     <td class="text-center">
                                         <a href="javascript:sort('add_time');">下单时间</a>
                                     </td>
@@ -38,22 +35,17 @@
                                         	<input type="hidden" name="shipping_code[]" value="flat.flat">
                                         </td>
                                         <td class="text-center">{$list.order_sn}</td>
-                                        <td class="text-center">{$list.consignee}:{$list.mobile}</td>
-                                        <td class="text-center">{$list.total_price}</td>
-                                        <td class="text-center">{$list.order_amount}</td>
+                                        <td class="text-center">{$list.goods_price}</td>
+                                        <td class="text-center">{$list.total_amount}</td>
                                         <td class="text-center">{$order_status[$list[order_status]]}<if condition="$list['is_cod'] eq '1'"><span style="color: red">(货到付款)</span></if></td>
-                                        <td class="text-center">{$pay_status[$list[pay_status]]}</td>
-                                        <td class="text-center">{$shipping_status[$list[shipping_status]]}</td>
+                                        <td class="text-center">{$list.province}/{$list.city}/{$list.district}</td>
+                                        <td class="text-center">{$list.address}</td>
+                                        <td class="text-center">{$list.mobile}</td>
                                         <td class="text-center">{$list.pay_name}</td>
-                                        <td class="text-center">{$list.shipping_name}</td>
                                         <td class="text-center">{$list.add_time|date='Y-m-d H:i',###}</td>
                                         <td class="text-center">
                                             <a href="{:U('Admin/order/detail',array('order_id'=>$list['order_id']))}" data-toggle="tooltip" title="" class="btn btn-info" data-original-title="查看详情"><i class="fa fa-eye"></i></a>
-                                            <if condition="($list['order_status'] eq 3) or ($list['order_status'] eq 5)">
-                                            	<a href="{:U('Admin/order/delete_order',array('order_id'=>$list['order_id']))}"  data-toggle="tooltip" title="" class="btn btn-danger" data-original-title="删除"><i class="fa fa-trash-o"></i></a>
-                                        	<else/>
-                                        		<a href="javascript:void(0)" data-toggle="tooltip" title="" class="btn btn-default disabled" data-original-title="查看"><i class="fa fa-trash-o"></i></a>
-                                        	</if>
+                                            <a href="{:U('Admin/order/delete_order',array('order_id'=>$list['order_id']))}"  data-toggle="tooltip" title="" class="btn btn-danger" data-original-title="删除"><i class="fa fa-trash-o"></i></a>
                                         </td>
                                     </tr>
                                 </volist>
