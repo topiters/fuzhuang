@@ -1,0 +1,198 @@
+<include file="Public/min-header"/>
+	<body>
+		<div class="backtip">
+			<a href="javascript:history.go(-1)">
+				<i class="icon iconfont">&#xe60d;</i>
+			</a>
+			<div class="addwudang">
+				我要认证
+			</div>
+		</div>
+		<form action="" method="">
+			<div class="model-identify">
+				<div class="m-cclisttop">
+					<span>真实姓名</span>
+					<div>
+						<input type="text" id="" name="realname" class="form-control" placeholder="" />
+					</div>
+				</div>
+				<div class="m-cclisttop">
+					<span> 性别 </span>
+					<div class="selectsex">
+						<div class="sexman">
+							<div class="quanbig quanactive" data-sex="男">
+								<div class="small"></div>
+							</div>
+							男
+						</div>
+						<div class="sexwoman">
+							<div class="quanbig" data-sex="女">
+								<div class="small"></div>
+							</div>
+							女
+						</div>
+					</div>
+				</div>
+				<div class="m-cclisttop">
+					<span> 手机号</span>
+					<div>
+						<input type="text" name="userphone" id="" class="form-control" placeholder="" />
+					</div>
+				</div>
+				<div class="m-cclisttop">
+					<span> 身份证号 </span>
+					<div>
+						<input type="text" name="usercardnum" id="" class="form-control" placeholder="" />
+					</div>
+				</div>
+				<div class="m-cclisttop">
+					<span> 银行卡 </span>
+					<div>
+						<input type="text" name="bankcard" id="" class="form-control" placeholder="" />
+					</div>
+				</div>
+				<div class="bodybgf4 modellinfolr">
+					<p>上传正面照</p>
+					<span class="upimg">
+						<i class="icon iconfont">&#xe60c;</i>
+						<img id="" src="__STATIC__/images/img/articlelist/articlelist1.png" />
+					</span>
+					<!--加号上传图片标志 start-->
+					<span class="upicon" id="">
+						<i class="icon iconfont">&#xe62a;</i>
+					</span>
+					<!--加号上传图片标志 end 同下-->
+				</div>
+				<div class="bodybgf4 modellinfolr">
+					<p>上传侧面照</p>
+					<span class="upimg">
+						<i class="icon iconfont">&#xe60c;</i>
+						<img id="" src="__STATIC__/images/img/articlelist/articlelist1.png" />
+					</span>
+					<span class="upicon" id="">
+						<i class="icon iconfont">&#xe62a;</i>
+					</span>
+				</div>
+				<div class="bodybgf4 modellinfolr">
+					<p>手持身份证照</p>
+					<span class="upimg">
+						<i class="icon iconfont">&#xe60c;</i>
+						<img id="" src="__STATIC__/images/img/articlelist/articlelist1.png" />
+					</span>
+					<span class="upicon" id="">
+						<i class="icon iconfont">&#xe62a;</i>
+					</span>
+				</div>
+			</div>
+			<input type="button" id="" name="" value="提交认证" class="subtnrenzheng" />
+		</form>
+		<div class="blackchen hide"></div>
+		<div class="zhifusuccess hide">
+			<div>
+				<img src="__STATIC__/images/img/tc.png" />
+				提交成功
+			</div>
+			<div style="font-size: 12px;padding-top: 5px;text-align: right;">等待审核！</div>
+		</div>
+		<div class="alltip">
+			信息不能为空~
+		</div>
+	</body>
+	<script>
+		$(function(){
+			var regphone =/^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/;
+			//var regcardnum = /^\d{6}(18|19|20)?\d{2}(0[1-9]|1[12])(0[1-9]|[12]\d|3[01])\d{3}(\d|X)$/i;
+			//var regbank = /^\d{16}|\d{19}$/;
+			$('.selectsex>div').click(function(){
+				$(this).children('.quanbig').addClass('quanactive');
+				$(this).siblings().children('.quanbig').removeClass('quanactive');
+			});
+			//聚焦时
+			$("input[type='text']").focus(function(){
+				$(this).css({"border":'1px solid #ccc'});
+			});
+			//失焦时验证是否为空
+			//用户名验证
+			$("input[name='realname']").blur(function(){
+				var a = $.trim($(this).val());
+				if(a==""){
+					$(this).css({"border":'1px solid #f00'});
+				}
+			});
+			//手机号失焦验证
+			$("input[name='userphone']").blur(function(){
+				var a = $.trim($(this).val());
+				if(!regphone.test(a)){
+					$(this).css({"border":'1px solid #f00'});
+				}
+			});
+			//身份证号失焦验证15 18
+			$("input[name='usercardnum']").blur(function(){
+				var a = $.trim($(this).val());
+				if(a==""){
+					$(this).css({"border":'1px solid #f00'});
+				}else if(a.length!=15&&a.length!=18){
+					$(this).css({"border":'1px solid #f00'});
+				}
+			});
+			//银行卡号失焦验证16 19
+			$("input[name='bankcard']").blur(function(){
+				var a = $.trim($(this).val());
+				if(a==""){
+					$(this).css({"border":'1px solid #f00'});
+				}else if(a.length!=16&&a.length!=19){
+					$(this).css({"border":'1px solid #f00'});
+				}
+			});
+			//点击提交认证
+			$('.subtnrenzheng').click(function(){
+				var realname =$.trim($("input[name='realname']").val());//真实姓名
+				var sex = $(".quanactive").attr('data-sex');//性别
+				var userphone = $.trim($("input[name='userphone']").val());//手机号
+				var usercardnum = $.trim($("input[name='usercardnum']").val());//身份证号
+				var bankcard = $.trim($("input[name='bankcard']").val());//银行卡号
+				
+				if(realname!=''&userphone!=''&usercardnum!=''&bankcard!=''){
+					if(regphone.test(userphone)){
+						if(usercardnum.length==15||usercardnum.length==18){
+							if(bankcard.length==16||bankcard.length==19){
+								$('.blackchen').removeClass('hide');
+								$('.zhifusuccess').removeClass('hide');
+								setTimeout(function(){
+									$('.blackchen').addClass('hide');
+									$('.zhifusuccess').addClass('hide');
+								},1000);
+							}else{
+								//$('.alltip').text('银行卡号有误！');
+								tip('银行卡号有误！');
+							}
+						}else{
+							//$('.alltip').text('身份证号有误！');
+							tip('身份证号有误！');
+						}
+					}else{
+						//$('.alltip').text('手机号有误！');
+						tip('手机号有误！');
+					}
+				}else if(realname==''||userphone==''||usercardnum==''||bankcard==''){
+					//$('.alltip').text('信息不完整~！');
+					tip('信息不完整~');
+				}else{
+					
+				}
+			});
+			//点击删除上传图片
+            $('.modellinfolr .upimg i').click(function(){
+            	$(this).parent().remove();
+            });
+            function tip(val){
+            	$('.alltip').addClass('alltipafter');
+            	$('.alltip').text(val);
+				setTimeout(function(){
+					$('.alltip').removeClass('alltipafter');
+				},1000);
+				return false;
+            }
+		})
+	</script>
+</html>

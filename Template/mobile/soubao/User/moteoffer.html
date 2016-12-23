@@ -1,0 +1,190 @@
+<include file="Public/min-header"/>
+	<body>
+		<div class="sp-t">
+			<p>工作类型及报价</p>
+		</div>
+		<div class="sp-main">
+			<ul>
+				<li>
+					<div class="sp-main-list">
+						<div class="sp-main-list1">
+							<span>服装发布会走秀</span>
+							<select name="" id="change" size=1 onchange="getCity()">
+								<option value=0>请选择</option>
+								<option value=1>参与</option>
+								<option value=2>不参与</option>
+							</select>
+						</div>
+					</div>
+					<div class="sp-main-list">
+						<div class="sp-main-list2">
+							<span>价格</span>
+							<select id="price">
+							</select>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="sp-main-list">
+						<div class="sp-main-list1">
+							<span>内衣</span>
+							<select name="" id="change" size=1 onchange="getCity()">
+								<option value=0>请选择</option>
+								<option value=1>参与</option>
+								<option value=2>不参与</option>
+							</select>
+						</div>
+					</div>
+					<div class="sp-main-list">
+						<div class="sp-main-list2">
+							<span>价格</span>
+							<select id="price">
+							</select>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="sp-main-list">
+						<div class="sp-main-list1">
+							<span>产品展示走秀</span>
+							<select name="" id="change" size=1 onchange="getCity()">
+								<option value=0>请选择</option>
+								<option value=1>参与</option>
+								<option value=2>不参与</option>
+							</select>
+						</div>
+					</div>
+					<div class="sp-main-list">
+						<div class="sp-main-list2">
+							<span>价格</span>
+							<select id="price">
+							</select>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="sp-main-list">
+						<div class="sp-main-list1">
+							<span>暖场走秀</span>
+							<select name="" id="change" size=1 onchange="getCity()">
+								<option value=0>请选择</option>
+								<option value=1>参与</option>
+								<option value=2>不参与</option>
+							</select>
+						</div>
+					</div>
+					<div class="sp-main-list">
+						<div class="sp-main-list2">
+							<span>价格</span>
+							<select id="price">
+							</select>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="sp-main-list">
+						<div class="sp-main-list1">
+							<span>宣传片拍摄</span>
+							<select name="" id="change" size=1 onchange="getCity()">
+								<option value=0>请选择</option>
+								<option value=1>参与</option>
+								<option value=2>不参与</option>
+							</select>
+						</div>
+					</div>
+					<div class="sp-main-list">
+						<div class="sp-main-list2">
+							<span>价格</span>
+							<select id="price">
+							</select>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="sp-main-list">
+						<div class="sp-main-list1">
+							<span>车展</span>
+							<select name="" id="change" size=1 onchange="getCity()">
+								<option value=0>请选择</option>
+								<option value=1>参与</option>
+								<option value=2>不参与</option>
+							</select>
+						</div>
+					</div>
+					<div class="sp-main-list">
+						<div class="sp-main-list2">
+							<span>价格</span>
+							<select id="price">
+							</select>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="sp-main-list">
+						<div class="sp-main-list1">
+							<span>礼仪</span>
+							<select name="" id="change" size=1 onchange="getCity()">
+								<option value=0>请选择</option>
+								<option value=1>参与</option>
+								<option value=2>不参与</option>
+							</select>
+						</div>
+					</div>
+					<div class="sp-main-list">
+						<div class="sp-main-list2">
+							<span>价格</span>
+							<select id="price">
+							</select>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="sp-main-list">
+						<div class="sp-main-list1">
+							<span>静展</span>
+							<select name="" id="change" size=1 onchange="getCity()">
+								<option value=0>请选择</option>
+								<option value=1>参与</option>
+								<option value=2>不参与</option>
+							</select>
+						</div>
+					</div>
+					<div class="sp-main-list">
+						<div class="sp-main-list2">
+							<span>价格</span>
+							<select id="price">
+							</select>
+						</div>
+					</div>
+				</li>
+			</ul>
+			<button class="sp-btn">提交</button>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var arr = new Array();
+		arr[0] = "--"
+		arr[1] = "100,200,300,400,500"
+		arr[2] = "--"
+
+		function init() {
+			var city = document.getElementById("price");
+			var cityArr = arr[0].split(",");
+			for(var i = 0; i < cityArr.length; i++) {
+				city[i] = new Option(cityArr[i], cityArr[i]);
+			}
+		}
+
+		function getCity() {
+			var pro = document.getElementById("change");
+			var city = document.getElementById("price");
+			var index = pro.selectedIndex;
+			var cityArr = arr[index].split(",");
+			city.length = 0;
+			for(var i = 0; i < cityArr.length; i++) {
+				city[i] = new Option(cityArr[i], cityArr[i]);
+			}
+		}
+	</script>
+
+</html>
