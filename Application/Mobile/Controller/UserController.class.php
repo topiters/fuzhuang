@@ -1,14 +1,6 @@
 <?php
 /**
- * tpshop
- * ============================================================================
- * * 版权所有 2015-2027 深圳搜豹网络科技有限公司，并保留所有权利。
- * 网站地址: http://www.tp-shop.cn
- * ----------------------------------------------------------------------------
- * 这不是一个自由软件！您只能在不用于商业目的的前提下对程序代码进行修改和使用 .
- * 不允许对程序代码以任何形式任何目的的再发布。
- * ============================================================================
- * 2015-11-21
+ * 用户中心
  */
 namespace Mobile\Controller;
 use Home\Logic\UsersLogic;
@@ -799,6 +791,72 @@ class UserController extends MobileBaseController {
             $this->error($data['msg']);
         $this->success($data['msg']);
 
+    }
+    
+    /**
+     * 模特钱包
+     */
+    public function mote_wallet(){
+    	$this->display();
+    }
+    
+    /**
+     * 模特信息编辑 
+     */
+    public function moteinfo(){
+    	$row = M('modelusers')->where(array('user_id'=>$this->user_id))->find();
+    	if(IS_POST){
+    		$data = I("post.");
+    		 $r = M('modelusers')->where(array('user_id'=>$this->user_id))->save($data);
+            if($r)
+                exit($this->success('修改成功'));
+            exit($this->error('未作内容修改或修改失败'));
+    	}
+    	
+    	$this->assign("row",$row);
+    	$this->display();
+    }
+    
+    /**
+     * 模特订单 
+     */
+    public function moteorder(){
+    	$this->display();
+    }
+    
+    /**
+     * 模特推荐
+     */
+    public function moterecommend(){
+    	$this->display();
+    }
+    
+    /**
+     * 模特设置报价 
+     */
+    public function moteoffer(){
+    	$this->display();
+    }
+    
+    /**
+     * 模特设置档期 
+     */
+    public function setdangqi(){
+    	$this->display();
+    }
+    
+    /**
+     * 模特评价 
+     */
+    public function mycommon(){
+    	$this->display();
+    }
+    
+    /**
+     * 模特认证 
+     */
+    public function identify(){
+    	$this->display();
     }
 
 }
