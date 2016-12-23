@@ -13,8 +13,11 @@
 namespace Mobile\Controller;
 class IndexController extends MobileBaseController {
     public function index(){
+        $user_id = session('user_id');
         $list = M('lunbo')->where(array('is_show'=>1))->limit(3)->select();
         $this->assign('list',$list);
+        $arr = M('modelusers')->where(array('user_id'=>$user_id))->find();
+        $this->assign('arr',$arr);
         $this->display();
     }
 

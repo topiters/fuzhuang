@@ -11,7 +11,7 @@
  * $Author: IT宇宙人 2015-08-10 $
  */
 namespace Mobile\Controller;
-use Home\Logic\UsersLogic;
+use Mobile\Logic\UsersLogic;
 use Think\Controller;
 class MobileBaseController extends Controller {
     public $user = array();
