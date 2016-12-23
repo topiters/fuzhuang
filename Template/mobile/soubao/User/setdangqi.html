@@ -1,0 +1,61 @@
+<include file="Public/min-header"/>
+	<style>
+		.ic__week-head td{
+			padding: 0 !important;
+			height: 25px !important;
+			line-height: 25px;
+		}
+		.ic__days td{
+			padding: 0 !important;
+			height: 25px !important;
+			line-height: 25px;
+		}
+		.ic__day button{
+			border: 1px solid #000;
+			border-style: none;
+			width: 100%;
+			height: 25px !important;
+			height: 100%;
+			background: #fff;
+		}
+		.ic__day button[disabled='disabled']{
+			color: #ccc !important;
+		}
+	</style>
+	<body>
+		<div class="backtip">
+			<a href="javascript:history.go(-1)">
+				<i class="icon iconfont">&#xe60d;</i>
+			</a>
+			<div class="addwudang">
+				设置无档日期：
+			</div>
+		</div>
+		<div class="setdangqiody">
+			
+			<div class="setdq-selectriqi">
+				<input type="text" class="form-control" id="calendar-mobile-multiple">
+			</div>
+			<div class="setdangqibtn">
+				<input type="button" value="保存" />
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="__STATIC__/js/js/jquery.js"></script>
+	<script src="__STATIC__/js/js/rili/jquery.mobile.custom.min.js"></script>
+	<script src="__STATIC__/js/js/rili/jquery.toc.min.js"></script>
+	<script src="__STATIC__/js/js/rili/jquery-asDatepicker-model.js" type="text/javascript" charset="utf-8"></script>
+	
+	<script>
+		$(document).ready(function() {
+			$('#calendar-mobile-multiple').asDatepicker({
+				mode: 'multiple',
+				mobileMode: true
+			});
+			$('#api-multipleClear-click').click(function() {
+				$("#calendar-api-multipleClear").asDatepicker('multipleClear');
+				return false;
+			});
+		});
+	</script>
+</html>
