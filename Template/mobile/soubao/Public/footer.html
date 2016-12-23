@@ -1,6 +1,6 @@
 <footer class="indexfooter">
     <ul>
-        <li class="indexfooterliactive">
+        <li <if condition="$_GET['cid'] eq ''">class="indexfooterliactive"</if>>
             <a href="{:U('Mobile/Index/index')}">
                 <div><i class="icon iconfont">&#xe620;</i></div>
                 <div>首页</div>
@@ -20,17 +20,26 @@
             </a>
             <div></div>
         </li>
-        <li>
-            <a href="{:U('Mobile/Index/kefu')}">
+        <li <if condition="$_GET['cid'] eq 2">class="indexfooterliactive"</if>>
+            <a href="{:U('Mobile/Index/kefu/cid/2')}">
                 <div><i class="icon iconfont">&#xe63e;</i></div>
                 <div>微客服</div>
             </a>
         </li>
-        <li>
-            <a href="{:U('Mobile/User/myCenter')}">
+        <if condition="$arr['mobile'] eq ''">
+            <li>
+            <a href="{:U('Mobile/User/regType')}" >
+                <div><i class="icon iconfont">&#xe670;</i></div>
+                <div>我的</div>
+            </a>
+            </li>
+        <else/>
+        <li <if condition="$_GET['cid'] eq 3">class="indexfooterliactive"</if>>
+            <a href="{:U('Mobile/User/myCenter/cid/3')}" >
                 <div><i class="icon iconfont">&#xe670;</i></div>
                 <div>我的</div>
             </a>
         </li>
+        </if>
     </ul>
 </footer>
