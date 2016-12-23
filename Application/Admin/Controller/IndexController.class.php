@@ -13,8 +13,8 @@ class IndexController extends BaseController {
         $menu_list = $this->getRoleMenu($act_list);
         $this->assign('menu_list',$menu_list);
         $admin_info = getAdminInfo(session('admin_id'));
-		$order_amount = M('order')->where(array('order_status'=>0))->count();
-		$this->assign('order_amount',$order_amount);
+// 		$order_amount = M('order')->where(array('order_status'=>0))->count();
+// 		$this->assign('order_amount',$order_amount);
 		$this->assign('admin_info',$admin_info);
         $this->display();
     }
@@ -22,8 +22,8 @@ class IndexController extends BaseController {
     public function welcome(){
     	$this->assign('sys_info',$this->get_sys_info());
     	$today = strtotime("-1 day");
-    	$count['handle_order'] = M('order')->where("add_time>$today ".C('WAITSEND'))->count();//待发货订单
-    	$count['new_order'] = M('order')->where("add_time>$today")->count();//今天新增订单
+//     	$count['handle_order'] = M('order')->where("add_time>$today ".C('WAITSEND'))->count();//待发货订单
+//     	$count['new_order'] = M('order')->where("add_time>$today")->count();//今天新增订单
     	$count['goods'] =  M('goods')->where("1=1")->count();//商品总数
     	$count['article'] =  M('article')->where("1=1")->count();//文章总数
     	$count['users'] = M('users')->where("1=1")->count();//会员总数
