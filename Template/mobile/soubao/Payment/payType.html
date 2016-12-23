@@ -1,0 +1,61 @@
+<include file="Public/header"/>
+<body class="bodybgf4">
+<div class="backtip">
+    <a href="javascript:history.go(-1);">
+        <i class="icon iconfont">&#xe60d;</i>
+    </a>
+    <div class="addwudang">
+        支付
+    </div>
+</div>
+<div class="zhifubody">
+    <h3>请选择支付方式</h3>
+    <div class="zhifustyle selectsex">
+        <div class="sexman">
+            <div class="quanbig quanactive">
+                <div class="small"></div>
+            </div>
+            <span>账户余额（推荐）</span>
+        </div>
+        <div class="sexwoman">
+            <div class="quanbig">
+                <div class="small"></div>
+            </div>
+            <i class="icon iconfont">&#xe639;</i>
+            微信支付
+        </div>
+    </div>
+    <p>需要支付1200元</p>
+    <div class="zhifubtnstyle">
+        <div class="btncancle">取消支付</div>
+        <div class="btnconfrim">立即支付</div>
+    </div>
+</div>
+<div class="blackchen hide"></div>
+<div class="zhifusuccess hide">
+    <img src="__STATIC__/images/img/tc.png" />
+    支付成功
+</div>
+</body>
+<script>
+    $(function(){
+        $('.selectsex>div').click(function(){
+            $(this).children('.quanbig').addClass('quanactive');
+            $(this).siblings().children('.quanbig').removeClass('quanactive');
+        });
+        $('.btnconfrim').click(function(){
+            $('.blackchen').removeClass('hide');
+            $('.zhifusuccess').removeClass('hide');
+            setTimeout(function(){
+                $('.blackchen').addClass('hide');
+                $('.zhifusuccess').addClass('hide');
+            },3000);
+            location.href="/index.php?m=Mobile&c=User&a=myCenter";
+        });
+        $(".btncancle").click(function(){
+            confirm('确认取消支付吗？');
+            location.href ="javascript:history.go(-1)";
+        })
+    })
+</script>
+</html>
