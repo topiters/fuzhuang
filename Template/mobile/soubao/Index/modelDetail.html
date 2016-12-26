@@ -1,41 +1,61 @@
-﻿<include file="Public/header"/>
- <link rel="stylesheet" href="__STATIC__/css/css/usercenter.css" />
-<link rel="stylesheet" href="__STATIC__/css/css/user-info.css" />
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=0.5,minimum-scale=1,maximum-scale=1,user-scalable=no">
+  <title></title>
+  <link rel="stylesheet" href="__STATIC__/css/css/iconfont/iconfont.css" />
+  <link rel="stylesheet" href="__STATIC__/css/css/bootstrap/bootstrap.min.css" />
+  <link rel="stylesheet" href="__STATIC__/css/css/common.css" />
+  <link rel="stylesheet" href="__STATIC__/css/css/usercenter.css" />
+  <link rel="stylesheet" href="__STATIC__/css/css/user-info.css" />
+  <link rel="stylesheet" href="__STATIC__/css/css/asDatepicker.css" />
+  <script src="__STATIC__/js/js/jquery-1.11.3.min.js"></script>
+</head>
 <body class="model-centerbody">
 <div class="backtip">
-  <a href="weikefu.html">
+  <a href="javascript:history.go(-1);">
     <i class="icon iconfont">&#xe60d;</i>
   </a>
 <div class="addwudang">
       模特详情
   </div>
 </div>
-<div class="model-centertop model-info" style="padding-top: 15px;background: url(__STATIC__/images/img/kefu/usercenter.png)no-repeat center;background-color: rgba(0,0,0,0.7);margin-top: 0;">
+<div class="model-centertop model-info" style="padding-top: 15px;background: url({$arr.background})no-repeat center;background-color: rgba(0,0,0,0.7);margin-top: 0;">
   <div class="modelinfozan">
     <i class="icon iconfont">&#xe65d;</i>
   </div>
   <div class="model-centertophead">
     <div class="m-top-img">
-      <img src="__STATIC__/images/img/usercenter/centerimg.png" />
-      <span>
-						<i class="icon iconfont">&#xe609;</i>
-						已认证
+      <img src="{$arr.head_pic}" />
+      <if condition="$arr[checked] eq 2">
+           <span>
+                <i class="icon iconfont">&#xe609;</i>
+                已认证
+            </span>
+        <else/>
+        <span>
+						&nbsp;&nbsp;未认证
 					</span>
+      </if>
     </div>
-    <p>兽兽</p>
+    <p>{$arr.nickname}</p>
   </div>
   <div class="row model-centertopbottom">
     <div class="col-xs-6"> <!--model-cbright-->
       <a href="#rr">
-        <div>0</div>
+        <div class="zancount shoucangs">
+          <span class="zancount1 shoucang">+1</span>
+          <span  id="shoucangcount">{$arr.collectnum}</span>
+        </div>
         <div>收藏</div>
       </a>
     </div>
     <div class="col-xs-6">
       <a href="#rr">
-        <div class="zancount">
-          <span class="zancount1">+1</span>
-          <span  id="zancount">10</span>
+        <div class="zancount zans">
+          <span class="zancount1 zan">+1</span>
+          <span  id="zancount">{$arr.total}</span>
         </div>
         <div>赞过</div>
       </a>
@@ -44,133 +64,104 @@
 </div>
 <div class="row model-infocontent">
   <div class="col-xs-6">
-    艺名：<span>lili</span>
+    艺名：<span>{$arr.nickname}</span>
   </div>
   <div class="col-xs-6">
-    身高：<span>176cm</span>
+    身高：<span>{$arr.height}cm</span>
   </div>
   <div class="col-xs-6">
-    国籍：<span>中国</span>
+    国籍：<span>{$arr.country}</span>
   </div>
   <div class="col-xs-6">
-    三围：<span>85</span>&nbsp;<span>85</span>&nbsp;<span>85</span>
+    三围：<span>{$arr.chest}</span>&nbsp;<span>{$arr.waist}</span>&nbsp;<span>{$arr.hipline}</span>
   </div>
   <div class="col-xs-6">
-    性别：<span>女</span>
+    性别：<span><if condition="$arr['sex'] eq 1" >男</if><if condition="$arr['sex'] eq 2" >女</if></span>
   </div>
   <div class="col-xs-6">
-    体重：<span>50kg</span>
+    体重：<span>{$arr.weight}kg</span>
   </div>
   <div class="col-xs-6">
-    鞋码：<span>23</span>
+    鞋码：<span>{$arr.shoesize}</span>
   </div>
   <div class="col-xs-6">
-    工作经验：<span>两年</span>
+    工作经验：<span>{$arr.shoesize}</span>
   </div>
   <div class="col-xs-6">
-    居住地：<span>商丘</span>
+    居住地：<span>{$arr.city}</span>
   </div>
   <div class="col-xs-6">
-    意向工作地：<span>河南</span>
+    意向工作地：<span>{$arr.tocity}</span>
   </div>
   <div class="col-xs-12">
     <div>从业经验：</div>
     <div class="jingyan">
-      从业经验从业经验从业经验从业经验
-      从业经验从业经验从业经验从业经验
+      {$arr.experience}
     </div>
   </div>
   <div class="col-xs-12 bodybgf4">
     意向工作类型及其报价
   </div>
   <div class="row col-xs-12 model-infolist">
+    <tpshop sql="SELECT * FROM `__PREFIX__type` WHERE `modeluser_id` = $arr[user_id] ORDER BY `addtime` DESC limit 6 "  key="k" item='v'>
     <div class="col-xs-4">
-      <div>￥1200.00</div>
-      <div>私房模特</div>
+      <div>￥{$v.range}</div>
+      <div>{$v.type_name}</div>
     </div>
-    <div class="col-xs-4">
-      <div>￥1200.00</div>
-      <div>私房模特</div>
-    </div>
-    <div class="col-xs-4">
-      <div>￥1200.00</div>
-      <div>私房模特</div>
-    </div>
-    <div class="col-xs-4">
-      <div>￥1200.00</div>
-      <div>私房模特</div>
-    </div>
-    <div class="col-xs-4">
-      <div>￥1200.00</div>
-      <div>私房模特</div>
-    </div>
-    <div class="col-xs-4">
-      <div>￥1200.00</div>
-      <div>私房模特</div>
-    </div>
+    </tpshop>
   </div>
 
   <div class="col-xs-12 bodybgf4">
     个人视频
   </div>
   <div class="row col-xs-12 model-infolist model-infovideo">
+    <tpshop sql="SELECT * FROM `__PREFIX__user_videos` WHERE `modeluser_id` = $arr[user_id] ORDER BY `addtime` DESC limit 6 "  key="k" item='v'>
     <div class="col-xs-3">
-      <video src="__STATIC__/images/img/movie.ogg"></video>
+      <video src="{$v.video_url}"></video>
     </div>
-    <div class="col-xs-3">
-      <video src="__STATIC__/images/img/movie.ogg"></video>
-    </div>
-    <div class="col-xs-3">
-      <video src="__STATIC__/images/img/movie.ogg"></video>
-    </div>
-    <div class="col-xs-3">
-      <video src="__STATIC__/images/img/movie.ogg"></video>
-    </div>
+    </tpshop>
   </div>
   <div class="col-xs-12 bodybgf4">
     个人相册
   </div>
   <div class="row col-xs-12 model-infolist model-info-img">
+    <tpshop sql="SELECT * FROM `__PREFIX__user_images` WHERE `modeluser_id` = $arr[user_id] ORDER BY `addtime` DESC limit 8 "  key="k" item='v'>
     <div class="col-xs-3">
-      <img src="__STATIC__/images/img/articlelist/articlelist1.png" />
+      <img src="{$v.img_url}" />
     </div>
-    <div class="col-xs-3">
-      <img src="__STATIC__/images/img/articlelist/articlelist1.png" />
-    </div>
-    <div class="col-xs-3">
-      <img src="__STATIC__/images/img/articlelist/articlelist1.png" />
-    </div>
-    <div class="col-xs-3">
-      <img src="__STATIC__/images/img/articlelist/articlelist1.png" />
-    </div>
+    </tpshop>
   </div>
   <div class="model-inofcomment">
     <p>模特评价</p>
+    <tpshop sql="SELECT * FROM `__PREFIX__comment` WHERE `modeluser_id` = $arr[user_id] ORDER BY `add_time` DESC "  key="k" item='v'>
     <div class="appendcomment">
       <div>
+        <tpshop sql="SELECT * FROM `__PREFIX__modelusers` WHERE `user_id` = $v[user_id]"  key="k" item='v0'>
         <div class="minfo-img">
           <div>
-            <img src="__STATIC__/images/img/articlelist/articlelist1.png" />
+            <img src="{$v0.head_pic}" />
           </div>
-          <span>评论用户名称</span>
+          <span>{$v0.name}</span>
         </div>
+        </tpshop>
         <div class="minfo-neirong">
-          模特表现不错
+          {$v.content}
         </div>
         <div class="minfo-c-time">
-          2016-12-12
+          {$v.add_time|date="Y-m-d H:i:s",###}
         </div>
       </div>
     </div>
-    <div class="lookallcomment">
+    </tpshop>
+ <!--   <div class="lookallcomment">
       查看全部评价
-    </div>
+    </div>-->
   </div>
 </div>
 <div class="yuyueandshoucang">
   <div class="comeinshoucang-btn">
     <i class="icon iconfont">&#xe612;</i>
-    加入收藏
+    <span>加入收藏</span>
   </div>
   <div class="yuyue-btn">
     <i class="icon iconfont">&#xe68f;</i>
@@ -194,10 +185,10 @@
     <input type="text" class="form-control" id="calendar-mobile-multiple">
     <div style="float: left;margin-top: 10px;">
       <div>选择地点：</div>
-      <div class="citysanji cityiwidth">
+      <div class="citysanji citywidth">
         <select class="form-control prov" disabled="disabled"></select>
-        <select class="form-control city" disabled="disabled"></select>
-        <select class="form-control dist" disabled="disabled"></select>
+        <select class="form-control city"></select>
+        <select class="form-control dist"></select>
       </div>
     </div>
     <div style="float: left;margin-top: 10px;">
@@ -209,7 +200,7 @@
       </select>
     </div>
     <div style="float: left;margin-top: 20px;width: 100%;">
-      <a href="#rrr"  class="minfo-quedingbtn">下一步</a>
+      <a href="{:U('Mobile/Index/detail')}"  class="minfo-quedingbtn">下一步</a>
     </div>
   </div>
   <div id="disabled">
@@ -220,6 +211,7 @@
     <!--不能选择的日期 （提示日期要从前往后）end-->
   </div>
   <div class="tip"></div>
+</div>
 </body>
 <script type="text/javascript" src="__STATIC__/js/js/jquery.js"></script>
 <script type="text/javascript" src="__STATIC__/js/js/jquery.cityselect.js"></script>
@@ -235,20 +227,6 @@
             nodata: "none"
         });
 
-        var count = 5;
-        $('.lookallcomment').click(function(){
-            for(var i = 0;i<=count;i++){
-                var username = '评论用户名称';
-                var userimg = '__STATIC__/images/img/articlelist/articlelist1.png';
-                var usercomment = '模特表现不错';
-                var usertime = '2016-12-12';
-                var str = '<div> <div class="minfo-img"> <div> <img src="'+userimg+'" /> </div> <span>'+username+'</span> </div> <div class="minfo-neirong"> '+usercomment+' </div> <div class="minfo-c-time"> '+usertime+' </div> </div>';
-                $('.appendcomment').append(str);
-                if(i==count){
-                    $(this).addClass('hide');
-                }
-            }
-        });
         $('.yuyue-btn').click(function(){
             $('.blackchen').removeClass('hide');
             $('.minfo-yuyuetc').addClass('yytccolsestyle');
@@ -259,24 +237,100 @@
         });
         var zanguo = false;
         $('.modelinfozan').click(function(){
-            if(zanguo==false){
-                var zancount = parseInt($('#zancount').text());
-                zancount++;
-                $('#zancount').text(zancount);
-                zanguo = true;
-                $('.zancount1').animate({'top':'-15px','opacity':'1'},"slow");
-                $('.zancount1').animate({'top':'-15px','opacity':'0'},"slow");
-                $('.zancount1').animate({'top':'15px','opacity':'0'},"slow");
+            if(!{$user_id}){
+                alert("对不起，你还没有注册！");
+                location.href="/index.php?m=Mobile&c=User&a=regType";
             }else{
-                $('.tip').text('已赞过');
-                $('.tip').animate({'opacity':'1'},"slow");
+              if(zanguo==false){
+                  var zancount = parseInt($('#zancount').text());
+                  var id = "{$arr.user_id}";
+                  zancount++;
+                  zanguo = true;
+                  $.ajax({
+                      type:"post",
+                      url:"/index.php?m=Mobile&c=Index&a=zan&id="+id,
+                      dataType:"json",
+                      success:function(re){
+                          if(re){
+                              $('.zan').animate({'top':'-15px','opacity':'1'},"slow");
+                              $('.zan').animate({'top':'-15px','opacity':'0'},"slow");
+                              $('.zan').animate({'top':'15px','opacity':'0'},"slow");
+                              $('#zancount').text(zancount);
+                          }else{
+                              $('.tip').text('已赞过');
+                              $('.tip').animate({'opacity':'1'},"slow");
 
-                setTimeout(function(){
-                    $('.tip').animate({'opacity':'0'},"slow");
-                },1000);
-                return false;
+                              setTimeout(function(){
+                                  $('.tip').animate({'opacity':'0'},"slow");
+                              },1000);
+                              return false;
+                          }
+                      }
+                  });
+              }else{
+                  $('.tip').text('已赞过');
+                  $('.tip').animate({'opacity':'1'},"slow");
+
+                  setTimeout(function(){
+                      $('.tip').animate({'opacity':'0'},"slow");
+                  },1000);
+                  return false;
+              }
             }
         });
+        var shoucangguo = false;
+        $('.comeinshoucang-btn').click(function() {
+            var zhe = $(this);
+            var id = "{$arr.user_id}";
+            if (!{$user_id}) {
+                alert("对不起，你还没有注册！");
+                location.href = "/index.php?m=Mobile&c=User&a=regType";
+            } else {
+                if (shoucangguo == false) {
+                    var shoucangcount = parseInt($('#shoucangcount').text());
+                    shoucangcount++;
+                    shoucangguo = true;
+                    $.ajax({
+                        type: "post",
+                        url: "/index.php?m=Mobile&c=Index&a=collect&id=" + id,
+                        dataType: "json",
+                        success: function (re) {
+                            if (re) {
+                                $('.shoucang').animate({'top':'-15px','opacity':'1'},"slow");
+                                $('.shoucang').animate({'top':'-15px','opacity':'0'},"slow");
+                                $('.shoucang').animate({'top':'15px','opacity':'0'},"slow");
+                                $('#shoucangcount').text(shoucangcount);
+                                zhe.children('span').text('已收藏');
+                            } else {
+                                $('.tip').text('已收藏过了');
+                                $('.tip').animate({'opacity': '1'}, "slow");
+
+                                setTimeout(function () {
+                                    $('.tip').animate({'opacity': '0'}, "slow");
+                                }, 1000);
+                                return false;
+                            }
+                        }
+                    });
+                } else {
+                    var shoucangcount = parseInt($('#shoucangcount').text());
+                    shoucangcount--;
+                    shoucangguo = false;
+                    $.ajax({
+                        type: "post",
+                        url: "/index.php?m=Mobile&c=Index&a=delCollect&id="+id,
+                        dataType: "json",
+                        success: function (re) {
+                            if(re){
+                                $('#shoucangcount').text(shoucangcount);
+                                zhe.children('span').text('加入收藏');
+                                return false;
+                            }
+                        }
+                    })
+                }
+            }
+        })
     })
 </script>
 <script>
