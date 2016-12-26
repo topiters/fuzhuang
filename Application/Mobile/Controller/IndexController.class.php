@@ -25,6 +25,7 @@ class IndexController extends MobileBaseController {
      * 红人
      */
     public function hotPerson(){
+        $user_id = session('user_id');
         $id = $_GET['id'];
        // var_dump($id);exit;
         $s_arr = M('schedule')->select();
@@ -39,7 +40,7 @@ class IndexController extends MobileBaseController {
         $m_arr = M('schedule')->where(array('id'=>$id))->find();
         $this->assign('m_arr',$m_arr);
         $this->assign('s_arr',$s_arr);
-        $this->assign('user_id',$this->user_id);
+        $this->assign('user_id',$user_id);
         $this->display();
     }
 
@@ -62,10 +63,72 @@ class IndexController extends MobileBaseController {
      *模特详情
      */
     public function modelDetail(){
-       /* $user_id = $_GET['id'];
+        $id = session('user_id');
+        $user_id = $_GET['id'];
         $arr = M('modelusers')->where(array('user_id'=>$user_id))->find();
-        $this->assign('arr',$arr);*/
+        $this->assign('arr',$arr);
+        $this->assign('user_id',$id);
         $this->display();
+    }
+
+    /**
+     * 点赞
+     */
+    public function zan(){
+        $id = $_GET['id'];
+        $user_id = session('user_id');
+        $arr = M('zan')->where(array('user_id'=>$user_id,'model_id'=>$id))->select();
+        if($arr){
+            exit("0");
+        }else{
+            $_POST=array(
+                'user_id'=>$user_id,
+                'model_id'=>$id,
+                'add_time'=>time()
+            );
+            M('zan')->add($_POST);
+            $arr = M('modelusers')->where(array('user_id'=>$id))->find();
+            $num = $arr['total'] + 1;
+            $re = M('modelusers')->where(array('user_id'=>$id))->save(array('total'=>$num));
+            $this->ajaxReturn(json_encode($re));
+        }
+    }
+    /**
+     * 收藏
+     */
+    public function collect(){
+        $id = $_GET['id'];
+        $user_id = session('user_id');
+        $arr = M('collect')->where(array('user_id'=>$user_id,'model_id'=>$id))->select();
+        if($arr){
+            exit("0");
+        }else{
+            $_POST=array(
+                'user_id'=>$user_id,
+                'model_id'=>$id,
+                'add_time'=>time()
+            );
+            M('collect')->add($_POST);
+            $arr = M('modelusers')->where(array('user_id'=>$id))->find();
+            $num = $arr['collectnum'] + 1;
+            $re = M('modelusers')->where(array('user_id'=>$id))->save(array('collectnum'=>$num));
+            $this->ajaxReturn(json_encode($re));
+        }
+    }
+    /*
+     * 取消收藏
+     */
+    public function delCollect(){
+        $id = $_GET['id'];
+        $user_id = session('user_id');
+        $arr = M('collect')->where(array('user_id'=>$user_id,'model_id'=>$id))->select();
+        $d_id = $arr[0]['collect_id'];
+        //var_dump($arr);exit;
+        M('collect')->where(array('collect_id'=>$d_id))->delete();
+        $arr = M('modelusers')->where(array('user_id'=>$id))->find();
+        $num = $arr['collectnum'] - 1;
+        $re = M('modelusers')->where(array('user_id'=>$id))->save(array('collectnum'=>$num));
+        $this->ajaxReturn(json_encode($re));
     }
     /**
      * 加载更多红人
@@ -102,14 +165,6 @@ class IndexController extends MobileBaseController {
         //var_dump($model);exit;
         $this->assign('arr',$model);
         $this->display();
-    }
-    /**
-     * 收藏
-     */
-    public function ajaxCollect(){
-        if($this->user_id==0){
-            $this->redirect("Mobile/reg",'','3','您还没有注册，请先注册');
-        }
     }
     /**
      * 发现
