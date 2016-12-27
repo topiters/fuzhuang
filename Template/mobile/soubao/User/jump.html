@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=0.5,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <title></title>
+    <link rel="stylesheet" href="__STATIC__/css/css/common.css" />
+    <script src="__STATIC__/js/js/jquery-1.11.3.min.js"></script>
+</head>
+<body>
+<div class="uploadsuccessbody">
+    <img src="__STATIC__/images/img/success.png" />
+    <p>信息录入成功</p>
+    <p class="fontsizesecond">
+        <a class="secondtz"></a>秒之后自动跳转
+    </p>
+    <p class="backhome">
+        <a href="index-model.html">返回首页</a>
+    </p>
+</div>
+</body>
+<script>
+    $(function(){
+        return false;
+        var second = 3;
+        $('.secondtz').text(second);
+        dsfa();
+        function dsfa(){
+            if(second==0){
+                if({$_GET['id']}==2){
+                    location.href = '/index.php?m=Mobile&c=User&a=myCenter&cid=3';
+                    return false;
+                }else{
+                    location.href = '/index.php?m=Mobile&c=User&a=modelCenter&cid=3';
+                    return false;
+                }
+            }else{
+                $('.secondtz').text(second);
+                second--;
+            }
+            setTimeout(function() {
+                dsfa();
+            },1000);
+        }
+    })
+</script>
+</html>

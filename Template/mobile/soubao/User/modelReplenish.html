@@ -21,7 +21,7 @@
         </div>
         <div>
             <p><span class="color-ed716f">*</span>艺名</p>
-            <input type="text" name="userymname" class="form-control" placeholder="输入你的艺名"  value="" />
+            <input type="text" name="nickname" class="form-control" placeholder="输入你的艺名"  value="" />
         </div>
         <div>
             <p><span class="color-ed716f">*</span>国籍</p>
@@ -32,46 +32,102 @@
         </div>
         <div>
             <p><span class="color-ed716f">*</span>毕业院校</p>
-            <input type="text" name="biyecolloge" class="form-control" placeholder="输入您的毕业院校" id="" value="" />
+            <input type="text" name="college" class="form-control" placeholder="输入您的毕业院校" id="" value="" />
         </div>
         <div style="padding-top: 10px;">
             <span class="floatleft"><span class="color-ed716f">*</span>性别</span>
             <div class="selectsex selectsex-modelinfolr">
                 <div class="sexman">
-                    <div class="quanbig quanactive">
+                    <div class="quanbig quanactive" data-sex="1">
                         <div class="small"></div>
                     </div>
                     男
                 </div>
                 <div class="sexwoman">
-                    <div class="quanbig">
+                    <div class="quanbig" data-sex="2">
                         <div class="small"></div>
                     </div>
                     女
                 </div>
             </div>
         </div>
-        <div>
+        <div class="row">
+            <div class="col-xs-6">
             <p><span class="color-ed716f">*</span>身高</p>
-            <select name="" class="form-control">
-                <option value="">165~170cm</option>
-                <option value="">170~180cm</option>
-                <option value="">180~190cm</option>
+            <select name="height" class="form-control">
+                <option value="165">165cm</option>
+                <option value="166">166cm</option>
+                <option value="167">167cm</option>
+                <option value="168">168cm</option>
+                <option value="169">169cm</option>
+                <option value="170">170cm</option>
+                <option value="171">171cm</option>
+                <option value="172">172cm</option>
+                <option value="173">173cm</option>
+                <option value="174">174cm</option>
+                <option value="175">175cm</option>
+                <option value="176">176cm</option>
+                <option value="177">177cm</option>
+                <option value="178">178cm</option>
+                <option value="179">179cm</option>
+                <option value="180">180cm</option>
+                <option value="181">181cm</option>
+                <option value="182">182cm</option>
+                <option value="183">183cm</option>
+                <option value="184">184cm</option>
+                <option value="185">185cm</option>
+                <option value="186">186cm</option>
+                <option value="187">187cm</option>
+                <option value="188">188cm</option>
+                <option value="189">189cm</option>
+                <option value="190">190cm</option>
+                <option value="191">191cm</option>
             </select>
-        </div>
-        <div>
-            <p><span class="color-ed716f">*</span>体重</p>
-            <select name="" class="form-control">
-                <option value="">40kg~50kg</option>
-                <option value="">50kg~60kg</option>
-            </select>
+            </div>
+            <div class="col-xs-6">
+                <p><span class="color-ed716f">*</span>体重</p>
+                <select name="weight" class="form-control">
+                    <option value="40">40kg</option>
+                    <option value="41">41kg</option>
+                    <option value="42">42kg</option>
+                    <option value="43">43kg</option>
+                    <option value="44">44kg</option>
+                    <option value="45">45kg</option>
+                    <option value="46">46kg</option>
+                    <option value="47">47kg</option>
+                    <option value="48">48kg</option>
+                    <option value="49">49kg</option>
+                    <option value="50">50kg</option>
+                    <option value="51">51kg</option>
+                    <option value="42">52kg</option>
+                    <option value="41">53kg</option>
+                    <option value="40">54kg</option>
+                    <option value="41">41kg</option>
+                    <option value="40">40kg</option>
+                    <option value="41">41kg</option>
+                    <option value="40">40kg</option>
+                    <option value="41">41kg</option>
+                    <option value="40">40kg</option>
+                    <option value="41">41kg</option>
+                    <option value="40">40kg</option>
+                    <option value="41">41kg</option>
+                    <option value="40">40kg</option>
+                    <option value="41">41kg</option>
+                    <option value="40">40kg</option>
+                    <option value="41">41kg</option>
+                    <option value="40">40kg</option>
+                    <option value="41">41kg</option>
+                    <option value="40">40kg</option>
+                    <option value="41">41kg</option>
+                </select>
+            </div>
         </div>
         <div>
             <p><span class="color-ed716f">*</span>三围</p>
             <div class="row sanweistyle">
                 <div class="col-xs-4">
                     <span>胸:</span>
-                    <select name="" class="form-control">
+                    <select name="chest" class="form-control">
                         <option value="">60</option>
                         <option value="">70</option>
                         <option value="">80</option>
@@ -79,7 +135,7 @@
                 </div>
                 <div class="col-xs-4">
                     <span>腰:</span>
-                    <select name="" class="form-control">
+                    <select name="waist" class="form-control">
                         <option value="">60</option>
                         <option value="">70</option>
                         <option value="">80</option>
@@ -87,7 +143,7 @@
                 </div>
                 <div class="col-xs-4">
                     <span>臀:</span>
-                    <select name="" class="form-control">
+                    <select name="hipline" class="form-control">
                         <option value="">60</option>
                         <option value="">70</option>
                         <option value="">80</option>
@@ -97,12 +153,12 @@
         </div>
         <div>
             <p><span class="color-ed716f">*</span>鞋码</p>
-            <input type="text" name="xiema" class="form-control" placeholder="输入您的鞋码" id="" value="" />
+            <input type="text" name="shoesize" class="form-control" placeholder="输入您的鞋码" value="" />
         </div>
 
         <div>
             <p><span class="color-ed716f">*</span>从业经验</p>
-            <textarea name="congyejingyan" class="form-control"></textarea>
+            <textarea name="experience" class="form-control"></textarea>
         </div>
         <div>
             <p><span class="color-ed716f">*</span>居住地</p>
@@ -147,17 +203,11 @@
 						<i class="icon iconfont">&#xe62a;</i>
 					</span>
         </div>
+        <input type="hidden"  value="1" name="sex" />
         <input type="submit" value="保存" class="subbtn"/>
     </form>
 </div>
 <div class="blackchen hide"></div>
-<!--<div class="zhifusuccess hide">
-    <div>
-        <img src="__STATIC__/images/img/tc.png" />
-        提交成功
-    </div>
-    <div style="font-size: 12px;padding-top: 5px;text-align: right;">等待审核！</div>
-</div>-->
 </body>
 <script src="__STATIC__/js/js/distpicker.data.js"></script>
 <script src="__STATIC__/js/js/distpicker.js"></script>
@@ -166,6 +216,8 @@
         $('.selectsex>div').click(function(){
             $(this).children('.quanbig').addClass('quanactive');
             $(this).siblings().children('.quanbig').removeClass('quanactive');
+            var  sex = $(this).children('.quanbig').attr('data-sex');
+            $("input[name='sex']").attr('value',sex);
         });
         var $obj = $('.province');
         $(".distpicker1").distpicker();
@@ -199,11 +251,11 @@
         });
         //点击提交
         $('.subbtn').click(function(){
-            var ymname =$.trim($("input[name='userymname']").val());//艺名
-            var bycolloge = $.trim($("input[name='biyecolloge']").val());//毕业院校
-            var xm = $.trim($("input[name='xiema']").val());//鞋码
-            var jingyan = $.trim($("textarea[name='congyejingyan']").val());//经验
-            if(name==""&ymname==""&bycolloge==""&xm==""&jingyan==""){
+            var ymname =$.trim($("input[name='nickname']").val());//艺名
+            var bycolloge = $.trim($("input[name='college']").val());//毕业院校
+            var xm = $.trim($("input[name='shoesize']").val());//鞋码
+            var jingyan = $.trim($("textarea[name='experience']").val());//经验
+            if(ymname==""||bycolloge==""||xm==""||jingyan==""){
                 alert('请将信息填写完整');
                 return false;
             }
