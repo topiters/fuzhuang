@@ -213,7 +213,7 @@ class UsersLogic extends RelationModel
      * 获取订单商品
      */
     public function get_order_goods($order_id){
-        $sql = "SELECT og.*,g.original_img FROM __PREFIX__order_goods og LEFT JOIN __PREFIX__goods g ON g.goods_id = og.goods_id WHERE order_id = ".$order_id;
+        $sql = "SELECT og.*,g.head_pic FROM __PREFIX__order_goods og LEFT JOIN __PREFIX__modelusers g ON g.user_id = og.goods_id WHERE order_id = ".$order_id;
         $goods_list = $this->query($sql);
 
         $return['status'] = 1;
@@ -565,23 +565,19 @@ class UsersLogic extends RelationModel
         if(empty($order))
             return array('status'=>-1,'msg'=>'订单不存在','result'=>'');
         //检查是否未支付的订单
-        if($order['pay_status'] > 0 || $order['order_status'] > 0)
-            return array('status'=>-1,'msg'=>'支付状态或订单状态不允许','result'=>'');
-        //获取记录表信息
-        //$log = M('account_log')->where(array('order_id'=>$order_id))->find();
-        //有余额支付的情况
+
+
+       /* //有余额支付的情况
         if($order['user_money'] > 0 || $order['integral'] > 0){
             accountLog($user_id,$order['user_money'],$order['integral'],"订单取消，退回{$order['user_money']}元,{$order['integral']}积分");
-        }
+        }*/
 
-        $row = M('order')->where(array('order_id'=>$order_id,'user_id'=>$user_id))->save(array('order_status'=>3));
+        $row = M('order')->where(array('order_id'=>$order_id,'user_id'=>$user_id))->save(array('order_status'=>4));
 				
         $data['order_id'] = $order_id;
         $data['action_user'] = $user_id;
         $data['action_note'] = '您取消了订单';
-        $data['order_status'] = 3;
-        $data['pay_status'] = $order['pay_status'];
-        $data['shipping_status'] = $order['shipping_status'];
+        $data['order_status'] = 4;
         $data['log_time'] = time();
         $data['status_desc'] = '用户取消订单';        
         M('order_action')->add($data);//订单操作记录		
@@ -591,7 +587,37 @@ class UsersLogic extends RelationModel
         return array('status'=>1,'msg'=>'操作成功','result'=>'');
 
     }
+    /**
+     * 完成订单
+     */
+    public function do_order($user_id,$order_id){
+        $order = M('order')->where(array('order_id'=>$order_id,'user_id'=>$user_id))->find();
+        //检查是否未支付订单 已支付联系客服处理退款
+        if(empty($order))
+            return array('status'=>-1,'msg'=>'订单不存在','result'=>'');
+        //检查是否未支付的订单
 
+
+        /* //有余额支付的情况
+         if($order['user_money'] > 0 || $order['integral'] > 0){
+             accountLog($user_id,$order['user_money'],$order['integral'],"订单取消，退回{$order['user_money']}元,{$order['integral']}积分");
+         }*/
+
+        $row = M('order')->where(array('order_id'=>$order_id,'user_id'=>$user_id))->save(array('order_status'=>3));
+
+        $data['order_id'] = $order_id;
+        $data['action_user'] = $user_id;
+        $data['action_note'] = '您完成了订单';
+        $data['order_status'] = 3;
+        $data['log_time'] = time();
+        $data['status_desc'] = '用户完成订单';
+        M('order_action')->add($data);//订单操作记录
+
+        if(!$row)
+            return array('status'=>-1,'msg'=>'操作失败','result'=>'');
+        return array('status'=>1,'msg'=>'操作成功','result'=>'');
+
+    }
     /**
      * app发送短信验证码记录
      * @param $mobile
