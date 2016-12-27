@@ -32,13 +32,14 @@
 			</div>
 		</div>
 		<div class="setdangqiody">
-			
-			<div class="setdq-selectriqi">
-				<input type="text" class="form-control" id="calendar-mobile-multiple">
-			</div>
-			<div class="setdangqibtn">
-				<input type="button" value="保存" />
-			</div>
+			<form action="{:U('Mobile/User/setdangqi')}" method="post">
+				<div class="setdq-selectriqi">
+					<input type="text" class="form-control" name="scheduhe" id="calendar-mobile-multiple">
+				</div>
+				<div class="setdangqibtn">
+					<input type="submit" value="保存" />
+				</div>
+			</form>
 		</div>
 	</body>
 	<script type="text/javascript" src="__STATIC__/js/js/jquery.js"></script>

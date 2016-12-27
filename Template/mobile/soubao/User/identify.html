@@ -8,12 +8,12 @@
 				我要认证
 			</div>
 		</div>
-		<form action="" method="">
+		<form action="{:U('Mobile/User/idensave',array('id'=>$arr['user_id']))}" method="post">
 			<div class="model-identify">
 				<div class="m-cclisttop">
 					<span>真实姓名</span>
 					<div>
-						<input type="text" id="" name="realname" class="form-control" placeholder="" />
+						<input type="text" id="" name="name" class="form-control" placeholder="" value="{$row.name}" />
 					</div>
 				</div>
 				<div class="m-cclisttop">
@@ -36,27 +36,27 @@
 				<div class="m-cclisttop">
 					<span> 手机号</span>
 					<div>
-						<input type="text" name="userphone" id="" class="form-control" placeholder="" />
+						<input type="text" name="mobile" id="" class="form-control" placeholder="" value="{$row.mobile}" readonly />
 					</div>
 				</div>
 				<div class="m-cclisttop">
 					<span> 身份证号 </span>
 					<div>
-						<input type="text" name="usercardnum" id="" class="form-control" placeholder="" />
+						<input type="text" name="idnumber" id="" class="form-control" placeholder="" value="{$row.idnumber}" />
 					</div>
 				</div>
 				<div class="m-cclisttop">
 					<span> 银行卡 </span>
 					<div>
-						<input type="text" name="bankcard" id="" class="form-control" placeholder="" />
+						<input type="text" name="cardnumber" id="" class="form-control" placeholder="" value="{$row.cardnumber}" />
 					</div>
 				</div>
 				<div class="bodybgf4 modellinfolr">
 					<p>上传正面照</p>
-					<span class="upimg">
+					<!-- <span class="upimg">
 						<i class="icon iconfont">&#xe60c;</i>
 						<img id="" src="__STATIC__/images/img/articlelist/articlelist1.png" />
-					</span>
+					</span> -->
 					<!--加号上传图片标志 start-->
 					<span class="upicon" id="">
 						<i class="icon iconfont">&#xe62a;</i>
@@ -65,20 +65,20 @@
 				</div>
 				<div class="bodybgf4 modellinfolr">
 					<p>上传侧面照</p>
-					<span class="upimg">
+					<!-- <span class="upimg">
 						<i class="icon iconfont">&#xe60c;</i>
 						<img id="" src="__STATIC__/images/img/articlelist/articlelist1.png" />
-					</span>
+					</span> -->
 					<span class="upicon" id="">
 						<i class="icon iconfont">&#xe62a;</i>
 					</span>
 				</div>
 				<div class="bodybgf4 modellinfolr">
 					<p>手持身份证照</p>
-					<span class="upimg">
+					<!-- <span class="upimg">
 						<i class="icon iconfont">&#xe60c;</i>
 						<img id="" src="__STATIC__/images/img/articlelist/articlelist1.png" />
-					</span>
+					</span> -->
 					<span class="upicon" id="">
 						<i class="icon iconfont">&#xe62a;</i>
 					</span>
@@ -120,12 +120,12 @@
 				}
 			});
 			//手机号失焦验证
-			$("input[name='userphone']").blur(function(){
+			/* $("input[name='userphone']").blur(function(){
 				var a = $.trim($(this).val());
 				if(!regphone.test(a)){
 					$(this).css({"border":'1px solid #f00'});
 				}
-			});
+			}); */
 			//身份证号失焦验证15 18
 			$("input[name='usercardnum']").blur(function(){
 				var a = $.trim($(this).val());
@@ -146,13 +146,13 @@
 			});
 			//点击提交认证
 			$('.subtnrenzheng').click(function(){
-				var realname =$.trim($("input[name='realname']").val());//真实姓名
+				var realname =$.trim($("input[name='name']").val());//真实姓名
 				var sex = $(".quanactive").attr('data-sex');//性别
-				var userphone = $.trim($("input[name='userphone']").val());//手机号
-				var usercardnum = $.trim($("input[name='usercardnum']").val());//身份证号
-				var bankcard = $.trim($("input[name='bankcard']").val());//银行卡号
+				var userphone = $.trim($("input[name='mobile']").val());//手机号
+				var usercardnum = $.trim($("input[name='idnumber']").val());//身份证号
+				var bankcard = $.trim($("input[name='cardnumber']").val());//银行卡号
 				
-				if(realname!=''&userphone!=''&usercardnum!=''&bankcard!=''){
+				if(realname!='' & userphone!='' & usercardnum!='' & bankcard!=''){
 					if(regphone.test(userphone)){
 						if(usercardnum.length==15||usercardnum.length==18){
 							if(bankcard.length==16||bankcard.length==19){
@@ -161,7 +161,7 @@
 								setTimeout(function(){
 									$('.blackchen').addClass('hide');
 									$('.zhifusuccess').addClass('hide');
-								},1000);
+								},2000);
 							}else{
 								//$('.alltip').text('银行卡号有误！');
 								tip('银行卡号有误！');
@@ -174,7 +174,7 @@
 						//$('.alltip').text('手机号有误！');
 						tip('手机号有误！');
 					}
-				}else if(realname==''||userphone==''||usercardnum==''||bankcard==''){
+				}else if(realname=='' || userphone=='' || usercardnum=='' || bankcard==''){
 					//$('.alltip').text('信息不完整~！');
 					tip('信息不完整~');
 				}else{

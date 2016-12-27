@@ -5,11 +5,12 @@
 		</div>
 		<div class="sp-main">
 			<ul>
+				<foreach name="row" item="list">
 				<li>
 					<div class="sp-main-list">
 						<div class="sp-main-list1">
-							<span>服装发布会走秀</span>
-							<select name="" id="change" size=1 onchange="getCity()">
+							<span>{$list.type_name}</span>
+							<select name="" id="change{$list.type_id}" size=1 onchange="getCity('change{$list.type_id}','price{$list.type_id}')">
 								<option value=0>请选择</option>
 								<option value=1>参与</option>
 								<option value=2>不参与</option>
@@ -19,144 +20,15 @@
 					<div class="sp-main-list">
 						<div class="sp-main-list2">
 							<span>价格</span>
-							<select id="price">
+							<select id="price{$list.type_id}">
+							<foreach name="list.range" item="v">
+							<option value={$v}>{$v}</option>
+							</foreach>
 							</select>
 						</div>
 					</div>
 				</li>
-				<li>
-					<div class="sp-main-list">
-						<div class="sp-main-list1">
-							<span>内衣</span>
-							<select name="" id="change" size=1 onchange="getCity()">
-								<option value=0>请选择</option>
-								<option value=1>参与</option>
-								<option value=2>不参与</option>
-							</select>
-						</div>
-					</div>
-					<div class="sp-main-list">
-						<div class="sp-main-list2">
-							<span>价格</span>
-							<select id="price">
-							</select>
-						</div>
-					</div>
-				</li>
-				<li>
-					<div class="sp-main-list">
-						<div class="sp-main-list1">
-							<span>产品展示走秀</span>
-							<select name="" id="change" size=1 onchange="getCity()">
-								<option value=0>请选择</option>
-								<option value=1>参与</option>
-								<option value=2>不参与</option>
-							</select>
-						</div>
-					</div>
-					<div class="sp-main-list">
-						<div class="sp-main-list2">
-							<span>价格</span>
-							<select id="price">
-							</select>
-						</div>
-					</div>
-				</li>
-				<li>
-					<div class="sp-main-list">
-						<div class="sp-main-list1">
-							<span>暖场走秀</span>
-							<select name="" id="change" size=1 onchange="getCity()">
-								<option value=0>请选择</option>
-								<option value=1>参与</option>
-								<option value=2>不参与</option>
-							</select>
-						</div>
-					</div>
-					<div class="sp-main-list">
-						<div class="sp-main-list2">
-							<span>价格</span>
-							<select id="price">
-							</select>
-						</div>
-					</div>
-				</li>
-				<li>
-					<div class="sp-main-list">
-						<div class="sp-main-list1">
-							<span>宣传片拍摄</span>
-							<select name="" id="change" size=1 onchange="getCity()">
-								<option value=0>请选择</option>
-								<option value=1>参与</option>
-								<option value=2>不参与</option>
-							</select>
-						</div>
-					</div>
-					<div class="sp-main-list">
-						<div class="sp-main-list2">
-							<span>价格</span>
-							<select id="price">
-							</select>
-						</div>
-					</div>
-				</li>
-				<li>
-					<div class="sp-main-list">
-						<div class="sp-main-list1">
-							<span>车展</span>
-							<select name="" id="change" size=1 onchange="getCity()">
-								<option value=0>请选择</option>
-								<option value=1>参与</option>
-								<option value=2>不参与</option>
-							</select>
-						</div>
-					</div>
-					<div class="sp-main-list">
-						<div class="sp-main-list2">
-							<span>价格</span>
-							<select id="price">
-							</select>
-						</div>
-					</div>
-				</li>
-				<li>
-					<div class="sp-main-list">
-						<div class="sp-main-list1">
-							<span>礼仪</span>
-							<select name="" id="change" size=1 onchange="getCity()">
-								<option value=0>请选择</option>
-								<option value=1>参与</option>
-								<option value=2>不参与</option>
-							</select>
-						</div>
-					</div>
-					<div class="sp-main-list">
-						<div class="sp-main-list2">
-							<span>价格</span>
-							<select id="price">
-							</select>
-						</div>
-					</div>
-				</li>
-				<li>
-					<div class="sp-main-list">
-						<div class="sp-main-list1">
-							<span>静展</span>
-							<select name="" id="change" size=1 onchange="getCity()">
-								<option value=0>请选择</option>
-								<option value=1>参与</option>
-								<option value=2>不参与</option>
-							</select>
-						</div>
-					</div>
-					<div class="sp-main-list">
-						<div class="sp-main-list2">
-							<span>价格</span>
-							<select id="price">
-							</select>
-						</div>
-					</div>
-				</li>
+				</foreach>
 			</ul>
 			<button class="sp-btn">提交</button>
 		</div>
@@ -167,17 +39,9 @@
 		arr[1] = "100,200,300,400,500"
 		arr[2] = "--"
 
-		function init() {
-			var city = document.getElementById("price");
-			var cityArr = arr[0].split(",");
-			for(var i = 0; i < cityArr.length; i++) {
-				city[i] = new Option(cityArr[i], cityArr[i]);
-			}
-		}
-
-		function getCity() {
-			var pro = document.getElementById("change");
-			var city = document.getElementById("price");
+		function getCity(id1,id2) {
+			var pro = document.getElementById(id1);
+			var city = document.getElementById(id2);
 			var index = pro.selectedIndex;
 			var cityArr = arr[index].split(",");
 			city.length = 0;
@@ -186,5 +50,4 @@
 			}
 		}
 	</script>
-
 </html>

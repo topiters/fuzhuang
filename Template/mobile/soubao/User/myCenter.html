@@ -1,4 +1,5 @@
-<include file="Public/header"/>
+<include file="Public/min-header"/>
+<if condition="$arr.level eq 1">
 <body class="model-centerbody">
 <div class="model-centertop">
     <div class="bgqiang_" >
@@ -24,7 +25,7 @@
 					</span>
             </if>
         </div>
-        <p>{$arr.name}</p>
+        <p>{$arr.nickname}</p>
     </div>
 </div>
 <div class="model-centercontent">
@@ -119,6 +120,140 @@
         </li>
     </ul>
 </div>
+<elseif condition="$arr.level eq 2"/>
+</if>
+<body class="model-centerbody">
+	<div class="model-centertop">
+		<div class="bgqiang_">
+			<img class="bgqiang" src="__STATIC__/images/img/kefu/usercenter.png" />
+		</div>
+		<a href="{:U('Mobile/User/background',array('id'=>$arr['user_id']))}">
+			<div class="uploadbg">
+				<i class="icon iconfont">&#xe82a;</i>
+				更换背景墙
+			</div>
+		</a>
+		<div class="model-centertophead user_centerimg_" style="padding-top: 15px;">
+			<div class="m-top-img user_centerimg">
+				<img src="__STATIC__/images/img/usercenter/centerimg.png" />
+				<span>
+					<i class="icon iconfont">&#xe609;</i>
+					未认证
+				</span>
+			</div>
+			<p>某某的理想</p>
+		</div>
+		<div class="row model-centertopbottom" >
+			<div class="col-xs-6">
+				<a href="#rr">
+					<div>0</div>
+					<div>收藏</div>
+				</a>
+			</div>
+			<div class="col-xs-6">
+				<a href="#rr">
+					<div>10</div>
+					<div>赞过</div>
+				</a>
+			</div>
+		</div>
+	</div>
+	
+	<div class="model-centercontent">
+		<!--<div class="m-cclisttop">
+			我的订单
+		</div>-->
+		<ul>
+			<li class="m-cclisttop">
+				<a href="{:U('Mobile/User/mote_wallet',array('id'=>$arr['user_id']))}">
+					<span>
+						<i class="icon iconfont">&#xe602;</i>
+						我的钱包
+					</span>
+					<span class="floatright">
+						<i class="icon iconfont">&#xe600;</i>
+					</span>
+				</a>
+			</li>
+			<li class="m-cclisttop">
+				<a href="{:U('Mobile/User/moteinfo',array('id'=>$arr['user_id']))}">
+					<span>
+						<i class="icon iconfont">&#xe6d7;</i>
+						信息编辑
+					</span>
+					<span class="floatright">
+						<i class="icon iconfont">&#xe600;</i>
+					</span>
+				</a>
+			</li>
+			<li class="m-cclisttop">
+				<a href="{:U('Mobile/User/moteorder',array('id'=>$arr['user_id']))}">
+					<span>
+						<i class="icon iconfont">&#xe60f;</i>
+						我的订单
+					</span>
+					<span class="floatright">
+						<i class="icon iconfont">&#xe600;</i>
+					</span>
+				</a>
+			</li>
+			<li class="m-cclisttop">
+				<a href="{:U('Mobile/User/moterecommend',array('id'=>$arr['user_id']))}">
+					<span>
+						<i class="icon iconfont">&#xe628;</i>
+						我的推荐
+					</span>
+					<span class="floatright">
+						<i class="icon iconfont">&#xe600;</i>
+					</span>
+				</a>
+			</li>
+			<li class="m-cclisttop">
+				<a href="{:U('Mobile/User/moteoffer',array('id'=>$arr['user_id']))}">
+					<span>
+						<i class="icon iconfont">&#xe613;</i>
+						设置报价
+					</span>
+					<span class="floatright">
+						<i class="icon iconfont">&#xe600;</i>
+					</span>
+				</a>
+			</li>
+			<li class="m-cclisttop">
+				<a href="{:U('Mobile/User/setdangqi',array('id'=>$arr['user_id']))}">
+					<span>
+						<i class="icon iconfont">&#xe64b;</i>
+						设置档期
+					</span>
+					<span class="floatright">
+						<i class="icon iconfont">&#xe600;</i>
+					</span>
+				</a>
+			</li>
+			<li class="m-cclisttop">
+				<a href="{:U('Mobile/User/motecommon',array('id'=>$arr['user_id']))}">
+					<span>
+						<i class="icon iconfont">&#xe655;</i>
+						我的评论
+					</span>
+					<span class="floatright">
+						<i class="icon iconfont">&#xe600;</i>
+					</span>
+				</a>
+			</li>
+			<li class="m-cclisttop">
+				<a href="{:U('Mobile/User/identify',array('id'=>$arr['user_id']))}">
+					<span>
+						<i class="icon iconfont">&#xe64f;</i>
+						我要认证
+					</span>
+					<span class="floatright">
+						<i class="icon iconfont">&#xe600;</i>
+					</span>
+				</a>
+			</li>
+		</ul>
+	</div>
 <include file="Public/footer"/>
 </body>
 </html>

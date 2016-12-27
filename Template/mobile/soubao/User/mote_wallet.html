@@ -10,7 +10,7 @@
 		</div>
 		<div class="my-wallet-modelcontent">
 			<div class="m-cclisttop">
-				<a href="my-wallet-keyongyue.html">
+				<a href="{:U('Mobile/User/wallet_model',array('id'=>$arr['user_id']))}">
 					<span>
 						账户余额
 					</span>
@@ -25,19 +25,18 @@
 						收入明细
 					</span>
 					<span class="floatright">
-						<span>0</span>
+						<!-- <span>0</span> -->
 						<i class="icon iconfont">&#xe600;</i>
 					</span>
 				</a>
 			</div>
 			<div class="m-cclisttop">
-				<a href="my-wallet-keyongyue.html">
+				<a href="javascript:void(0)">
 					<span>
-						账户余额
+						收入金额
 					</span>
 					<span class="floatright">
-						<span>￥0.00</span>
-						<i class="icon iconfont">&#xe600;</i>
+						<span>￥<if condition="$row.user_money eq ''">0.00<else/>{$row.user_money}</if></span>
 					</span>
 				</a>
 			</div>

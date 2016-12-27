@@ -2,33 +2,30 @@
 	<body class="bodybgf4">
 		<div class="modelinfolr">
 			<h4>补充资料</h4>
-			<form action="" method="">
+			<form action="{:U('Mobile/User/moteinfo')}" method="post">
 				<div style="line-height: 40px;border-bottom: 1px solid #DDDDDD;padding: 5px;height: 50px;">
 					<span class="color-ed716f">头像</span>
 					<span class="floatright">
 						<span class="floatleft modelinfolr-headimg">
 							<img src="__STATIC__/images/img/articlelist/articlelist1.png" />
 						</span>
-						<i class="floatleft icon iconfont">&#xe600;</i>
+						<!-- <i class="floatleft icon iconfont">&#xe600;</i> -->
 					</span>
 				</div>
 				<div>
 					<p><span class="color-ed716f">*</span>艺名</p>
-					<input type="text" name="userymname" class="form-control" placeholder="输入你的艺名" id="" value="" />
+					<input type="text" name="nickname" class="form-control" placeholder="输入你的艺名" id="" value="{$row.nickname}" />
 				</div>
 				<div>
 					<p><span class="color-ed716f">*</span>国籍</p>
-					<select name="" class="form-control">
-						<option value="chinaese">中国</option>
-						<option value="chinaese">其他</option>
+					<select name="country" class="form-control">
+						<option value="中国" <if condition="$row.country eq '中国'">selected</if>>中国</option>
+						<option value="其他" <if condition="$row.country eq '其他'">selected</if>>其他</option>
 					</select>
-					
-					<!--<input type="text" name="" class="form-control" placeholder="中国" id="" value="" />
-				-->
 				</div>
 				<div>
 					<p><span class="color-ed716f">*</span>毕业院校</p>
-					<input type="text" name="biyecolloge" class="form-control" placeholder="输入您的毕业院校" id="" value="" />
+					<input type="text" name="college" class="form-control" placeholder="输入您的毕业院校" id="" value="{$row.college}" />
 				</div>
 				<div style="padding-top: 10px;">
 					<span class="floatleft"><span class="color-ed716f">*</span>性别</span>
@@ -49,17 +46,35 @@
 				</div>
 				<div>
 					<p><span class="color-ed716f">*</span>身高</p>
-					<select name="" class="form-control">
-						<option value="">165~170cm</option>
-						<option value="">170~180cm</option>
-						<option value="">180~190cm</option>
+					<select name="height" class="form-control">
+						<option value="1" <if condition="$row.height eq 165">selected</if>>165cm</option>
+						<option value="1" <if condition="$row.height eq 166">selected</if>>166cm</option>
+						<option value="1" <if condition="$row.height eq 167">selected</if>>167cm</option>
+						<option value="1" <if condition="$row.height eq 168">selected</if>>168cm</option>
+						<option value="1" <if condition="$row.height eq 169">selected</if>>169cm</option>
+						<option value="2" <if condition="$row.height eq 170">selected</if>>170cm</option>
+						<option value="1" <if condition="$row.height eq 171">selected</if>>171cm</option>
+						<option value="1" <if condition="$row.height eq 172">selected</if>>172cm</option>
+						<option value="1" <if condition="$row.height eq 173">selected</if>>173cm</option>
+						<option value="1" <if condition="$row.height eq 174">selected</if>>174cm</option>
+						<option value="1" <if condition="$row.height eq 175">selected</if>>175cm</option>
+						<option value="1" <if condition="$row.height eq 176">selected</if>>176cm</option>
+						<option value="1" <if condition="$row.height eq 177">selected</if>>177cm</option>
+						<option value="1" <if condition="$row.height eq 178">selected</if>>178cm</option>
+						<option value="1" <if condition="$row.height eq 179">selected</if>>179cm</option>
+						<option value="3" <if condition="$row.height eq 180">selected</if>>180cm</option>
+						<option value="1" <if condition="$row.height eq 181">selected</if>>181cm</option>
+						<option value="1" <if condition="$row.height eq 182">selected</if>>182cm</option>
+						<option value="1" <if condition="$row.height eq 183">selected</if>>183cm</option>
+						<option value="1" <if condition="$row.height eq 184">selected</if>>184cm</option>
+						<option value="1" <if condition="$row.height eq 185">selected</if>>185cm</option>
 					</select>
 				</div>
 				<div>
 					<p><span class="color-ed716f">*</span>体重</p>
-					<select name="" class="form-control">
-						<option value="">40kg~50kg</option>
-						<option value="">50kg~60kg</option>
+					<select name="weight" class="form-control">
+						<option value="1" <if condition="$row.weight eq 1">selected</if>>40kg~50kg</option>
+						<option value="2" <if condition="$row.weight eq 2">selected</if>>50kg~60kg</option>
 					</select>
 				</div>
 				<div>
@@ -67,38 +82,38 @@
 					<div class="row sanweistyle">
 						<div class="col-xs-4">
 							<span>胸:</span>
-							<select name="" class="form-control">
-								<option value="">60</option>
-								<option value="">70</option>
-								<option value="">80</option>
+							<select name="chest" class="form-control">
+								<option value="1" <if condition="$row.chest eq 1">selected</if>>60</option>
+								<option value="2" <if condition="$row.chest eq 2">selected</if>>70</option>
+								<option value="3" <if condition="$row.chest eq 3">selected</if>>80</option>
 							</select>
 						</div>
 						<div class="col-xs-4">
 							<span>腰:</span>
-							<select name="" class="form-control">
-								<option value="">60</option>
-								<option value="">70</option>
-								<option value="">80</option>
+							<select name="waist" class="form-control">
+								<option value="1" <if condition="$row.waist eq 1">selected</if>>60</option>
+								<option value="2" <if condition="$row.waist eq 2">selected</if>>70</option>
+								<option value="3" <if condition="$row.waist eq 3">selected</if>>80</option>
 							</select>
 						</div>
 						<div class="col-xs-4">
 							<span>臀:</span>
-							<select name="" class="form-control">
-								<option value="">60</option>
-								<option value="">70</option>
-								<option value="">80</option>
+							<select name="hipline" class="form-control">
+								<option value="1" <if condition="$row.hipline eq 1">selected</if>>60</option>
+								<option value="2" <if condition="$row.hipline eq 2">selected</if>>70</option>
+								<option value="3" <if condition="$row.hipline eq 3">selected</if>>80</option>
 							</select>
 						</div>
 					</div>
 				</div>
 				<div>
 					<p><span class="color-ed716f">*</span>鞋码</p>
-					<input type="text" name="xiema" class="form-control" placeholder="输入您的鞋码" id="" value="" />
+					<input type="text" name="shoesize" class="form-control" placeholder="输入您的鞋码" id="" value="{$row.shoesize}" />
 				</div>
 				
 				<div>
 					<p><span class="color-ed716f">*</span>从业经验</p>
-					<textarea name="congyejingyan" class="form-control"></textarea>
+					<textarea name="experience" class="form-control">{$row.experience}</textarea>
 				</div>
 				<div>
 					<p><span class="color-ed716f">*</span>居住地</p>
@@ -143,6 +158,7 @@
 						<i class="icon iconfont">&#xe62a;</i>
 					</span>
 				</div>
+				<input type="hidden" value="{$row.user_id}" name="user_id"/>
 				<input type="submit" value="保存" class="subbtn"/>
 			</form>
 		</div>
@@ -156,7 +172,6 @@
 		</div>
 	</body>
 	<script type="text/javascript" src="__STATIC__/js/js/jquery.js"></script>
-	
 	<script type="text/javascript" src="__STATIC__/js/js/jquery.cityselect.js"></script>
     <script>
 		$(function(){
