@@ -15,18 +15,17 @@ class OffersetController extends BaseController {
      * 报价类型列表
      */
     public function index(){
-        // 搜索条件
-        $condition = array();
-        I('mobile') ? $condition['mobile'] = I('mobile') : false;
 
 		$type =  M('typeset');
     	$res = $type->order('type_id')->page($_GET['p'].',10')->select();
     	if($res){
     		foreach ($res as $val){
     			$val['addtime'] = date('Y-m-d',$val['addtime']);
+    			$val['range'] = explode(',', $val['range']);
     			$list[] = $val;
     		}
     	}
+    	
     	$this->assign('list',$list);
     	$count = $type->count();
     	$Page = new \Think\Page($count,10);
@@ -86,7 +85,7 @@ class OffersetController extends BaseController {
     	$data['range'] = I('post.range');
     	$data['addtime'] = time();
     	
-    	$row = M('typeset')->where(array('type_name'=>$data['type_name'],'range'=>$data['range']))->find();
+    	$row = M('typeset')->where(array('type_name'=>$data['type_name']))->find();
     	if($row){
     		exit($this->error('该种类型及价格已经添加'));
     	}
