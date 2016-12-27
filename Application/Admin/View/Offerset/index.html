@@ -31,7 +31,7 @@
 						  <foreach name="list" item="vo" key="k" >
 						  	<tr role="row">
 		                     <td>{$vo.type_name}</td>
-		                     <td>{$vo.range}/天</td>
+		                     <td><foreach name="vo.range" item="v" key="k" >{$v}元/天&nbsp;&nbsp;&nbsp;&nbsp;</foreach></td>
 		                     <td>{$vo.addtime}</td>		                     
 		                     <td>
 		                      <a class="btn btn-primary" href="{:U('Offerset/detail',array('act'=>'edit','type_id'=>$vo['type_id']))}"><i class="fa fa-pencil" title="查看"></i></a>
