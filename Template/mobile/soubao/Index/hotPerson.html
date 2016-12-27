@@ -67,9 +67,10 @@
         $(document).on('click','.indexshoucang',function(){
            //$(this).addClass('shoucangactive');
             var id = $(this).attr("data");
+            var user_id = "{$user_id}";
             var zhe = $(this);
             if(!shoucangbool){
-                if(!{$user_id}) {
+                if(!user_id) {
                     alert("对不起，你还没有注册！");
                     location.href="/index.php?m=Mobile&c=User&a=regType";
                 }else{
