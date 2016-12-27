@@ -100,14 +100,16 @@ class UserController extends MobileBaseController {
                 $reg_time = time();
                 if($_GET['cid']==2){
                     $data = M('modelusers')->add(array('mobile'=>$username,'reg_time'=>$reg_time,'lever'=>2,'checked'=>1));
+                    session('user_id',$data);
+                    $this->redirect("Mobile/User/userReplenish");
+                    exit;
                 }
                 if($_GET['cid']==1){
                     $data = M('modelusers')->add(array('mobile'=>$username,'reg_time'=>$reg_time,'checked'=>1));
+                    session('user_id',$data);
+                    $this->redirect('Mobile/User/modelReplenish');
+                    exit;
                 }
-                session('user_id',$data);
-                $this->success("绑定成功",U('Mobile/User/myContent'));
-                exit;
-
                 if($_GET['id']){
                     $logic = new UsersLogic();
                     $username = I('post.mobile','');
