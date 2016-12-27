@@ -1,17 +1,9 @@
 <?php
 /**
- * tpshop
- * ============================================================================
- * * 版权所有 2015-2027 深圳搜豹网络科技有限公司，并保留所有权利。
- * 网站地址: http://www.tp-shop.cn
- * ----------------------------------------------------------------------------
- * 这不是一个自由软件！您只能在不用于商业目的的前提下对程序代码进行修改和使用 .
- * 不允许对程序代码以任何形式任何目的的再发布。
- * ============================================================================
- * 2015-11-21
+ * 用户中心
  */
 namespace Mobile\Controller;
-use Mobile\Logic\UsersLogic;
+use Home\Logic\UsersLogic;
 use Think\Controller;
 use Think\Page;
 use Think\Verify;
@@ -94,9 +86,9 @@ class UserController extends MobileBaseController {
      *  注册
      */
     public function reg(){
+
             if(IS_POST){
                 $logic = new UsersLogic();
-                //echo '11';exit;
                 $username = I('post.mobile','');
                 //是否开启注册验证码机制
                 /*if(check_mobile($username)){
@@ -108,17 +100,13 @@ class UserController extends MobileBaseController {
                 $reg_time = time();
                 if($_GET['cid']==2){
                     $data = M('modelusers')->add(array('mobile'=>$username,'reg_time'=>$reg_time,'lever'=>2,'checked'=>1));
-                    session('user_id',$data);
-                    $this->success('绑定成功',U("Mobile/User/userReplenish"));
-                    exit;
                 }
                 if($_GET['cid']==1){
                     $data = M('modelusers')->add(array('mobile'=>$username,'reg_time'=>$reg_time,'checked'=>1));
-                    session('user_id',$data);
-                    $this->success('绑定成功',U('Mobile/User/modelReplenish'));
-                    exit;
                 }
-
+                session('user_id',$data);
+                $this->success("绑定成功",U('Mobile/User/myContent'));
+                exit;
 
                 if($_GET['id']){
                     $logic = new UsersLogic();
@@ -138,44 +126,7 @@ class UserController extends MobileBaseController {
         $this->display();
     }
     /**
-     * 用户补充资料
-     */
-    public function userReplenish(){
-        $user_id = session('user_id');
-        if($_POST){
-            M('modelusers')->where(array('user_id'=>$user_id))->save($_POST);
-            $this->success("保存成功",U('Mobile/User/myCenter/cid/3'));
-            exit;
-        }
-        $arr = M('modelusers')->where(array('user_id'=>$user_id))->find();
-        $this->assign('arr',$arr);
-        $this->display();
-    }
-    /**
-     * 模特补充资料
-     */
-    public function modelReplenish(){
-        $user_id = session('user_id');
-        if($_POST){
-            M('modelusers')->where(array('user_id'=>$user_id))->save($_POST);
-            $this->success("保存成功",U('Mobile/User/modelCenter/cid/3'));
-            exit;
-        }
-        $arr = M('modelusers')->where(array('user_id'=>$user_id))->find();
-        $this->assign('arr',$arr);
-        $this->display();
-    }
-    /**
-     * 模特中心
-     */
-    public function modelcenter(){
-        $user_id = session('user_id');
-        $arr = M('modelusers')->where(array('user_id'=>$user_id))->find();
-        $this->assign('arr',$arr);
-        $this->display();
-    }
-    /**
-     *我的充值
+     *用户协议
      */
     public function myContent(){
         $this->display();
@@ -310,13 +261,6 @@ class UserController extends MobileBaseController {
         $this->display();
     }
     /**
-     * 订单详情
-     */
-    public function orderDetail(){
-
-        $this->display();
-    }
-    /**
      * 信息编辑
      */
     public function userEdit(){
@@ -386,7 +330,7 @@ class UserController extends MobileBaseController {
     public function ajaxCom(){
         $id = $_POST['user_id'];
         //var_dump($_POST);exit;
-        $re = M('modelusers')->where(array('user_id'=>$id))->save($_POST);
+        $arr = M('modelusers')->where(array('user_id'=>$id))->save($_POST);
         $this->ajaxReturn(json_encode($re));
     }
     /**
@@ -894,6 +838,136 @@ class UserController extends MobileBaseController {
             $this->error($data['msg']);
         $this->success($data['msg']);
 
+    }
+    
+    /**
+     * 模特钱包
+     */
+    public function mote_wallet(){
+    	$row = M('modelusers')->where(array('user_id'=>$this->user_id))->find();
+    	$this->assign("row",$row);
+    	$this->display();
+    }
+    
+    /**
+     * 模特可用余额 
+     */
+    public function wallet_model(){
+    	$row = M('modelusers')->where(array('user_id'=>$this->user_id))->find();
+    	$this->assign("row",$row);
+    	$this->display();
+    }
+    
+    /**
+     * 模特信息编辑 
+     */
+    public function moteinfo(){
+    	$row = M('modelusers')->where(array('user_id'=>$this->user_id))->find();
+    	/* if(empty($row['mobile'])){
+    		exit();
+    	} */
+    	if(IS_POST){
+    		$data = I("post.");
+    		 $r = M('modelusers')->where(array('user_id'=>$this->user_id))->save($data);
+            if($r)
+                exit($this->success('修改成功'));
+            exit($this->error('未作内容修改或修改失败'));
+    	}
+    	
+    	$this->assign("row",$row);
+    	$this->display();
+    }
+    
+    /**
+     * 模特订单 
+     */
+    public function moteorder(){
+    	$moteorder = M('order')->alias('o')->where(array('og.goods_id'=>$this->user_id))->join(" LEFT JOIN __ORDER_GOODS__ og ON o.order_id = og.order_id ")->select();
+    	$this->assign("moteorder",$moteorder);
+    	$this->display();
+    }
+    
+    /**
+     * 模特推荐
+     */
+    public function moterecommend(){
+    	$this->display();
+    }
+    
+    /**
+     * 模特设置报价 
+     */
+    public function moteoffer(){
+    	$row = M("typeset")->select();
+    	if($row){
+    		foreach ($row as $val){
+    			$val['addtime'] = date('Y-m-d',$val['addtime']);
+    			$val['range'] = explode(',', $val['range']);
+    			$list[] = $val;
+    		}
+    	}
+    	$this->assign("row",$row);
+    	$this->display();
+    }
+    
+    /**
+     * 模特设置档期 
+     */
+    public function setdangqi(){
+    	$row = M('scheduhe')->where(array('user_id'=>$this->user_id))->find();
+    	$data = I('post.');
+    	if($row){
+    		$r = M('scheduhe')->where(array('user_id'=>$this->user_id))->save($data);
+    	}else{
+    		$r = M('scheduhe')->add($data);
+    	}
+    	if($r){
+    		$this->success("操作成功");
+    	}
+    	$this->assign("row",$row);
+    	$this->display();
+    }
+    
+    /**
+     * 模特评价 
+     */
+    public function motecommon(){
+    	$row = M('comment')->where(array('modeluser_id'=>$this->user_id))->select();
+    	if($row){
+    		foreach ($row as $val){
+    			$val['addtime'] = date('Y-m-d',$val['addtime']);
+    			$list[] = $val;
+    		}
+    	}
+    	$this->assign("row",$row);
+    	$this->display();
+    }
+    
+    /**
+     * 模特认证 
+     */
+    public function identify(){
+    	$field = array('user_id','mobile','name','sex','idnumber','cardnumber');
+    	$row = M('modelusers')->where(array('user_id'=>$this->user_id))->field($field)->find();
+    	
+    	$this->assign("row",$row);
+    	$this->display();
+    }
+    /**
+     * 提交模特认证 
+     */
+    public function idensave(){
+    	$field = array('user_id','mobile','name','sex','idnumber','cardnumber');
+    	$row = M('modelusers')->where(array('user_id'=>$this->user_id))->field($field)->find();
+    	if($row){
+    		$this->error("您已经认证过了");
+    	}else{
+    		$data = I("post.");
+    		$r = M('modelusers')->add($data);
+    		if($r)
+    			exit($this->success('信息已提交,请耐心等待审核'));
+    		exit($this->error('信息提交失败'));
+    	}
     }
 
 }
