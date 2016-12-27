@@ -1,0 +1,142 @@
+<include file="Public/header"/>
+<body class="model-centerbody">
+<div class="model-centertop">
+    <div class="bgqiang_">
+        <img class="bgqiang" src="__STATIC__/images/img/kefu/usercenter.png" />
+    </div>
+    <a href="{:U('Mobile/User/background',array('id'=>$arr['user_id']))}">
+        <div class="uploadbg">
+            <i class="icon iconfont">&#xe82a;</i>
+            更换背景墙
+        </div>
+    </a>
+    <div class="model-centertophead user_centerimg_" style="padding-top: 15px;">
+        <div class="m-top-img user_centerimg">
+            <img src="__STATIC__/images/img/usercenter/centerimg.png" />
+            <if condition="$arr[checked] eq 2">
+           <span>
+                <i class="icon iconfont">&#xe609;</i>
+                已认证
+            </span>
+                <else/>
+                <span>
+						&nbsp;&nbsp;未认证
+					</span>
+            </if>
+        </div>
+        <p>{$arr.nickname}</p>
+    </div>
+    <div class="row model-centertopbottom" >
+        <div class="col-xs-6"> <!--model-cbright-->
+            <a href="#rr">
+                <div>{$arr.cllectnum}</div>
+                <div>收藏</div>
+            </a>
+        </div>
+        <div class="col-xs-6">
+            <a href="#rr">
+                <div>{$arr.total}</div>
+                <div>赞过</div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="model-centercontent">
+    <!--<div class="m-cclisttop">
+        我的订单
+    </div>-->
+    <ul>
+        <li class="m-cclisttop">
+            <a href="my-wallet-model.html">
+						<span>
+							<i class="icon iconfont">&#xe602;</i>
+							我的钱包
+						</span>
+                <span class="floatright">
+							<i class="icon iconfont">&#xe600;</i>
+						</span>
+            </a>
+        </li>
+        <li class="m-cclisttop">
+            <a href="modelinfolr.html">
+						<span>
+							<i class="icon iconfont">&#xe6d7;</i>
+							信息编辑
+						</span>
+                <span class="floatright">
+							<i class="icon iconfont">&#xe600;</i>
+						</span>
+            </a>
+        </li>
+        <li class="m-cclisttop">
+            <a href="#rr">
+						<span>
+							<i class="icon iconfont">&#xe60f;</i>
+							我的订单
+						</span>
+                <span class="floatright">
+							<i class="icon iconfont">&#xe600;</i>
+						</span>
+            </a>
+        </li>
+        <li class="m-cclisttop">
+            <a href="#rr">
+						<span>
+							<i class="icon iconfont">&#xe628;</i>
+							我的推荐
+						</span>
+                <span class="floatright">
+							<i class="icon iconfont">&#xe600;</i>
+						</span>
+            </a>
+        </li>
+        <li class="m-cclisttop">
+            <a href="#rr">
+						<span>
+							<i class="icon iconfont">&#xe613;</i>
+							设置报价
+						</span>
+                <span class="floatright">
+							<i class="icon iconfont">&#xe600;</i>
+						</span>
+            </a>
+        </li>
+        <li class="m-cclisttop">
+            <a href="setdangqi.html">
+						<span>
+							<i class="icon iconfont">&#xe64b;</i>
+							设置档期
+						</span>
+                <span class="floatright">
+							<i class="icon iconfont">&#xe600;</i>
+						</span>
+            </a>
+        </li>
+        <li class="m-cclisttop">
+            <a href="#rr">
+						<span>
+							<i class="icon iconfont">&#xe655;</i>
+							我的评论
+						</span>
+                <span class="floatright">
+							<i class="icon iconfont">&#xe600;</i>
+						</span>
+            </a>
+        </li>
+        <li class="m-cclisttop">
+            <a href="model-identify.html">
+						<span>
+							<i class="icon iconfont">&#xe64f;</i>
+							我要认证
+						</span>
+                <span class="floatright">
+							<i class="icon iconfont">&#xe600;</i>
+						</span>
+            </a>
+        </li>
+    </ul>
+</div>
+<include file="Public/footer"/>
+</body>
+</html>

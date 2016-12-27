@@ -1,0 +1,32 @@
+<include file="Public/min-header"/>
+<body>
+<div class="backtip">
+	<a href="javascript:history.go(-1);">
+		<i class="icon iconfont">&#xe60d;</i>
+	</a>
+	<div class="addwudang">
+		我的评价
+	</div>
+</div>
+<div class="mj-main">
+	<ul>
+		<foreach name="arr" item="v">
+		<li>
+			<tpshop sql="SELECT * FROM `__PREFIX__modelusers` WHERE `user_id` = $v[modeluser_id] "  key="k" item='v0'>
+			<div class="mj-main-t">
+				<div class="mj-main-timg">
+					<img src="{$v0.head_pic}"/>
+				</div>
+				<span>{$v0.nickname}</span>
+			</div>
+			</tpshop>
+			<div class="mj-main-d">
+				<p>{$v.content}</p>
+				<p>{$v.add_time|date="Y-m-d H:i:s" ,###}</p>
+			</div>
+		</li>
+		</foreach>
+	</ul>
+</div>
+</body>
+</html>
