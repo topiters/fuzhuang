@@ -107,32 +107,34 @@ class UserController extends MobileBaseController {
                 }*/
                 $reg_time = time();
                 if($_GET['cid']==2){
-                    $data = M('modelusers')->add(array('mobile'=>$username,'reg_time'=>$reg_time,'lever'=>2));
+                    $data = M('modelusers')->add(array('mobile'=>$username,'reg_time'=>$reg_time,'lever'=>2,'checked'=>1));
                     session('user_id',$data);
                     $this->success('绑定成功',U("Mobile/User/userReplenish"));
                     exit;
-                }else{
-                    $data = M('modelusers')->add(array('mobile'=>$username,'reg_time'=>$reg_time));
+                }
+                if($_GET['cid']==1){
+                    $data = M('modelusers')->add(array('mobile'=>$username,'reg_time'=>$reg_time,'checked'=>1));
                     session('user_id',$data);
                     $this->success('绑定成功',U('Mobile/User/modelReplenish'));
                     exit;
                 }
-            }
 
-        if($_GET['id']){
-            $logic = new UsersLogic();
-            $username = I('post.mobile','');
-            //是否开启注册验证码机制
-            /*if(check_mobile($username)){
-                $code = I('post.mobile_code','');
-                $check_code = $logic->sms_code_verify($username,$code,$this->session_id);
-                if($check_code['status'] != 1)
-                    $this->error($check_code['msg']);
-            }*/
-            $data = M('modelusers')->where(array('user_id'=>$_GET['id']))->save(array('mobile'=>$username));
-            $this->success("修改成功",U('Mobile/User/userEdit'));
-            exit;
-        }
+
+                if($_GET['id']){
+                    $logic = new UsersLogic();
+                    $username = I('post.mobile','');
+                    //是否开启注册验证码机制
+                    /*if(check_mobile($username)){
+                        $code = I('post.mobile_code','');
+                        $check_code = $logic->sms_code_verify($username,$code,$this->session_id);
+                        if($check_code['status'] != 1)
+                            $this->error($check_code['msg']);
+                    }*/
+                    $data = M('modelusers')->where(array('user_id'=>$_GET['id']))->save(array('mobile'=>$username));
+                    $this->success("修改成功",U('Mobile/User/userEdit',array('id'=>$_GET['id'])));
+                    exit;
+                }
+            }
         $this->display();
     }
     /**
@@ -194,12 +196,24 @@ class UserController extends MobileBaseController {
         $this->display();
     }
     /**
-     *我的钱包
+     *我的支出
      */
     public function mySpent(){
         $id = $_GET['id'];
-        $arr = M('modelusers')->where(array('user_id'=>$id))->find();
-        $this->assign('arr',$arr);
+        $count = M('order')->where(array('user_id'=>$id))->count();
+        $Page = new Page($count,2);
+        $show = $Page->show();
+        $order_str = "order_id DESC";
+        $order_list = M('order')->order($order_str)->where(array('user_id'=>$id,'order_status'=>3))->limit($Page->firstRow.','.$Page->listRows)->select();
+        //获取订单商品
+        $model = new UsersLogic();
+        foreach($order_list as $k=>$v)
+        {
+            $data = $model->get_order_goods($v['order_id']);
+            $order_list[$k]['goods_list'] = $data['result'];
+        }
+        $this->assign('page',$show);
+        $this->assign('lists',$order_list);
         $this->display();
     }
     /**
@@ -207,7 +221,7 @@ class UserController extends MobileBaseController {
      */
     public function myActivity(){
         $id = $_GET['id'];
-        $arr = M('modelusers')->where(array('user_id'=>$id))->find();
+        $arr = M('activity')->where(array('user_id'=>$id))->select();
         $this->assign('arr',$arr);
         $this->display();
     }
@@ -262,16 +276,37 @@ class UserController extends MobileBaseController {
      */
     public function myOrder(){
         $id = $_GET['id'];
-        $count = M('collect')->where(array('user_id'=>$id))->count();
-        $page = new Page($count,'5');
-        $show = $page->show();
-        $arr = M('collect')->where(array('user_id'=>$id))->order("add_time desc")->limit($page->firstRow.','.$page->listRows)->select();
-        if ($_GET['is_ajax']) {
-            $this->display('ajax_collect_list');
-            exit;
+        $count = M('order')->where(array('user_id'=>$id))->count();
+        $Page = new Page($count,2);
+
+        $show = $Page->show();
+        $order_str = "order_id DESC";
+        $order_list = M('order')->order($order_str)->where(array('user_id'=>$id))->limit($Page->firstRow.','.$Page->listRows)->select();
+        //获取订单商品
+        $model = new UsersLogic();
+        foreach($order_list as $k=>$v)
+        {
+            $data = $model->get_order_goods($v['order_id']);
+            $order_list[$k]['goods_list'] = $data['result'];
+        }
+        $order_list2 = M('order')->order($order_str)->where(array('user_id'=>$id,'order_status'=>2))->select();
+        //获取订单商品
+        foreach($order_list2 as $k=>$v)
+        {
+            $data = $model->get_order_goods($v['order_id']);
+            $order_list2[$k]['goods_list'] = $data['result'];
+        }
+        $order_list3 = M('order')->order($order_str)->where(array('user_id'=>$id,'order_status'=>3))->select();
+        //获取订单商品
+        foreach($order_list3 as $k=>$v)
+        {
+            $data = $model->get_order_goods($v['order_id']);
+            $order_list2[$k]['goods_list'] = $data['result'];
         }
         $this->assign('page',$show);
-        $this->assign('arr',$arr);
+        $this->assign('lists',$order_list);
+        $this->assign('lists2',$order_list2);
+        $this->assign('lists3',$order_list3);
         $this->display();
     }
     /**
@@ -331,7 +366,7 @@ class UserController extends MobileBaseController {
      * 个人申请
      */
     public function ajaxPer(){
-        $id = $_GET['id'];
+        $id = $_POST['user_id'];
         //var_dump(session('user_id'));exit;
         $re = M('modelusers')->where(array('user_id'=>$id))->save($_POST);
         $this->ajaxReturn(json_encode($re));
@@ -349,7 +384,7 @@ class UserController extends MobileBaseController {
      * 企业申请
      */
     public function ajaxCom(){
-        $id = $_GET['id'];
+        $id = $_POST['user_id'];
         //var_dump($_POST);exit;
         $re = M('modelusers')->where(array('user_id'=>$id))->save($_POST);
         $this->ajaxReturn(json_encode($re));
@@ -460,10 +495,24 @@ class UserController extends MobileBaseController {
      * 取消订单
      */
     public function cancel_order(){
+        $user_id = session('user_id');
         $id = I('get.id');
         //检查是否有积分，余额支付
         $logic = new UsersLogic();
-        $data = $logic->cancel_order($this->user_id,$id);
+        $data = $logic->cancel_order($user_id,$id);
+        if($data['status'] < 0)
+            $this->error($data['msg']);
+        $this->success($data['msg']);
+    }
+    /**
+     * 完成订单
+     */
+    public function do_order(){
+        $user_id = session('user_id');
+        $id = I('get.id');
+        //检查是否有积分，余额支付
+        $logic = new UsersLogic();
+        $data = $logic->do_order($user_id,$id);
         if($data['status'] < 0)
             $this->error($data['msg']);
         $this->success($data['msg']);
@@ -558,13 +607,12 @@ class UserController extends MobileBaseController {
     }
 
     /*
-     * 评论晒单
+     * 我的评论
      */
-    public function comment(){
-        $user_id = $this->user_id;
-        $rec_id = I('rec_id');
-        $order_goods = M('order_goods')->where("rec_id = $rec_id")->find();
-        $this->assign('order_goods',$order_goods);        
+    public function myComment(){
+        $user_id = $_GET['id'];
+        $arr = M('comment')->where(array('user_id' => $user_id))->select();
+        $this->assign('arr',$arr);
         $this->display();
     }
 
