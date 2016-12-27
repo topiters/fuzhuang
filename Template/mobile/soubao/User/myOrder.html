@@ -17,45 +17,170 @@
     </ul>
 </div>
 <div class="ao1-tol">
+    <foreach name="lists" item="v">
     <ul>
         <li>
             <div class="ao1-tol1 clearfix">
                 <div class="ao1-tol1-l l">
-                    <span>订单编号：</span>
+                    <span>订单编号：{$v.order_sn}</span>
                 </div>
-                <p class="ao1-tol1-r r">订单进行中</p>
             </div>
+            <volist name="v.goods_list" id="good" key="k">
             <div class="ao1-tol2 clearfix">
                 <div class="ao1-tol2-l l">
-                    <img src="__STATIC__/images/img/touxiang.jpg" />
+                    <img src="{$good.head_pic}" />
                 </div>
                 <div class="ao1-tol2-r l">
-                    <p>2014全球美丽小姐冠军,聘用专业车模,时尚之选日约500元</p>
+                    <p>{$good.goods_price}元/天 &nbsp;* &nbsp;{$good.goods_num}</p>
                 </div>
             </div>
+            </volist>
             <div class="ao1-tol3 clearfix">
+            <tpshop sql="SELECT * FROM `__PREFIX__activity` WHERE `id` = $v[order_prom_id] "  key="k" item='v0'>
                 <div class="ao1-tol3-l l">
-                    <p>活动类型: <span>车展</span></p>
+                    <p>活动类型: <span>{$v0.type_name}</span></p>
                 </div>
                 <div class="ao1-tol3-t r">
-                    <p>共<span>1</span>人</p>
-                    <p>合计: <span>￥1,500</span></p>
-                    <p>(含服务费:<span>￥50</span>)</p>
+                    <p>共<span>{$v0.amount}</span>人</p>
+                    <p>合计: <span>￥{$v.total_amount}</span></p>
                 </div>
+            </tpshop>
             </div>
             <div class="ao1-tol4 clearfix">
-                <button class="r">完成订单</button>
-                <button class="r">取消订单</button>
+                <if condition="$v['order_status'] eq 2">
+                <button class="r" onclick="do_order({$v.order_id})">完成订单</button>
+                <button class="r" onclick="cancel_order({$v.order_id})">取消订单</button>
+                </if>
+                <if condition="$v['order_status'] eq 1">
+                    已支付
+                </if>
+                <if condition="$v['order_status'] eq 4">
+                    订单已取消
+                </if>
+                <if condition="$v['order_status'] eq 3">
+                    已完成
+                </if>
             </div>
         </li>
     </ul>
+    </foreach>
+</div>
+<div class="ao1-toll" style="display:none;">
+    <foreach name="lists2" item="v">
+        <ul>
+            <li>
+                <div class="ao1-tol1 clearfix">
+                    <div class="ao1-tol1-l l">
+                        <span>订单编号：{$v.order_sn}</span>
+                    </div>
+                </div>
+                <volist name="v.goods_list" id="good" key="k">
+                    <div class="ao1-tol2 clearfix">
+                        <div class="ao1-tol2-l l">
+                            <img src="{$good.head_pic}" />
+                        </div>
+                        <div class="ao1-tol2-r l">
+                            <p>{$good.goods_price}元/天 &nbsp;* &nbsp;{$good.goods_num}</p>
+                        </div>
+                    </div>
+                </volist>
+                <div class="ao1-tol3 clearfix">
+                    <tpshop sql="SELECT * FROM `__PREFIX__activity` WHERE `id` = $v[order_prom_id] "  key="k" item='v0'>
+                    <div class="ao1-tol3-l l">
+                        <p>活动类型: <span>{$v0.type_name}</span></p>
+                    </div>
+                    <div class="ao1-tol3-t r">
+                        <p>共<span>{$v0.amount}</span>人</p>
+                        <p>合计: <span>￥{$v.total_amount}</span></p>
+                    </div>
+                </tpshop>
+                </div>
+                <div class="ao1-tol4 clearfix">
+                    <if condition="$v['order_status'] eq 2">
+                        <button class="r" onclick="do_order({$v.order_id})">完成订单</button>
+                        <button class="r" onclick="cancel_order({$v.order_id})">取消订单</button>
+                    </if>
+                </div>
+            </li>
+        </ul>
+    </foreach>
+</div>
+<div class="ao1-tolll" style="display:none;">
+    <foreach name="lists3" item="v">
+        <ul>
+            <li>
+                <div class="ao1-tol1 clearfix">
+                    <div class="ao1-tol1-l l">
+                        <span>订单编号：{$v.order_sn}</span>
+                    </div>
+                </div>
+                <volist name="v.goods_list" id="good" key="k">
+                    <div class="ao1-tol2 clearfix">
+                        <div class="ao1-tol2-l l">
+                            <img src="{$good.head_pic}" />
+                        </div>
+                        <div class="ao1-tol2-r l">
+                            <p>{$good.goods_price}元/天 &nbsp;* &nbsp;{$good.goods_num}</p>
+                        </div>
+                    </div>
+                </volist>
+                <div class="ao1-tol3 clearfix">
+                    <tpshop sql="SELECT * FROM `__PREFIX__activity` WHERE `id` = $v[order_prom_id] "  key="k" item='v0'>
+                    <div class="ao1-tol3-l l">
+                        <p>活动类型: <span>{$v0.type_name}</span></p>
+                    </div>
+                    <div class="ao1-tol3-t r">
+                        <p>共<span>{$v0.amount}</span>人</p>
+                        <p>合计: <span>￥{$v.total_amount}</span></p>
+                    </div>
+                </tpshop>
+                </div>
+                <div class="ao1-tol4 clearfix">
+                    <if condition="$v['order_status'] eq 3">
+                        已完成
+                    </if>
+                </div>
+            </li>
+        </ul>
+    </foreach>
 </div>
 </body>
 <script type="text/javascript">
     $(".ao1-top ul").on("click", "li", function() {
         $(".ao1-top ul").children("li").removeClass('active3');
         $(this).addClass("active3");
+        var index = $(this).index();
+        switch(index) {
+            case 0:
+                $(".ao1-tol").show();
+                $(".ao1-tolll").hide();
+                $(".ao1-toll").hide();
+                break;
+            case 1:
+                $(".ao1-toll").show();
+                $(".ao1-tolll").hide();
+                $(".ao1-tol").hide();
+                break;
+            case 2:
+                $(".ao1-tolll").show();
+                $(".ao1-toll").hide();
+                $(".ao1-tol").hide();
+            default:
+                break;
+        }
     });
+ //取消订单
+ function cancel_order(id){
+     if(!confirm("确定取消订单?"))
+         return false;
+     location.href = "/index.php?m=Home&c=User&a=cancel_order&id="+id;
+ }
+    //取消订单
+    function do_order(id){
+        if(!confirm("确定完成订单?"))
+            return false;
+        location.href = "/index.php?m=Home&c=User&a=do_order&id="+id;
+    }
 </script>
 
 </html>

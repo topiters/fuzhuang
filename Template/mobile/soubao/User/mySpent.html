@@ -10,42 +10,23 @@
 </div>
 <div class="ms-main">
     <ul>
+        <volist name="lists" id="list">
         <li>
             <div class="ms-main-l l">
-                <p>订单编号: <span>25365214</span></p>
-                <p>类型: <span>车展</span></p>
-                <p>人数: <span>3</span>人</p>
-                <p>2016-12-12</p>
+                <p>订单编号: <span>{$list.order_sn}</span></p>
+                <tpshop sql="SELECT * FROM `__PREFIX__activity` WHERE `id` = $list[order_prom_id] "  key="k" item='v0'>
+                <p>类型: <span>{$v0.type_name}</span></p>
+                <p>人数: <span>{$v0.amount}</span>人</p>
+                </tpshop>
+                <p>{$list.pay_time|date="Y-m-d H:i:s",###}</p>
             </div>
+            <volist name="list.goods_list" id="good" key="k">
             <div class="ms-main-r r">
-                <p><i class="icon iconfont icon-qiandai"></i>支出: -<span>￥630*3</span></p>
-                <p>共计: -<span>￥1890</span></p>
+                <p><i class="icon iconfont icon-qiandai"></i>共计: -<span>￥{$list.total_amount}</span></p>
             </div>
+            </volist>
         </li>
-        <li>
-            <div class="ms-main-l l">
-                <p>订单编号: <span>25365214</span></p>
-                <p>类型: <span>车展</span></p>
-                <p>人数: <span>3</span>人</p>
-                <p>2016-12-12</p>
-            </div>
-            <div class="ms-main-r r">
-                <p><i class="icon iconfont icon-qiandai"></i>支出: -<span>￥630*3</span></p>
-                <p>共计: -<span>￥1890</span></p>
-            </div>
-        </li>
-        <li>
-            <div class="ms-main-l l">
-                <p>订单编号: <span>25365214</span></p>
-                <p>类型: <span>车展</span></p>
-                <p>人数: <span>3</span>人</p>
-                <p>2016-12-12</p>
-            </div>
-            <div class="ms-main-r r">
-                <p><i class="icon iconfont icon-qiandai"></i>支出: -<span>￥630*3</span></p>
-                <p>共计: -<span>￥1890</span></p>
-            </div>
-        </li>
+        </volist>
     </ul>
 </div>
 </body>
