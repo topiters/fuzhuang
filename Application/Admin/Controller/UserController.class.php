@@ -1,6 +1,6 @@
 <?php
 /**
- * 会员列表
+ * 会员管理
  */
 
 namespace Admin\Controller;
