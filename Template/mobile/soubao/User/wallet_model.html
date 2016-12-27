@@ -1,0 +1,35 @@
+<include file="Public/min-header"/>
+	<body class="bodybgf4">
+		<div class="backtip">
+			<a href="javascript:history.go(-1)">
+				<i class="icon iconfont">&#xe60d;</i>
+			</a>
+			<div class="addwudang">
+				可用余额
+			</div>
+		</div>
+		<div class="m-wwallet-yuebody">
+			<div class="m-wallet-yue">
+				<a href="javascript:void(0)">
+					<div>
+						<span>余额（元）</span>
+						<span class="m-wallet-money">
+							￥<if condition="$row.user_money eq ''">0.00<else/>{$row.user_money}</if>
+							元
+						</span>
+					</div>
+				</a>
+			</div>
+			<div class="m-wallet-yue-tx">
+				<a href="javascript:void(0)" id="deposit">
+					<div>提现</div>
+				</a>
+			</div>
+		</div>
+	</body>
+</html>
+<script>
+	$("#deposit").click(function(){
+		alert("余额不足");
+	})
+</script>
