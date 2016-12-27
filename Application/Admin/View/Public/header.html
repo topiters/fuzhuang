@@ -50,18 +50,18 @@
                   </a>
                </li>
            </if>
-           <li>
+           <!-- <li>
               <a href="/index.php" target="_blank">
                   <i class="glyphicon glyphicon-home"></i>
                   <span>网站前台</span>
               </a>
-           </li>
+           </li> -->
            <li>
                <a href="{:U('/Admin/System/cleanCache')}">
                    <i class="glyphicon glyphicon glyphicon-refresh"></i>
                    <span>清除缓存</span>
                </a>
-           </li>      
+           </li>
            <li class="dropdown user user-menu">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <!--  <img src="__PUBLIC__/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">-->
@@ -71,7 +71,7 @@
               <ul class="dropdown-menu">
                 <li class="user-footer">
                   <div class="pull-left">
-                  	<a href="javascript:void(0)" data-url="{:U('Index/map')}" class="btn btn-default btn-flat model-map">网站地图</a>
+                  	<!-- <a href="javascript:void(0)" data-url="{:U('Index/map')}" class="btn btn-default btn-flat model-map">网站地图</a> -->
                    	<a href="{:U('Admin/admin_info',array('admin_id'=>$admin_info['admin_id']))}" target="rightContent" class="btn btn-default btn-flat">修改密码</a>
                    	<a href="{:U('Admin/logout')}" class="btn btn-default btn-flat">安全退出</a>
                   </div>
@@ -79,7 +79,7 @@
               </ul>
             </li>
             <!-- Control Sidebar Toggle Button -->
-            <li><a href="#" data-toggle="control-sidebar"><i class="fa fa-street-view"></i>换肤</a></li>
+            <!-- <li><a href="#" data-toggle="control-sidebar"><i class="fa fa-street-view"></i>换肤</a></li> -->
           </ul>
         </div>
      </nav>
