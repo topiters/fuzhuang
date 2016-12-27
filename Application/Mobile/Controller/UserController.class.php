@@ -902,5 +902,135 @@ class UserController extends MobileBaseController {
         $this->success($data['msg']);
 
     }
+    
+    /**
+     * 模特钱包
+     */
+    public function mote_wallet(){
+    	$row = M('modelusers')->where(array('user_id'=>$this->user_id))->find();
+    	$this->assign("row",$row);
+    	$this->display();
+    }
+    
+    /**
+     * 模特可用余额
+     */
+    public function wallet_model(){
+    	$row = M('modelusers')->where(array('user_id'=>$this->user_id))->find();
+    	$this->assign("row",$row);
+    	$this->display();
+    }
+    
+    /**
+     * 模特信息编辑
+     */
+    public function moteinfo(){
+    	$row = M('modelusers')->where(array('user_id'=>$this->user_id))->find();
+    	/* if(empty($row['mobile'])){
+    	 exit();
+    	} */
+    	if(IS_POST){
+    		$data = I("post.");
+    		$r = M('modelusers')->where(array('user_id'=>$this->user_id))->save($data);
+    		if($r)
+    			exit($this->success('修改成功'));
+    		exit($this->error('未作内容修改或修改失败'));
+    	}
+    	 
+    	$this->assign("row",$row);
+    	$this->display();
+    }
+    
+    /**
+     * 模特订单
+     */
+    public function moteorder(){
+    	$moteorder = M('order')->alias('o')->where(array('og.goods_id'=>$this->user_id))->join(" LEFT JOIN __ORDER_GOODS__ og ON o.order_id = og.order_id ")->select();
+    	$this->assign("moteorder",$moteorder);
+    	$this->display();
+    }
+    
+    /**
+     * 模特推荐
+     */
+    public function moterecommend(){
+    	$this->display();
+    }
+    
+    /**
+     * 模特设置报价
+     */
+    public function moteoffer(){
+    	$row = M("typeset")->select();
+    	if($row){
+    		foreach ($row as $val){
+    			$val['addtime'] = date('Y-m-d',$val['addtime']);
+    			$val['range'] = explode(',', $val['range']);
+    			$list[] = $val;
+    		}
+    	}
+    	$this->assign("row",$row);
+    	$this->display();
+    }
+    
+    /**
+     * 模特设置档期
+     */
+    public function setdangqi(){
+    	$row = M('scheduhe')->where(array('user_id'=>$this->user_id))->find();
+    	$data = I('post.');
+    	if($row){
+    		$r = M('scheduhe')->where(array('user_id'=>$this->user_id))->save($data);
+    	}else{
+    		$r = M('scheduhe')->add($data);
+    	}
+    	if($r){
+    		$this->success("操作成功");
+    	}
+    	$this->assign("row",$row);
+    	$this->display();
+    }
+    
+    /**
+     * 模特评价
+     */
+    public function motecommon(){
+    	$row = M('comment')->where(array('modeluser_id'=>$this->user_id))->select();
+    	if($row){
+    		foreach ($row as $val){
+    			$val['addtime'] = date('Y-m-d',$val['addtime']);
+    			$list[] = $val;
+    		}
+    	}
+    	$this->assign("row",$row);
+    	$this->display();
+    }
+    
+    /**
+     * 模特认证
+     */
+    public function identify(){
+    	$field = array('user_id','mobile','name','sex','idnumber','cardnumber');
+    	$row = M('modelusers')->where(array('user_id'=>$this->user_id))->field($field)->find();
+    	 
+    	$this->assign("row",$row);
+    	$this->display();
+    }
+    /**
+     * 提交模特认证
+     */
+    public function idensave(){
+    	$field = array('user_id','mobile','name','sex','idnumber','cardnumber');
+    	$row = M('modelusers')->where(array('user_id'=>$this->user_id))->field($field)->find();
+    	if($row){
+    		$this->error("您已经认证过了");
+    	}else{
+    		$data = I("post.");
+    		$r = M('modelusers')->add($data);
+    		if($r)
+    			exit($this->success('信息已提交,请耐心等待审核'));
+    		exit($this->error('信息提交失败'));
+    	}
+    }
 
 }
