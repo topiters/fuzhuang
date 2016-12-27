@@ -185,10 +185,10 @@
     <input type="text" class="form-control" id="calendar-mobile-multiple">
     <div style="float: left;margin-top: 10px;">
       <div>选择地点：</div>
-      <div class="citysanji citywidth">
-        <select class="form-control prov" disabled="disabled"></select>
-        <select class="form-control city"></select>
-        <select class="form-control dist"></select>
+      <div class="citysanji cityiwidth distpicker1">
+        <select name="form-control province" id="province" disabled="disabled"></select>
+        <select name="form-control city" id="city"></select>
+        <select name="form-control area" id="area"></select>
       </div>
     </div>
     <div style="float: left;margin-top: 10px;">
@@ -213,23 +213,28 @@
   <div class="tip"></div>
 </div>
 </body>
-<script type="text/javascript" src="__STATIC__/js/js/jquery.js"></script>
-<script type="text/javascript" src="__STATIC__/js/js/jquery.cityselect.js"></script>
+<script src="__STATIC__/js/js/distpicker.data.js"></script>
+<script src="__STATIC__/js/js/distpicker.js"></script>
 <script src="__STATIC__/js/js/rili/jquery.mobile.custom.min.js"></script>
 <script src="__STATIC__/js/js/rili/jquery.toc.min.js"></script>
 <script src="__STATIC__/js/js/rili/jquery-asDatepicker.js" type="text/javascript" charset="utf-8"></script>
 <script>
     $(function(){
-        $(".citysanji").citySelect({
-            prov: "河南",
-            city: "郑州",
-            dist: "金水区",
-            nodata: "none"
+        $(".distpicker1").distpicker({
+            province: '河南省',
+            city: '郑州市',
+            district: '金水区'
         });
-
+        autoSelect: true ;
+        var user_id = "{$user_id}";
         $('.yuyue-btn').click(function(){
-            $('.blackchen').removeClass('hide');
-            $('.minfo-yuyuetc').addClass('yytccolsestyle');
+            if(!user_id){
+                alert("对不起，你还没有注册！");
+                location.href="/index.php?m=Mobile&c=User&a=regType";
+            }else {
+                $('.blackchen').removeClass('hide');
+                $('.minfo-yuyuetc').addClass('yytccolsestyle');
+            }
         });
         $('.minfo-yuyuetc .closeyuyue').click(function(){
             $('.blackchen').addClass('hide');
@@ -237,7 +242,7 @@
         });
         var zanguo = false;
         $('.modelinfozan').click(function(){
-            if(!{$user_id}){
+            if(!user_id){
                 alert("对不起，你还没有注册！");
                 location.href="/index.php?m=Mobile&c=User&a=regType";
             }else{
@@ -282,7 +287,7 @@
         $('.comeinshoucang-btn').click(function() {
             var zhe = $(this);
             var id = "{$arr.user_id}";
-            if (!{$user_id}) {
+            if (!user_id) {
                 alert("对不起，你还没有注册！");
                 location.href = "/index.php?m=Mobile&c=User&a=regType";
             } else {
